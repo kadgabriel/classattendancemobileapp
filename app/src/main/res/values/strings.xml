@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Class Attendance Mobile App</string>
+    <string name="title_activity_create_class">Create Class</string>
+</resources>

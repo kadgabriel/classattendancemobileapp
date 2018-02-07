@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.classattendancemobileapp.MainActivity">
+
+    <ToggleButton
+        android:id="@+id/mondayToggleButton"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="ToggleButton"
+        android:textOff="MON"
+        android:textOn="MON"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tuesdayToggleButton" />
+
+    <ToggleButton
+        android:id="@+id/tuesdayToggleButton"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="ToggleButton"
+        android:textOff="TUE"
+        android:textOn="TUE"
+        app:layout_constraintStart_toEndOf="@+id/mondayToggleButton"
+        app:layout_constraintTop_toTopOf="@+id/wednesdayToggleButton" />
+
+    <ToggleButton
+        android:id="@+id/wednesdayToggleButton"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="ToggleButton"
+        android:textOff="WED"
+        android:textOn="WED"
+        app:layout_constraintStart_toEndOf="@+id/tuesdayToggleButton"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <ToggleButton
+        android:id="@+id/thursdayToggleButton"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="ToggleButton"
+        android:textOff="THU"
+        android:textOn="THU"
+        app:layout_constraintStart_toEndOf="@+id/wednesdayToggleButton"
+        app:layout_constraintTop_toTopOf="@+id/wednesdayToggleButton" />
+
+    <ToggleButton
+        android:id="@+id/fridayToggleButton"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="ToggleButton"
+        android:textOff="FRI"
+        android:textOn="FRI"
+        app:layout_constraintStart_toEndOf="@+id/thursdayToggleButton"
+        app:layout_constraintTop_toTopOf="@+id/thursdayToggleButton" />
+
+    <EditText
+        android:id="@+id/classNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Class Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/startTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Start Time:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wednesdayToggleButton" />
+
+    <TextView
+        android:id="@+id/endTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:text="End Time:"
+        app:layout_constraintStart_toEndOf="@+id/startTimeEditText"
+        app:layout_constraintTop_toTopOf="@+id/startTimeLabel" />
+
+    <TextView
+        android:id="@+id/startTimeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="00:00"
+        app:layout_constraintStart_toEndOf="@+id/startTimeLabel"
+        app:layout_constraintTop_toTopOf="@+id/startTimeLabel" />
+
+    <TextView
+        android:id="@+id/endTimeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="24:00"
+        app:layout_constraintStart_toEndOf="@+id/endTimeLabel"
+        app:layout_constraintTop_toTopOf="@+id/endTimeLabel" />
+
+    <Button
+        android:id="@+id/createClassButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Create Class"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Class Description"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/classNameEditText" />
+
+</android.support.constraint.ConstraintLayout>
