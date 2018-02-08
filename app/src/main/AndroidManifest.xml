@@ -16,12 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".CreateClassActivity"
             android:label="@string/title_activity_create_class"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ViewClassActivity"></activity>
     </application>
 
 </manifest>
