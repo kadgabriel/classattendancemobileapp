@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
         classController.insertClass("CS197", "computerscience192");
         classController.insertClass("CS198", "computerscience192");
 
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
         List<Classes> classList = classController.getAllClasses();
         String[] classNames = new String[classList.size()];
         for(int i = 0; i < classList.size(); i++){
@@ -46,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, classNames);
         classListView.setAdapter(adapter);
+
         addClassFAB = (FloatingActionButton) findViewById(R.id.addClassFAB);
         addClassFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buildDB(){
-        db = Room.inMemoryDatabaseBuilder(
-                getApplicationContext(),
-                AppDatabase.class).allowMainThreadQueries().build();
-//                    db = Room.databaseBuilder(getApplicationContext(),
-//                              AppDatabase.class, "classattendance").allowMainThreadQueries().build();
+//        db = Room.inMemoryDatabaseBuilder(
+//                getApplicationContext(),
+//                AppDatabase.class).allowMainThreadQueries().build();
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "classattendance").allowMainThreadQueries().build();
     }
 }
