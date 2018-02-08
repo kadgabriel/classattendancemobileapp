@@ -1,5 +1,3 @@
-package com.example.classattendancemobileapp.database;
-
 /*
 * Class Attendance Mobile App
 *
@@ -8,9 +6,7 @@ package com.example.classattendancemobileapp.database;
 * of the Department of Computer Science, College of Engineering,
 * University of the Philippines, Diliman for the AY 2017-2018”.
 *
-* @Author(s): Arielle Gabriel
-* @File:  Classes.java
-* @Version: 1.0
+* @File Author(s): Arielle Gabriel
 *
 * */
 
@@ -22,6 +18,21 @@ package com.example.classattendancemobileapp.database;
 * Version 1.0 <04/02/2018> - Arielle Gabriel
 *    - created initial file for student db entity
 * */
+
+/*
+* Class Attendance Mobile App
+*
+* Class Attendance Mobile App is a mobile application that allows the teacher to record
+* the attendance​ of the students​ digitally​ using a smart phone
+*
+* @Group members: Atienza, Austria, Gabriel
+* @Client: Asst. Prof. Ma. Rowena C. Solamo
+* @File:  Student.java
+* @Version: 1.0
+*
+* */
+
+package com.example.classattendancemobileapp.database;
 
 
 import android.arch.persistence.room.ColumnInfo;
@@ -45,16 +56,16 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 	     )
 class Student {
      @ColumnInfo(name = "classID")
-     private int classID;
+     private int classID; // variable holder for an Student record's classID column value
 
      @ColumnInfo(name = "studentNum")
-     private String studentNum;
+     private String studentNum; // variable holder for an Student record's studentNum column value
 
      @ColumnInfo(name = "firstName")
-     private String firstName;
+     private String firstName; // variable holder for an Student record's firstName column value
 
      @ColumnInfo(name = "lastName")
-     private String lastName;
+     private String lastName; // variable holder for an Student record's lastName column value
 
      /*
      * getClassID() <04/02/2018>
@@ -115,7 +126,7 @@ class Student {
      /*
      * setClassID() <04/02/2018>
      * - setter function for classID attribute
-     * @param: int - classID of the class where the student belong
+     * @param: classID - classID of the class where the student belong
      * @requires: none
      * @returns: none
      * */
@@ -126,7 +137,7 @@ class Student {
      /*
      * setStudentNum() <04/02/2018>
      * - setter function for studentNum attribute
-     * @param: String - student number
+     * @param: studentNum - student number
      * @requires: none
      * @returns: none
      * */
@@ -137,7 +148,7 @@ class Student {
      /*
      * setFirstName() <04/02/2018>
      * - setter function for firstName attribute
-     * @param: String - student's first name
+     * @param: firstName - student's first name
      * @requires: none
      * @returns: none
      * */
@@ -148,7 +159,7 @@ class Student {
      /*
      * setLastName() <04/02/2018>
      * - setter function for lastName attribute
-     * @param: String - student's last name
+     * @param: lastName - student's last name
      * @requires: none
      * @returns: none
      * */

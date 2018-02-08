@@ -1,4 +1,3 @@
-package com.example.classattendancemobileapp.database;
 /*
 * Class Attendance Mobile App
 *
@@ -7,9 +6,7 @@ package com.example.classattendancemobileapp.database;
 * of the Department of Computer Science, College of Engineering,
 * University of the Philippines, Diliman for the AY 2017-2018”.
 *
-* @Author(s): Arielle Gabriel
-* @File:  AppDatabase.java
-* @Version: 1.0
+* @File Author(s): Arielle Gabriel
 *
 * */
 
@@ -21,6 +18,22 @@ package com.example.classattendancemobileapp.database;
 * Version 1.0 <04/02/2018> - Arielle Gabriel
 *    - created initial file containing functions for classesDao() and studentDao()
 * */
+
+/*
+* Class Attendance Mobile App
+*
+* Class Attendance Mobile App is a mobile application that allows the teacher to record
+* the attendance​ of the students​ digitally​ using a smart phone
+*
+* @Group members: Atienza, Austria, Gabriel
+* @Client: Asst. Prof. Ma. Rowena C. Solamo
+* @File:  AppDatabase.java
+* @Version: 1.0
+*
+* */
+
+package com.example.classattendancemobileapp.database;
+
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 

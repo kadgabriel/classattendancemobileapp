@@ -1,4 +1,3 @@
-package com.example.classattendancemobileapp.database;
 /*
 * Class Attendance Mobile App
 *
@@ -7,9 +6,7 @@ package com.example.classattendancemobileapp.database;
 * of the Department of Computer Science, College of Engineering,
 * University of the Philippines, Diliman for the AY 2017-2018”.
 *
-* @Author(s): Arielle Gabriel
-* @File:  Classes.java
-* @Version: 1.0
+* @File Author(s): Arielle Gabriel
 *
 * */
 
@@ -20,7 +17,24 @@ package com.example.classattendancemobileapp.database;
 *
 * Version 1.0 <04/02/2018> - Arielle Gabriel
 *    - created initial file for classes db entity
+*
 * */
+
+/*
+* Class Attendance Mobile App
+*
+* Class Attendance Mobile App is a mobile application that allows the teacher to record
+* the attendance​ of the students​ digitally​ using a smart phone
+*
+* @Group members: Atienza, Austria, Gabriel
+* @Client: Asst. Prof. Ma. Rowena C. Solamo
+* @File:  Classes.java
+* @Version: 1.0
+*
+* */
+
+
+package com.example.classattendancemobileapp.database;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -34,16 +48,24 @@ public class Classes{
      /* set the table's primary key and auto increment it*/
      @PrimaryKey(autoGenerate = true)
      @ColumnInfo(name = "classID")
-     private int classID;
+     private int classID; // variable holder for an Classes record's classID column value
 
      @ColumnInfo(name = "className")
-     private String className;
+     private String className; // variable holder for an Classes record's className column value
+
      @ColumnInfo(name = "classDesc")
-     private String classDesc;
+     private String classDesc; // variable holder for an Classes record's classDesc column value
 
      /* empty constructor */
      Classes(){}
 
+     /*
+     * Classes() <04/02/2018>
+     * - constructor for a Classes class with a name and description
+     * @param: name - name for the class, desc - description of the class
+     * @requires: none
+     * @returns: none
+     * */
      public Classes(String name, String desc){
           this.className = name;
           this.classDesc = desc;
@@ -85,7 +107,7 @@ public class Classes{
      /*
      * setClassID() <04/02/2018>
      * - setter function for classID attribute
-     * @param: int - classID to be set
+     * @param: classID - classID to be set
      * @requires: none
      * @returns: none
      * */
@@ -96,7 +118,7 @@ public class Classes{
      /*
      * setClassName() <04/02/2018>
      * - setter function for className attribute
-     * @param: String - className to be set
+     * @param: className - className to be set
      * @requires: none
      * @returns: none
      * */
@@ -107,7 +129,7 @@ public class Classes{
      /*
      * setClassDesc() <04/02/2018>
      * - setter function for classDesc attribute
-     * @param: String - classDesc to be set
+     * @param: classDesc - classDesc to be set
      * @requires: none
      * @returns: none
      * */

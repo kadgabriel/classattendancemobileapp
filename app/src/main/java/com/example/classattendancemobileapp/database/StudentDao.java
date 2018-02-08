@@ -1,13 +1,3 @@
-package com.example.classattendancemobileapp.database;
-
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
-
-import java.util.List;
-
 /*
 * Class Attendance Mobile App
 *
@@ -16,9 +6,7 @@ import java.util.List;
 * of the Department of Computer Science, College of Engineering,
 * University of the Philippines, Diliman for the AY 2017-2018”.
 *
-* @Author(s): Arielle Gabriel
-* @File:  Classes.java
-* @Version: 1.0
+* @File Author(s): Arielle Gabriel
 *
 * */
 
@@ -30,6 +18,31 @@ import java.util.List;
 * Version 1.0 <06/02/2018> - Arielle Gabriel
 *    - created initial file for students dao
 * */
+
+/*
+* Class Attendance Mobile App
+*
+* Class Attendance Mobile App is a mobile application that allows the teacher to record
+* the attendance​ of the students​ digitally​ using a smart phone
+*
+* @Group members: Atienza, Austria, Gabriel
+* @Client: Asst. Prof. Ma. Rowena C. Solamo
+* @File:  StudentDao.java
+* @Version: 1.0
+*
+* */
+
+package com.example.classattendancemobileapp.database;
+
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
+
+import java.util.List;
+
+
 
 @Dao
 public interface StudentDao {

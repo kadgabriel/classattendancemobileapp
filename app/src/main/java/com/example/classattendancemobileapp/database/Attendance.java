@@ -1,5 +1,3 @@
-package com.example.classattendancemobileapp.database;
-
 /*
 * Class Attendance Mobile App
 *
@@ -8,11 +6,10 @@ package com.example.classattendancemobileapp.database;
 * of the Department of Computer Science, College of Engineering,
 * University of the Philippines, Diliman for the AY 2017-2018”.
 *
-* @Author(s): Arielle Gabriel
-* @File:  Attendance.java
-* @Version: 1.0
+* @File Author(s): Arielle Gabriel
 *
 * */
+
 
 /*
 * Code History
@@ -21,7 +18,22 @@ package com.example.classattendancemobileapp.database;
 *
 * Version 1.0 <04/02/2018> - Arielle Gabriel
 *    - created initial file for attendance db entity
+*
 * */
+
+/*
+* Class Attendance Mobile App
+*
+* Class Attendance Mobile App is a mobile application that allows the teacher to record
+* the attendance​ of the students​ digitally​ using a smart phone
+*
+* @Group members: Atienza, Austria, Gabriel
+* @Client: Asst. Prof. Ma. Rowena C. Solamo
+* @File:  Attendance.java
+* @Version: 1.0
+*
+* */
+package com.example.classattendancemobileapp.database;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -47,16 +59,16 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 class Attendance{
      @ColumnInfo(name = "classID")
-     private int classID;
+     private int classID; // variable holder for an Attendance record's classID column value
 
      @ColumnInfo(name = "studentNum")
-     private String studentNum;
+     private String studentNum; // variable holder for an Attendance record's studentNum column value
 
      @ColumnInfo(name = "date")
-     private String date;
+     private String date; // variable holder for an Attendance record's date column value
 
      @ColumnInfo(name = "entry")
-     private String entry;
+     private String entry; // variable holder for an Attendance record's entry column value
 
      /*
      * getClassID() <04/02/2018>
@@ -105,7 +117,7 @@ class Attendance{
      /*
      * setClassID() <04/02/2018>
      * - setter function for classID attribute
-     * @param: int - classID to be set
+     * @param: classID - class ID to be set
      * @requires: none
      * @returns: none
      * */
@@ -116,7 +128,7 @@ class Attendance{
      /*
      * setStudentNum() <04/02/2018>
      * - setter function for studentNum attribute
-     * @param: String - studentNum to be set
+     * @param: studentNum - student number to be set
      * @requires: none
      * @returns: none
      * */
@@ -127,7 +139,7 @@ class Attendance{
      /*
      * setDate() <04/02/2018>
      * - setter function for date attribute
-     * @param: String - date to be set
+     * @param: date - date to be set
      * @requires: none
      * @returns: none
      * */
@@ -138,7 +150,7 @@ class Attendance{
      /*
      * setEntry() <04/02/2018>
      * - setter function for entry attribute
-     * @param: String - entry to be set (values: A/L/P)
+     * @param: entry - entry to be set (values: A/L/P)
      * @requires: none
      * @returns: none
      * */
