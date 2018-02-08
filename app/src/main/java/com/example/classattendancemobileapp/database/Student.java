@@ -1,8 +1,28 @@
 package com.example.classattendancemobileapp.database;
 
-/**
- * Created by arielle on 2/4/18.
- */
+/*
+* Class Attendance Mobile App
+*
+* “This is a course requirement for CS 192 Software Engineering II
+* under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+* of the Department of Computer Science, College of Engineering,
+* University of the Philippines, Diliman for the AY 2017-2018”.
+*
+* @Author(s): Arielle Gabriel
+* @File:  Classes.java
+* @Version: 1.0
+*
+* */
+
+/*
+* Code History
+*    Version x.x <DD/MM/YYYY> - Author
+*         [description of changes]
+*
+* Version 1.0 <04/02/2018> - Arielle Gabriel
+*    - created initial file for student db entity
+* */
+
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -10,6 +30,10 @@ import android.arch.persistence.room.ForeignKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
+/*
+* construct a table named "student" with primary keys: classID, and studentNum
+* with foreign key classID from table classes
+* */
 @Entity(
           tableName = "student",
           primaryKeys = {"classID", "studentNum"},
@@ -20,52 +44,118 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
                     onUpdate=CASCADE)
 	     )
 class Student {
-//     @Index(name="index1", value="studentNum", unique = false)
      @ColumnInfo(name = "classID")
      private int classID;
 
      @ColumnInfo(name = "studentNum")
      private String studentNum;
+
      @ColumnInfo(name = "firstName")
      private String firstName;
+
      @ColumnInfo(name = "lastName")
      private String lastName;
 
+     /*
+     * getClassID() <04/02/2018>
+     * - getter function for classID attribute
+     * @param: none
+     * @requires: none
+     * @returns: int - containing the class' ID
+     * */
      public int getClassID(){
           return this.classID;
      }
 
+     /*
+     * getStudentNum() <04/02/2018>
+     * - getter function for studentNumber attribute
+     * @param: none
+     * @requires: none
+     * @returns: String - containing the student number
+     * */
      public String getStudentNum(){
           return this.studentNum;
      }
 
+     /*
+     * getFirstName() <04/02/2018>
+     * - getter function for firstName attribute
+     * @param: none
+     * @requires: none
+     * @returns: String - containing the student's first name
+     * */
      public String getFirstName(){
           return this.firstName;
      }
 
+     /*
+     * getLastName() <04/02/2018>
+     * - getter function for lastName attribute
+     * @param: none
+     * @requires: none
+     * @returns: String - containing the student's last name
+     * */
      public String getLastName(){
           return this.lastName;
      }
 
+     /*
+     * getName() <04/02/2018>
+     * - getter function for lastName and firstName attribute
+     * @param: none
+     * @requires: none
+     * @returns: String - containing the concatenation of student's
+     *                    "last name, first name"
+     * */
+     public String getName(){
+          return this.lastName+", "+this.firstName;
+     }
+
+     /*
+     * setClassID() <04/02/2018>
+     * - setter function for classID attribute
+     * @param: int - classID of the class where the student belong
+     * @requires: none
+     * @returns: none
+     * */
      public void setClassID(int classID){
           this.classID = classID;
      }
 
+     /*
+     * setStudentNum() <04/02/2018>
+     * - setter function for studentNum attribute
+     * @param: String - student number
+     * @requires: none
+     * @returns: none
+     * */
      public void setStudentNum(String studentNum){
           this.studentNum = studentNum;
      }
 
+     /*
+     * setFirstName() <04/02/2018>
+     * - setter function for firstName attribute
+     * @param: String - student's first name
+     * @requires: none
+     * @returns: none
+     * */
      public void setFirstName(String firstName){
           this.firstName = firstName;
      }
 
+     /*
+     * setLastName() <04/02/2018>
+     * - setter function for lastName attribute
+     * @param: String - student's last name
+     * @requires: none
+     * @returns: none
+     * */
      public void setLastName(String lastName){
           this.lastName = lastName;
      }
 
-     public String getName(){
-          return this.lastName+", "+this.firstName;
-     }
 
 
 }
