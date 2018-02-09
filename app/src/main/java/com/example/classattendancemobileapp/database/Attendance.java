@@ -30,6 +30,7 @@
 * @Group members: Atienza, Austria, Gabriel
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  Attendance.java
+* @Creation Date: 04/02/18
 * @Version: 1.0
 *
 * */
