@@ -17,6 +17,8 @@
  *
  *   Version 1.0 <07/02/2018> - John Oliver
  *        - created initial file
+ *   Version 1.1 <08/02/2018> - Ronnel Roi
+ *        - added the lines for actual creation of classes. Switched the creation of database from inMemory to a persistent one.
  */
 
 /**
@@ -27,7 +29,7 @@
  * @Group members: Atienza, Austria, Gabriel
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  CreateClassActivity.java
- * @Version: 1.0
+ * @Version: 1.1
  */
 
 package com.example.classattendancemobileapp;
