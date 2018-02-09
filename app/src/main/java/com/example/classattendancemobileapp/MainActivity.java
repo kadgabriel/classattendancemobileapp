@@ -20,6 +20,7 @@
  *
  *   Version 1.01 <08/02/2018> - John Oliver
  *        - added lines event listeners on ListView item select
+ *
  *   Version 1.10 <08/02/2018> - Ronnel Roi
  *        - transferred lines for getting classes and displaying classes to onResume() to ensure the data displayed
  *          is up to date all the time. Switched the creation of database from inMemory to a persistent one.
@@ -33,6 +34,7 @@
  * @Group members: Atienza, Austria, Gabriel
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  MainActivity.java
+ * @Creation Date: 07/02/18
  * @Version: 1.10
  */
 

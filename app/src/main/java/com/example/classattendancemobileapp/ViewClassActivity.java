@@ -15,7 +15,7 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
- *   Version 1.0 <07/02/2018> - John Oliver
+ *   Version 1.0 <08/02/2018> - John Oliver
  *        - created initial file
  */
 
@@ -27,6 +27,7 @@
  * @Group members: Atienza, Austria, Gabriel
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ViewClassActivity.java
+ * @Creation Date: 08/02/18
  * @Version: 1.0
  */
 
@@ -45,7 +46,7 @@ public class ViewClassActivity extends AppCompatActivity {
      TextView noStudentTextView; // variable holder for the TextView widget to display the 'no students' notice
 
      /**
-      * onCreate() <07/02/2018>
+      * onCreate() <08/02/2018>
       * - android function called when the activity is created
       * @param: savedInstanceState - the saved state of the activity in memory
       * @requires: none
