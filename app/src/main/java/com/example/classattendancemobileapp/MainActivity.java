@@ -49,6 +49,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import com.example.classattendancemobileapp.database.AppDatabase;
 import com.example.classattendancemobileapp.database.Classes;
 import java.util.List;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
      static AppDatabase db; // variable holder for the application's database
      ListView classListView; // variable holder for the ListView widget to display the list of classes
+     TextView noClassTextView; // variable holder for the TextView widget to display the 'no classes' notice
      FloatingActionButton addClassFAB; // variable holder for the floating action button on the screen
      ClassController classController; // variable holder for the class controller that interacts with the database
 
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
           classListView = findViewById(R.id.classListView);
           addClassFAB = findViewById(R.id.addClassFAB);
+          noClassTextView = findViewById(R.id.noClassTextView);
 
           classController = new ClassController(db, getApplicationContext());
      }
@@ -96,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
           for(int i = 0; i < classList.size(); i++){
                classNames[i] = classList.get(i).getClassName();
           }
+          if(classNames.length == 0)
+               noClassTextView.setVisibility(View.VISIBLE);
+          else
+               noClassTextView.setVisibility(View.INVISIBLE);
 
           ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, classNames);
 

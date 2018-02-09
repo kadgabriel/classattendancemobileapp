@@ -74,8 +74,9 @@ public class CreateClassActivity extends AppCompatActivity {
                String classDesc;
                className = classNameEditText.getText().toString();
                classDesc = classDescEditText.getText().toString();
-               classController.insertClass(className, classDesc);
-
+               boolean b = classController.insertClass(className, classDesc);
+               if(b)
+                    finish();
             }
           });
      }
