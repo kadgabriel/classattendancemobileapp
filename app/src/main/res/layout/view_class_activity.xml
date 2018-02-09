@@ -7,6 +7,8 @@
      under the supervision of Asst. Prof. Ma. Rowena C. Solamo
      of the Department of Computer Science, College of Engineering,
      University of the Philippines, Diliman for the AY 2017-2018.
+
+     @Author: John Oliver
 -->
 
 <!--
@@ -19,8 +21,13 @@
 -->
 
 <!--
-     @Author(s): John Oliver
-     @File: view_class_activity.xml
+     Class Attendance Mobile App
+     Class Attendance Mobile App is a mobile application that allows the teacher to record
+     the attendance​ of the students​ digitally​ using a smart phone
+
+     @Group members: Atienza, Austria, Gabriel
+     @Client: Asst. Prof. Ma. Rowena C. Solamo
+     @File:  ViewClassActivity.java
      @Version: 1.0
 -->
 
