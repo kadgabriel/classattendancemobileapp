@@ -17,8 +17,13 @@
  *
  *   Version 1.0 <07/02/2018> - John Oliver
  *        - created initial file
+ *
  *   Version 1.1 <08/02/2018> - Ronnel Roi
  *        - added the lines for actual creation of classes. Switched the creation of database from inMemory to a persistent one.
+ *
+ *   Version 1.11 <09/02/2018> - John Oliver
+ *        - added class creation feedback (return to MainActivity after successful class creation.) Rearranged code
+ *          for better readability
  */
 
 /**
@@ -68,12 +73,14 @@ public class CreateClassActivity extends AppCompatActivity {
           createClassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               EditText classNameEditText =  findViewById(R.id.classNameEditText);
-               EditText classDescEditText =  findViewById(R.id.classDescEditText);
-               String className;
-               String classDesc;
+               EditText classNameEditText, classDescEditText;
+               String className, classDesc;
+
+               classNameEditText = findViewById(R.id.classNameEditText);
+               classDescEditText =  findViewById(R.id.classDescEditText);
                className = classNameEditText.getText().toString();
                classDesc = classDescEditText.getText().toString();
+
                boolean b = classController.insertClass(className, classDesc);
                if(b)
                     finish();

@@ -24,6 +24,10 @@
  *   Version 1.10 <08/02/2018> - Ronnel Roi
  *        - transferred lines for getting classes and displaying classes to onResume() to ensure the data displayed
  *          is up to date all the time. Switched the creation of database from inMemory to a persistent one.
+ *
+ *   Version 1.11 <09/02/2018> - John Oliver
+ *        - added a TextView widget to be able to show the user if no classes exist or have been created. Rearranged
+ *          some of the code for better readability
  */
 
 /**
@@ -100,18 +104,15 @@ public class MainActivity extends AppCompatActivity {
           for(int i = 0; i < classList.size(); i++){
                classNames[i] = classList.get(i).getClassName();
           }
+
+          ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, classNames);
+          classListView.setAdapter(adapter);
+
           if(classNames.length == 0)
                noClassTextView.setVisibility(View.VISIBLE);
           else
                noClassTextView.setVisibility(View.INVISIBLE);
 
-          ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, classNames);
-
-          classListView.setAdapter(adapter);
-
-          addClassFAB = findViewById(R.id.addClassFAB);
-
-          //Added listview item click listener
           classListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
