@@ -15,6 +15,9 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.01 <17/02/2018> - Arielle Gabriel
+*    - renamed function getAll() to getByClassID()
+*
 * Version 1.0 <06/02/2018> - Arielle Gabriel
 *    - created initial file for students dao
 * */
@@ -29,7 +32,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  StudentDao.java
 * @Creation Date: 06/02/18
-* @Version: 1.0
+* @Version: 1.01
 *
 * */
 
@@ -49,14 +52,14 @@ import java.util.List;
 public interface StudentDao {
 
      /*
-     * getAll() <06/02/2018>
+     * getByClassID() <06/02/2018>
      * - returns all students given a classID
      * @param: int ID - ID of the target class
      * @requires: none
      * @returns: List<Student> - list containing Students object of the matched ID
      * */
      @Query("SELECT * FROM student WHERE classID= :ID")
-     List<Student> getAll(int ID);
+     List<Student> getByClassID(int ID);
 
      /*
      * insert() <06/02/2018>

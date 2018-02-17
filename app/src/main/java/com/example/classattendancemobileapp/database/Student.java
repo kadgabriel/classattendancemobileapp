@@ -15,6 +15,9 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.01 <17/02/2018> - Arielle Gabriel
+*    - added constructor
+*
 * Version 1.0 <04/02/2018> - Arielle Gabriel
 *    - created initial file for student db entity
 * */
@@ -29,7 +32,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  Student.java
 * @Creation Date: 04/02/18
-* @Version: 1.0
+* @Version: 1.01
 *
 * */
 
@@ -77,6 +80,20 @@ class Student {
      * */
      public int getClassID(){
           return this.classID;
+     }
+
+     /*
+     * Student() <17/02/2018>
+     * - constructor for a Classes class with a name and description
+     * @param: int - classID, String - student number, String - first name, String last name
+     * @requires: none
+     * @returns: none
+     * */
+     public Student(int classID, String studentNum, String firstName, String lastName){
+          this.classID = classID;
+          this.studentNum = studentNum;
+          this.firstName = firstName;
+          this.lastName = lastName;
      }
 
      /*
