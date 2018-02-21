@@ -49,9 +49,9 @@ public class AddStudentsActivity extends AppCompatActivity {
      private static final int PICKFILE_RESULT_CODE = 1;
 
      RadioButton singleStudentRb, csvRb;
-     EditText firstNameEt, lastNameEt, snoEt, pathEt;
+     EditText pathEt;
      Button pathButton, confirmAddStudentsButton;
-
+     StudentController studentController;
      /**
       * onCreate() <08/02/2018>
       * - android function called when the activity is created
@@ -63,17 +63,19 @@ public class AddStudentsActivity extends AppCompatActivity {
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_add_students);
-
+          Intent intent = getIntent();
+          final String className;
+          className = intent.getStringExtra("CLASS_NAME");
           singleStudentRb = findViewById(R.id.singleStudentRb);
           csvRb = findViewById(R.id.csvRb);
+          studentController = new StudentController(getApplicationContext());
 
-          firstNameEt = findViewById(R.id.firstNameEt);
-          lastNameEt = findViewById(R.id.lastNameEt);
-          snoEt = findViewById(R.id.snoEt);
           pathEt = findViewById(R.id.pathEt);
 
           pathButton = findViewById(R.id.pathButton);
           confirmAddStudentsButton = findViewById(R.id.confirmAddStudentsButton);
+
+
 
           singleStudentRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                @Override
@@ -91,6 +93,9 @@ public class AddStudentsActivity extends AppCompatActivity {
                }
           });
 
+
+
+
           pathButton.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
@@ -98,6 +103,25 @@ public class AddStudentsActivity extends AppCompatActivity {
                     filePickerIntent.setType("text/csv, text/comma-separated-values, application/csv");
                     filePickerIntent = filePickerIntent.createChooser(filePickerIntent, "Choose CSV file");
                     startActivityForResult(filePickerIntent, PICKFILE_RESULT_CODE);
+               }
+          });
+
+          confirmAddStudentsButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                    EditText firstNameEt, lastNameEt, snoEt;
+
+                    firstNameEt = findViewById(R.id.firstNameEt);
+                    lastNameEt = findViewById(R.id.lastNameEt);
+                    snoEt = findViewById(R.id.snoEt);
+
+                    String firstName, lastName, studentNumber;
+
+                    firstName = firstNameEt.getText().toString();
+                    lastName = lastNameEt.getText().toString();
+                    studentNumber = snoEt.getText().toString();
+                    studentController.insertStudent(className, firstName, lastName, studentNumber);
+
                }
           });
      }
@@ -112,4 +136,6 @@ public class AddStudentsActivity extends AppCompatActivity {
                     }
           }
      }
+
+     
 }

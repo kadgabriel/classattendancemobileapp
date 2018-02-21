@@ -61,22 +61,27 @@ public class ViewClassActivity extends AppCompatActivity {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.view_class_activity);
           Intent intent = getIntent();
-          setTitle(intent.getStringExtra("CLASS_NAME"));
+          final String className;
+          className = intent.getStringExtra("CLASS_NAME");
+          setTitle(className);
 
           studentListView = findViewById(R.id.studentListView);
           noStudentTv = findViewById(R.id.noStudentTv);
           classNameTv = findViewById(R.id.classNameTv);
           sectionTv = findViewById(R.id.sectionTv);
-          addStudentsButton = findViewById(R.id.confirmAddStudentsButton);
+          addStudentsButton = findViewById(R.id.addStudentsButton);
 
-          classNameTv.setText(intent.getStringExtra("CLASS_NAME"));
+          classNameTv.setText(className);
+
           addStudentsButton.setOnClickListener(new View.OnClickListener() {
                @Override
-               public void onClick(View view) {
+               public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), AddStudentsActivity.class);
+                    intent.putExtra("CLASS_NAME", className);
                     startActivity(intent);
                }
           });
+
 
           String[] studentNames = new String[0];
           if(studentNames.length == 0)
