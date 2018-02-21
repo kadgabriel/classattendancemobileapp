@@ -39,29 +39,72 @@
      android:layout_height="match_parent"
      tools:context="com.example.classattendancemobileapp.ViewClassActivity">
 
-     <ListView
-          android:id="@+id/studentListView"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_marginBottom="8dp"
-          android:layout_marginEnd="8dp"
-          android:layout_marginStart="8dp"
-          android:layout_marginTop="8dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="1.0" />
-
      <TextView
-          android:id="@+id/noStudentTextView"
+          android:id="@+id/noStudentTv"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="This class has no students."
+          android:text="@string/no_students"
           android:visibility="invisible"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
+
+     <TextView
+          android:id="@+id/classNameTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:text="CS 192"
+          android:textSize="30sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0" />
+
+     <TextView
+          android:id="@+id/sectionTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:text="WFWX"
+          android:textSize="30sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/classNameTv"
+          app:layout_constraintVertical_bias="0.0" />
+
+     <Button
+          android:id="@+id/confirmAddStudentsButton"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:background="@drawable/ic_plus"
+          android:backgroundTint="@color/colorAccent"
+          android:elevation="0dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/sectionTv"
+          app:layout_constraintVertical_bias="0.0" />
+
+     <ListView
+          android:id="@+id/studentListView"
+          android:layout_width="0dp"
+          android:layout_height="0dp"
+          android:layout_marginBottom="8dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/confirmAddStudentsButton"
+          app:layout_constraintVertical_bias="1.0" />
 </android.support.constraint.ConstraintLayout>

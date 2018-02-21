@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context="com.example.classattendancemobileapp.AddStudentsActivity">
+
+     <RadioButton
+          android:id="@+id/singleStudentRb"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_weight="1"
+          android:checked="true"
+          android:text="@string/add_a_single_student"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          android:layout_marginLeft="8dp" />
+
+     <RadioButton
+          android:id="@+id/csvRb"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="24dp"
+          android:layout_weight="1"
+          android:text="@string/add_students_from_csv_file"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/snoEt"
+          android:layout_marginLeft="8dp" />
+
+     <TextView
+          android:id="@+id/firstNameTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:text="First Name:"
+          app:layout_constraintStart_toStartOf="@+id/singleStudentRb"
+          app:layout_constraintTop_toBottomOf="@+id/singleStudentRb"
+          android:layout_marginLeft="8dp" />
+
+     <EditText
+          android:id="@+id/firstNameEt"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:ems="10"
+          android:inputType="textPersonName"
+          android:textSize="14sp"
+          app:layout_constraintBaseline_toBaselineOf="@+id/firstNameTv"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="@+id/lastNameEt"
+          android:layout_marginRight="8dp" />
+
+     <TextView
+          android:id="@+id/lastNameTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:text="Last Name:"
+          app:layout_constraintStart_toStartOf="@+id/firstNameTv"
+          app:layout_constraintTop_toBottomOf="@+id/firstNameTv" />
+
+     <EditText
+          android:id="@+id/lastNameEt"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:ems="10"
+          android:inputType="textPersonName"
+          android:textSize="14sp"
+          app:layout_constraintBaseline_toBaselineOf="@+id/lastNameTv"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="@+id/snoEt"
+          android:layout_marginRight="8dp" />
+
+     <TextView
+          android:id="@+id/snoTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:text="Student No.:"
+          app:layout_constraintStart_toStartOf="@+id/lastNameTv"
+          app:layout_constraintTop_toBottomOf="@+id/lastNameTv" />
+
+     <EditText
+          android:id="@+id/snoEt"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:ems="10"
+          android:inputType="number"
+          app:layout_constraintBaseline_toBaselineOf="@+id/snoTv"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toEndOf="@+id/snoTv"
+          android:layout_marginRight="8dp" />
+
+     <TextView
+          android:id="@+id/pathTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:text="Path:"
+          app:layout_constraintBottom_toTopOf="@+id/confirmAddStudentsButton"
+          app:layout_constraintStart_toStartOf="@+id/csvRb"
+          app:layout_constraintTop_toBottomOf="@+id/csvRb"
+          app:layout_constraintVertical_bias="0.0"
+          android:layout_marginLeft="8dp" />
+
+     <EditText
+          android:id="@+id/pathEt"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:inputType="textPersonName"
+          android:textSize="14sp"
+          app:layout_constraintBaseline_toBaselineOf="@+id/pathTv"
+          app:layout_constraintEnd_toStartOf="@+id/pathButton"
+          app:layout_constraintStart_toEndOf="@+id/pathTv" />
+
+     <Button
+          android:id="@+id/pathButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:elevation="0dp"
+          android:text=".."
+          android:textAlignment="center"
+          android:textAllCaps="false"
+          app:layout_constraintBaseline_toBaselineOf="@+id/pathEt"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/pathEt"
+          android:layout_marginRight="8dp" />
+
+     <Button
+          android:id="@+id/confirmAddStudentsButton"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:background="@color/colorPrimary"
+          android:text="Add Student/s"
+          android:textColor="@android:color/background_light"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

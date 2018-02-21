@@ -37,13 +37,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ViewClassActivity extends AppCompatActivity {
 
      ListView studentListView; // variable holder for the ListView widget to display the list of students
-     TextView noStudentTextView; // variable holder for the TextView widget to display the 'no students' notice
+     TextView noStudentTv; // variable holder for the TextView widget to display the 'no students' notice
+     Button addStudentsButton;
 
      /**
       * onCreate() <08/02/2018>
@@ -60,9 +62,19 @@ public class ViewClassActivity extends AppCompatActivity {
           setTitle(intent.getStringExtra("CLASS_NAME"));
 
           studentListView = findViewById(R.id.studentListView);
-          noStudentTextView = findViewById(R.id.noStudentTextView);
+          noStudentTv = findViewById(R.id.noStudentTv);
+          addStudentsButton = findViewById(R.id.confirmAddStudentsButton);
+
+          addStudentsButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), AddStudentsActivity.class);
+                    startActivity(intent);
+               }
+          });
+
           String[] studentNames = new String[0];
           if(studentNames.length == 0)
-               noStudentTextView.setVisibility(View.VISIBLE);
+               noStudentTv.setVisibility(View.VISIBLE);
     }
 }
