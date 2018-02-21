@@ -62,6 +62,16 @@ public interface StudentDao {
      List<Student> getByClassID(int ID);
 
      /*
+     * countMatchStudent() <05/02/2018>
+     * - returns an int
+     * @param: Student - object containing the class to be inserted
+     * @requires: none
+     * @returns: int - count of matching student name
+     * */
+     @Query("SELECT count(*) FROM student WHERE classID= :id AND firstName=:firstName AND lastName= :lastName")
+     int countMatchStudent(int id, String firstName, String lastName);
+
+     /*
      * insert() <06/02/2018>
      * - inserts a new student to the database
      * @param: stud - Student object containing the student to be inserted

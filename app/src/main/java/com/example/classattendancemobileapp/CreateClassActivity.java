@@ -73,9 +73,11 @@ public class CreateClassActivity extends AppCompatActivity {
           createClassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               EditText classNameEditText, classDescEditText;
-               String className, classDesc;
-
+               EditText classNameEditText;
+               EditText classDescEditText;
+               String className;
+               String classDesc;
+                 
                classNameEditText = findViewById(R.id.classNameEditText);
                classDescEditText =  findViewById(R.id.classDescEditText);
                className = classNameEditText.getText().toString();

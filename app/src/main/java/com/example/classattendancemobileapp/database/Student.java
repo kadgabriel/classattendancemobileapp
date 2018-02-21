@@ -58,7 +58,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
                     onDelete=CASCADE,
                     onUpdate=CASCADE)
 	     )
-class Student {
+public class Student {
      @ColumnInfo(name = "classID")
      private int classID; // variable holder for an Student record's classID column value
 
