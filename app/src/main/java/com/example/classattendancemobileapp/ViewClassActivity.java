@@ -45,6 +45,8 @@ public class ViewClassActivity extends AppCompatActivity {
 
      ListView studentListView; // variable holder for the ListView widget to display the list of students
      TextView noStudentTv; // variable holder for the TextView widget to display the 'no students' notice
+     TextView classNameTv;
+     TextView sectionTv;
      Button addStudentsButton;
 
      /**
@@ -63,8 +65,11 @@ public class ViewClassActivity extends AppCompatActivity {
 
           studentListView = findViewById(R.id.studentListView);
           noStudentTv = findViewById(R.id.noStudentTv);
+          classNameTv = findViewById(R.id.classNameTv);
+          sectionTv = findViewById(R.id.sectionTv);
           addStudentsButton = findViewById(R.id.confirmAddStudentsButton);
 
+          classNameTv.setText(intent.getStringExtra("CLASS_NAME"));
           addStudentsButton.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
