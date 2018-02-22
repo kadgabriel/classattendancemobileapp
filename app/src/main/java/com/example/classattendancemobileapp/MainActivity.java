@@ -28,6 +28,9 @@
  *   Version 1.11 <09/02/2018> - John Oliver
  *        - added a TextView widget to be able to show the user if no classes exist or have been created. Rearranged
  *          some of the code for better readability
+ *
+ *   Version 1.20 <22/02/2018> - John Oliver
+ *        - modified the ListView array adapter to present both the class name and description
  */
 
 /**
@@ -46,10 +49,13 @@ package com.example.classattendancemobileapp;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -101,11 +107,25 @@ public class MainActivity extends AppCompatActivity {
           //Get info of classes from the database
           List<Classes> classList = classController.getAllClasses();
           final String[] classNames = new String[classList.size()];
+          final String[] classDescriptions = new String[classList.size()];
           for(int i = 0; i < classList.size(); i++){
                classNames[i] = classList.get(i).getClassName();
+               classDescriptions[i] = classList.get(i).getClassDesc();
           }
 
-          ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, classNames);
+          ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_2, android.R.id.text1, classNames){
+               @NonNull
+               @Override
+               public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+                    TextView name = view.findViewById(android.R.id.text1);
+                    TextView desc = view.findViewById(android.R.id.text2);
+
+                    name.setText(classNames[position]);
+                    desc.setText(classDescriptions[position]);
+                    return view;
+               }
+          };
           classListView.setAdapter(adapter);
 
           if(classNames.length == 0)

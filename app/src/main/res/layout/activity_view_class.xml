@@ -18,6 +18,9 @@
 
      Version 1.0 <08/02/2018> - John Oliver
           - created initial layout for ViewClassActivity.java
+
+     Version 1.1 <22/02/2018> - John Oliver
+          - renamed file from "view_class_activity.xml" to "activity_view_class.xml"
 -->
 
 <!--
@@ -27,7 +30,7 @@
 
      @Group members: Atienza, Austria, Gabriel
      @Client: Asst. Prof. Ma. Rowena C. Solamo
-     @File:  ViewClassActivity.java
+     @File:  activity_view_class.xml
      @Creation Date: 07/02/18
      @Version: 1.0
 -->

@@ -17,6 +17,9 @@
  *
  *   Version 1.0 <07/02/2018> - John Oliver
  *        - created initial file
+ *
+ *   Version 1.1 <22/02/2018> - John Oliver
+ *        - added code comments. Removed blank lines and fixed redundant commands
  */
 
 /**
@@ -26,7 +29,7 @@
  *
  * @Group members: Atienza, Austria, Gabriel
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
- * @File:  CreateClassActivity.java
+ * @File:  AddStudentsActivity.java
  * @Creation Date: 19/02/18
  * @Version: 1.0
  */
@@ -34,25 +37,28 @@
 package com.example.classattendancemobileapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class AddStudentsActivity extends AppCompatActivity {
      private static final int PICKFILE_RESULT_CODE = 1;
 
-     RadioButton singleStudentRb, csvRb;
-     EditText pathEt;
-     Button pathButton, confirmAddStudentsButton;
-     StudentController studentController;
-     private static String FILEPATH;
+     RadioButton singleStudentRb; // the RadioButton widget for when adding a single student
+     RadioButton csvRb; // the RadioButton widget for when adding multiple students through a CSV file
+     EditText firstNameEt; // the EditText widget for the first name of the single student being added
+     EditText lastNameEt; // the EditText widget for the last name of the single student being added
+     EditText snoEt; // the EditText widget for the student number of the single student being added
+     EditText pathEt; // the EditText widget for path of the CSV file
+     Button pathButton; // the Button widget to open a file picker activity
+     Button confirmAddStudentsButton; // the Button widget to confirm adding student/s
+     StudentController studentController; // the student controller object which is directly connected to the database
+     private static String FILEPATH; // the string value of the path of the object returned by the file picker activity
+
      /**
       * onCreate() <08/02/2018>
       * - android function called when the activity is created
@@ -64,13 +70,17 @@ public class AddStudentsActivity extends AppCompatActivity {
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_add_students);
+          studentController = new StudentController(getApplicationContext());
           Intent intent = getIntent();
           final String className;
           className = intent.getStringExtra("CLASS_NAME");
+
           singleStudentRb = findViewById(R.id.singleStudentRb);
           csvRb = findViewById(R.id.csvRb);
-          studentController = new StudentController(getApplicationContext());
 
+          firstNameEt = findViewById(R.id.firstNameEt);
+          lastNameEt = findViewById(R.id.lastNameEt);
+          snoEt = findViewById(R.id.snoEt);
           pathEt = findViewById(R.id.pathEt);
 
           pathButton = findViewById(R.id.pathButton);
@@ -78,16 +88,15 @@ public class AddStudentsActivity extends AppCompatActivity {
 
           pathButton.setEnabled(false);
 
-
           singleStudentRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                @Override
                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     if(b){
                          csvRb.setChecked(false);
                          pathButton.setEnabled(false);
-                         findViewById(R.id.firstNameEt).setEnabled(true);
-                         findViewById(R.id.lastNameEt).setEnabled(true);
-                         findViewById(R.id.snoEt).setEnabled(true);
+                         firstNameEt.setEnabled(true);
+                         lastNameEt.setEnabled(true);
+                         snoEt.setEnabled(true);
                     }
 
                }
@@ -99,15 +108,13 @@ public class AddStudentsActivity extends AppCompatActivity {
                     if(b){
                          singleStudentRb.setChecked(false);
                          pathButton.setEnabled(true);
-                         findViewById(R.id.firstNameEt).setEnabled(false);
-                         findViewById(R.id.lastNameEt).setEnabled(false);
-                         findViewById(R.id.snoEt).setEnabled(false);
+                         firstNameEt.setEnabled(false);
+                         lastNameEt.setEnabled(false);
+                         snoEt.setEnabled(false);
                     }
 
                }
           });
-
-
 
 
           pathButton.setOnClickListener(new View.OnClickListener() {
@@ -124,12 +131,6 @@ public class AddStudentsActivity extends AppCompatActivity {
                @Override
                public void onClick(View v) {
                     if(singleStudentRb.isChecked()){
-                         EditText firstNameEt, lastNameEt, snoEt;
-
-                         firstNameEt = findViewById(R.id.firstNameEt);
-                         lastNameEt = findViewById(R.id.lastNameEt);
-                         snoEt = findViewById(R.id.snoEt);
-
                          String firstName, lastName, studentNumber;
 
                          firstName = firstNameEt.getText().toString();
@@ -139,7 +140,6 @@ public class AddStudentsActivity extends AppCompatActivity {
 
                     }
                     else{
-
                          studentController.insertMultipleStudents(className,pathEt.getText().toString());
                     }
 
@@ -147,6 +147,13 @@ public class AddStudentsActivity extends AppCompatActivity {
           });
      }
 
+     /**
+      * onActivityResult() <08/02/2018>
+      * - android function called when an activity has finished its task
+      * @param: requestCode - request code of the activity that has just finished, used to identify the type of activity, resultCode - code to identify what kind of result was returned, data - data passed by the previous activity
+      * @requires: none
+      * @returns: none
+      */
      @Override
      protected void onActivityResult(int requestCode, int resultCode, Intent data){
           switch(requestCode){
@@ -157,6 +164,4 @@ public class AddStudentsActivity extends AppCompatActivity {
                     }
           }
      }
-
-     
 }
