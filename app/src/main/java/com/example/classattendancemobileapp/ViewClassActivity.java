@@ -17,6 +17,9 @@
  *
  *   Version 1.0 <08/02/2018> - John Oliver
  *        - created initial file
+ *
+ *   Version 1.1 <22/02/2018> - John Oliver
+ *        - used an instance of StudentController to finish the functional student ListView. Added code comments
  */
 
 /**
@@ -28,7 +31,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ViewClassActivity.java
  * @Creation Date: 08/02/18
- * @Version: 1.0
+ * @Version: 1.1
  */
 
 package com.example.classattendancemobileapp;

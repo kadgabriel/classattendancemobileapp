@@ -19,7 +19,7 @@
  *        - created initial file
  *
  *   Version 1.1 <22/02/2018> - John Oliver
- *        - added code comments. Removed blank lines and fixed redundant commands
+ *        - functional add student/s and file picker. Added code comments. Removed blank lines and fixed redundant commands
  */
 
 /**
@@ -150,7 +150,7 @@ public class AddStudentsActivity extends AppCompatActivity {
      /**
       * onActivityResult() <08/02/2018>
       * - android function called when an activity has finished its task
-      * @param: requestCode - request code of the activity that has just finished, used to identify the type of activity, resultCode - code to identify what kind of result was returned, data - data passed by the previous activity
+      * @param: requestCode - request code of the activity that has just finished, used to identify the type of activity, resultCode - code to identify what kind of result was returned, data - data passed, through an intent, by the previous activity
       * @requires: none
       * @returns: none
       */
