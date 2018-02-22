@@ -15,6 +15,9 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.02 <22/02/2018> - Arielle Gabriel
+*    - added functions countMatchStudentNum() and countMatchStudent()
+*
 * Version 1.01 <17/02/2018> - Arielle Gabriel
 *    - renamed function getAll() to getByClassID()
 *
@@ -32,7 +35,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  StudentDao.java
 * @Creation Date: 06/02/18
-* @Version: 1.01
+* @Version: 1.02
 *
 * */
 
@@ -58,18 +61,28 @@ public interface StudentDao {
      * @requires: none
      * @returns: List<Student> - list containing Students object of the matched ID
      * */
-     @Query("SELECT * FROM student WHERE classID= :ID")
+     @Query("SELECT * FROM student WHERE classID= :ID ORDER BY lastName ASC")
      List<Student> getByClassID(int ID);
 
      /*
-     * countMatchStudent() <05/02/2018>
-     * - returns an int
-     * @param: Student - object containing the class to be inserted
+     * countMatchStudent() <22/02/2018>
+     * - counts the matching classID, first name, and last name in database
+     * @param: id - class ID, firstName - first name of student, lastName - last nam of student
      * @requires: none
      * @returns: int - count of matching student name
      * */
      @Query("SELECT count(*) FROM student WHERE classID= :id AND firstName=:firstName AND lastName= :lastName")
      int countMatchStudent(int id, String firstName, String lastName);
+
+     /*
+     * countMatchStudentNum() <22/02/2018>
+     * - counts the matching class ID and student number
+     * @param: ID - target class ID, studentNum - target student number
+     * @requires: none
+     * @returns: int - count of matching student number and class ID
+     * */
+     @Query("SELECT count(*) FROM student WHERE classID= :ID AND studentNum= :studentNum")
+     int countMatchStudentNum(int ID, String studentNum);
 
      /*
      * insert() <06/02/2018>

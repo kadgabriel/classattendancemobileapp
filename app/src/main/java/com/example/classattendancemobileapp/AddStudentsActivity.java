@@ -37,6 +37,7 @@
 package com.example.classattendancemobileapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -44,6 +45,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
 
 public class AddStudentsActivity extends AppCompatActivity {
      private static final int PICKFILE_RESULT_CODE = 1;
@@ -58,6 +60,7 @@ public class AddStudentsActivity extends AppCompatActivity {
      Button confirmAddStudentsButton; // the Button widget to confirm adding student/s
      StudentController studentController; // the student controller object which is directly connected to the database
      private static String FILEPATH; // the string value of the path of the object returned by the file picker activity
+     private static Uri selectedFile;
 
      /**
       * onCreate() <08/02/2018>
@@ -121,7 +124,8 @@ public class AddStudentsActivity extends AppCompatActivity {
                @Override
                public void onClick(View view) {
                     Intent filePickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                    filePickerIntent.setType("text/csv, text/comma-separated-values, application/csv");
+//                    filePickerIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                    filePickerIntent.setType("text/comma-separated-values");
                     filePickerIntent = filePickerIntent.createChooser(filePickerIntent, "Choose CSV file");
                     startActivityForResult(filePickerIntent, PICKFILE_RESULT_CODE);
                }
@@ -140,7 +144,7 @@ public class AddStudentsActivity extends AppCompatActivity {
 
                     }
                     else{
-                         studentController.insertMultipleStudents(className,pathEt.getText().toString());
+                         studentController.insertMultipleStudents(className,selectedFile);
                     }
 
                }
@@ -159,6 +163,7 @@ public class AddStudentsActivity extends AppCompatActivity {
           switch(requestCode){
                case PICKFILE_RESULT_CODE:
                     if(resultCode == RESULT_OK) {
+                         selectedFile = data.getData();
                          FILEPATH = data.getData().getPath();
                          pathEt.setText(FILEPATH);
                     }
