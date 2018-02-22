@@ -52,6 +52,7 @@ public class AddStudentsActivity extends AppCompatActivity {
      EditText pathEt;
      Button pathButton, confirmAddStudentsButton;
      StudentController studentController;
+     private static String FILEPATH;
      /**
       * onCreate() <08/02/2018>
       * - android function called when the activity is created
@@ -75,21 +76,34 @@ public class AddStudentsActivity extends AppCompatActivity {
           pathButton = findViewById(R.id.pathButton);
           confirmAddStudentsButton = findViewById(R.id.confirmAddStudentsButton);
 
+          pathButton.setEnabled(false);
 
 
           singleStudentRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                @Override
                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if(b)
+                    if(b){
                          csvRb.setChecked(false);
+                         pathButton.setEnabled(false);
+                         findViewById(R.id.firstNameEt).setEnabled(true);
+                         findViewById(R.id.lastNameEt).setEnabled(true);
+                         findViewById(R.id.snoEt).setEnabled(true);
+                    }
+
                }
           });
 
           csvRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                @Override
                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if(b)
+                    if(b){
                          singleStudentRb.setChecked(false);
+                         pathButton.setEnabled(true);
+                         findViewById(R.id.firstNameEt).setEnabled(false);
+                         findViewById(R.id.lastNameEt).setEnabled(false);
+                         findViewById(R.id.snoEt).setEnabled(false);
+                    }
+
                }
           });
 
@@ -109,18 +123,25 @@ public class AddStudentsActivity extends AppCompatActivity {
           confirmAddStudentsButton.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-                    EditText firstNameEt, lastNameEt, snoEt;
+                    if(singleStudentRb.isChecked()){
+                         EditText firstNameEt, lastNameEt, snoEt;
 
-                    firstNameEt = findViewById(R.id.firstNameEt);
-                    lastNameEt = findViewById(R.id.lastNameEt);
-                    snoEt = findViewById(R.id.snoEt);
+                         firstNameEt = findViewById(R.id.firstNameEt);
+                         lastNameEt = findViewById(R.id.lastNameEt);
+                         snoEt = findViewById(R.id.snoEt);
 
-                    String firstName, lastName, studentNumber;
+                         String firstName, lastName, studentNumber;
 
-                    firstName = firstNameEt.getText().toString();
-                    lastName = lastNameEt.getText().toString();
-                    studentNumber = snoEt.getText().toString();
-                    studentController.insertStudent(className, firstName, lastName, studentNumber);
+                         firstName = firstNameEt.getText().toString();
+                         lastName = lastNameEt.getText().toString();
+                         studentNumber = snoEt.getText().toString();
+                         studentController.insertStudent(className, firstName, lastName, studentNumber);
+
+                    }
+                    else{
+
+                         studentController.insertMultipleStudents(className,pathEt.getText().toString());
+                    }
 
                }
           });
@@ -131,8 +152,8 @@ public class AddStudentsActivity extends AppCompatActivity {
           switch(requestCode){
                case PICKFILE_RESULT_CODE:
                     if(resultCode == RESULT_OK) {
-                         String path = data.getData().getPath();
-                         Toast.makeText(getApplicationContext(), path, Toast.LENGTH_LONG).show();
+                         FILEPATH = data.getData().getPath();
+                         pathEt.setText(FILEPATH);
                     }
           }
      }

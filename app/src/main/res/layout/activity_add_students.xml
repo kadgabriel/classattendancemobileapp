@@ -121,6 +121,7 @@
           android:layout_height="wrap_content"
           android:ems="10"
           android:inputType="textPersonName"
+          android:enabled="false"
           android:textSize="14sp"
           app:layout_constraintBaseline_toBaselineOf="@+id/pathTv"
           app:layout_constraintEnd_toStartOf="@+id/pathButton"
