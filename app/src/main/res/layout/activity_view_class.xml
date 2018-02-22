@@ -21,6 +21,9 @@
 
      Version 1.1 <22/02/2018> - John Oliver
           - renamed file from "view_class_activity.xml" to "activity_view_class.xml"
+
+     Version 1.2 <22/02/2018> - John Oliver
+          - added a new Button widget for viewing the attendance record
 -->
 
 <!--
@@ -91,12 +94,29 @@
           android:layout_marginBottom="8dp"
           android:layout_marginEnd="8dp"
           android:layout_marginStart="8dp"
-          android:background="@drawable/ic_plus"
+          android:background="@drawable/ic_group_add_black_24dp"
+          android:backgroundTint="@color/colorAccent"
+          android:elevation="0dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="@+id/sectionTv"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/sectionTv"
+          app:layout_constraintVertical_bias="0.0" />
+
+     <Button
+          android:id="@+id/viewAttendanceButton"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:background="@drawable/ic_event_available_black_24dp"
           android:backgroundTint="@color/colorAccent"
           android:elevation="0dp"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toEndOf="@+id/addStudentsButton"
           app:layout_constraintTop_toBottomOf="@+id/sectionTv"
           app:layout_constraintVertical_bias="0.0" />
 
