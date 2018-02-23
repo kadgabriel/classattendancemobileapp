@@ -65,15 +65,24 @@ public class StudentController {
         this.context = context;
      }
 
+     /**
+     * insertStudent() <21/02/2018>
+     * - insert a single students controller
+     * @param: className - name of class, firstName - first name of student, lastName - last name of student, studentNumber - student number
+     *         of student
+     * @requires: none
+     * @returns: none
+     */
+
      public boolean insertStudent(String className, String firstName, String lastName, String studentNumber){
-          int id;
+          int id;  //integer variable holder for classID
 
           id = getID(className);
           if(firstName.length() ==0 || lastName.length()==0 || studentNumber.length()==0) {
                Toast.makeText(context, "Fields must not be blank! ", Toast.LENGTH_SHORT).show();
                return false;
           }
-          if(MainActivity.db.studentDao().countMatchStudent(id, firstName, lastName) > 0) {
+          if(checkStudentsInDB(id, studentNumber)) {
                Toast.makeText(context, "Student is already in this class! ", Toast.LENGTH_SHORT).show();
                return false;
           }
@@ -84,11 +93,25 @@ public class StudentController {
           return true;
      }
 
+     /**
+     * insertMultipleStudents() <21/02/2018>
+     * - get classID of a class name controller
+     * @param: className - name of class, filename - Uri object containing the file
+     * @requires: none
+     * @returns: integer value of classID of the className
+     */
+
      public int getID(String className){
           Classes listClass = MainActivity.db.classesDao().getByName(className);
           return  listClass.getClassID();
      }
-
+     /**
+      * getAllClasses() <07/02/2018>
+      * - gets all the students from the given class in the database
+      * @param: className - name of the class to retrieve the students from
+      * @requires: none
+      * @returns: a java.util.List of Students objects
+      */
      public List<Student> getAllStudents(String className){
           int classID;
           List<Student> studentList;
