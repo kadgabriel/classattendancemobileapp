@@ -1,3 +1,42 @@
+/*
+* Class Attendance Mobile App
+*
+* “This is a course requirement for CS 192 Software Engineering II
+* under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+* of the Department of Computer Science, College of Engineering,
+* University of the Philippines, Diliman for the AY 2017-2018”.
+*
+* @File Author(s): Ronnel Austria, Arielle Gabriel
+*
+* */
+
+/*
+* Code History
+*    Version x.x <DD/MM/YYYY> - Author
+*         [description of changes]
+*
+*
+* Version 1.01 <22/02/2018> - Arielle Gabriel
+*    - added insertMultipleStudents(), checkStudentsInDB(), readFile()
+*
+* Version 1.0 <21/02/2018> - Ronnel Austria
+*    - created initial file for student controller
+* */
+
+/*
+* Class Attendance Mobile App
+*
+* Class Attendance Mobile App is a mobile application that allows the teacher to record
+* the attendance​ of the students​ digitally​ using a smart phone
+*
+* @Group members: Atienza, Austria, Gabriel
+* @Client: Asst. Prof. Ma. Rowena C. Solamo
+* @File:  StudentController.java
+* @Creation Date: 21/02/18
+* @Version: 1.01
+*
+* */
+
 package com.example.classattendancemobileapp;
 
 import android.content.Context;
@@ -87,9 +126,9 @@ public class StudentController {
                     }
 
                     for(int i=0; i<studentList.size(); i++){
-                         String studentNum = studentList.get(i)[0];
-                         String firstName = studentList.get(i)[2];
-                         String lastName = studentList.get(i)[1];
+                         String studentNum = studentList.get(i)[0]; // holder for student number;
+                         String firstName = studentList.get(i)[2]; // holder for first name
+                         String lastName = studentList.get(i)[1]; // holder for last name
                          Student newStudent = new Student(getID(className), studentNum, firstName, lastName);
                          MainActivity.db.studentDao().insert(newStudent);
                     }
@@ -130,15 +169,15 @@ public class StudentController {
                InputStream is = context.getContentResolver().openInputStream(filename);
                BufferedReader dataInput = new BufferedReader(new InputStreamReader(is));
 
-               String line ="";
-               int lineNo=0;
-               List<String[]> parsedStudents = new ArrayList<String[]>();;
+               String line =""; // variable holder for string line in the file
+               int lineNo=0; // variable holder for current line no. being read
+               List<String[]> parsedStudents = new ArrayList<String[]>(); //variable holder for successfully parsed students
                while((line=dataInput.readLine()) != null ){
                     lineNo++;
                     /* remove trailing whitespaces */
-                    String trimmedLine = line.trim();
+                    String trimmedLine = line.trim(); // variable holder for trimmed line
                     try{
-                         String[] studentAttrib = trimmedLine.split(",");
+                         String[] studentAttrib = trimmedLine.split(","); // variable holder for individual student's attributes
                          /* Check if the line's num of attributes matches the attribute count (3) */
                          if(studentAttrib.length != ATTRIBCOUNT){
                               /* Line do not have 3 attribs or not comma separated */
@@ -176,7 +215,7 @@ public class StudentController {
                          parsedStudents.add(parsedAttrib);
                     }
                     catch(Exception e){
-                         Log.d("s",e.getMessage());
+                         Log.d("addMultiStudent",e.getMessage());
                          Toast.makeText(context, "Error in file line no "+ Integer.toString(lineNo)+". Improper format.", Toast.LENGTH_SHORT).show();
                          return null;
                     }
@@ -185,7 +224,7 @@ public class StudentController {
 
           }
           catch(Exception ex) {
-               Log.d("s",ex.getMessage());
+               Log.d("addMultiStudent",ex.getMessage());
                Toast.makeText(context, "Error opening the file", Toast.LENGTH_SHORT).show();
                return null;
           }
