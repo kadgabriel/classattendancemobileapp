@@ -71,16 +71,7 @@ public interface StudentDao {
      * @requires: none
      * @returns: int - count of matching student name
      * */
-     @Query("SELECT count(*) FROM student WHERE classID= :id AND firstName=:firstName AND lastName= :lastName")
-     int countMatchStudent(int id, String firstName, String lastName);
 
-     /*
-     * countMatchStudentNum() <22/02/2018>
-     * - counts the matching class ID and student number
-     * @param: ID - target class ID, studentNum - target student number
-     * @requires: none
-     * @returns: int - count of matching student number and class ID
-     * */
      @Query("SELECT count(*) FROM student WHERE classID= :ID AND studentNum= :studentNum")
      int countMatchStudentNum(int ID, String studentNum);
 
