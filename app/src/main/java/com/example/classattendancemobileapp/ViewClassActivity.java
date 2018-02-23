@@ -61,6 +61,7 @@ public class ViewClassActivity extends AppCompatActivity {
      Button addStudentsButton; // the Button widget linked to open a new AddStudentsActivity screen
      StudentController studentController; // the student controller object which is directly connected to the database
      List<Student> studentList; // the list of students returned by the controller
+     String className;
 
      /**
       * onCreate() <08/02/2018>
@@ -74,7 +75,7 @@ public class ViewClassActivity extends AppCompatActivity {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_view_class);
           Intent intent = getIntent();
-          final String className;
+
           className = intent.getStringExtra("CLASS_NAME");
           setTitle(className);
           studentController = new StudentController(getApplicationContext());
@@ -96,6 +97,12 @@ public class ViewClassActivity extends AppCompatActivity {
                }
           });
 
+
+     }
+
+     @Override
+     public void onResume() {
+          super.onResume();
           studentList = studentController.getAllStudents(className);
           int size = studentList.size();
           final String[] studentNames = new String[size];
