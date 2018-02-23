@@ -15,6 +15,8 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.1 <23/02/2018> - Ronnel Austria
+*    - removed countMatchStudent(). Added code comments.
 *
 * Version 1.01 <22/02/2018> - Arielle Gabriel
 *    - added insertMultipleStudents(), checkStudentsInDB(), readFile()
@@ -94,7 +96,7 @@ public class StudentController {
      }
 
      /**
-     * insertMultipleStudents() <21/02/2018>
+     * getID() <21/02/2018>
      * - get classID of a class name controller
      * @param: className - name of class, filename - Uri object containing the file
      * @requires: none
@@ -106,7 +108,7 @@ public class StudentController {
           return  listClass.getClassID();
      }
      /**
-      * getAllClasses() <07/02/2018>
+      * getAllStudents() <07/02/2018>
       * - gets all the students from the given class in the database
       * @param: className - name of the class to retrieve the students from
       * @requires: none
