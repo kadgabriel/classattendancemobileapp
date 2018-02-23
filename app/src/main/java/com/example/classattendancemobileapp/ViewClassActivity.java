@@ -108,6 +108,7 @@ public class ViewClassActivity extends AppCompatActivity {
           super.onResume();
           studentList = studentController.getAllStudents(className);
           int size = studentList.size();
+          sectionTv.setText(MainActivity.db.classesDao().getByName(className).getClassDesc());
           final String[] studentNames = new String[size];
           final String[] studentNos = new String[size];
           if(studentNames.length == 0){
