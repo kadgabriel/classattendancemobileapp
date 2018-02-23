@@ -18,6 +18,9 @@
 
      Version 1.0 <07/02/2018> - John Oliver
           - created initial layout for AddStudentsActivity.java
+
+     Version 1.1 <23/02/2018> - John Oliver
+          - set lastNameEt property allCaps to true
 -->
 
 <!--
@@ -105,12 +108,12 @@
           android:layout_marginEnd="8dp"
           android:ems="10"
           android:inputType="textPersonName"
+          android:textAllCaps="true"
           android:textSize="14sp"
           app:layout_constraintBaseline_toBaselineOf="@+id/lastNameTv"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="@+id/snoEt"
-          android:layout_marginRight="8dp" />
+          app:layout_constraintStart_toStartOf="@+id/snoEt" />
 
      <TextView
           android:id="@+id/snoTv"

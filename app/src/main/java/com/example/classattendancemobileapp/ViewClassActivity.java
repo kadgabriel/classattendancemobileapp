@@ -20,6 +20,9 @@
  *
  *   Version 1.1 <22/02/2018> - John Oliver
  *        - used an instance of StudentController to finish the functional student ListView. Added code comments
+ *
+ *   Version 1.2 <23/02/2018> - John Oliver
+ *        - fixed a bug 
  */
 
 /**
@@ -110,6 +113,7 @@ public class ViewClassActivity extends AppCompatActivity {
           if(studentNames.length == 0){
                noStudentTv.setVisibility(View.VISIBLE);
           }else{
+               noStudentTv.setVisibility(View.INVISIBLE);
                for(int i = 0; i < size; i++){
                     studentNames[i] = studentList.get(i).getName();
                     studentNos[i] = studentList.get(i).getStudentNum();
