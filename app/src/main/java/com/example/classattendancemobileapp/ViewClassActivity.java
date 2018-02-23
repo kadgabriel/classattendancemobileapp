@@ -22,7 +22,7 @@
  *        - used an instance of StudentController to finish the functional student ListView. Added code comments
  *
  *   Version 1.2 <23/02/2018> - John Oliver
- *        - fixed a bug 
+ *        - fixed a bug
  */
 
 /**
