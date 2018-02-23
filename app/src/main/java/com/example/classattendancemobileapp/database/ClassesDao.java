@@ -15,6 +15,9 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.01 <17/02/2018> - Arielle Gabriel
+*    - added getByName() function
+*
 * Version 1.0 <05/02/2018> - Arielle Gabriel
 *    - created initial file for classes dao
 *
@@ -30,7 +33,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  ClassesDao.java
 * @Creation Date: 05/02/18
-* @Version: 1.0
+* @Version: 1.01
 *
 * */
 
@@ -76,6 +79,16 @@ public interface ClassesDao {
      * */
      @Query("SELECT * FROM classes WHERE classID = :ID LIMIT 1")
      Classes getByID(int ID);
+
+     /*
+     * getByName() <17/02/2018>
+     * - returns class given a class name
+     * @param: String - target class's name
+     * @requires: none
+     * @returns: Classes - object containing the matched classID
+     * */
+     @Query("SELECT * FROM classes WHERE className = :name LIMIT 1")
+     Classes getByName(String name);
 
      /*
      * countAll() <05/02/2018>

@@ -15,6 +15,15 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.03 <23/02/2018> - Ronnel Austria
+*    - removed function countMatchStudent()
+*
+* Version 1.02 <22/02/2018> - Arielle Gabriel
+*    - added functions countMatchStudentNum() and countMatchStudent()
+*
+* Version 1.01 <17/02/2018> - Arielle Gabriel
+*    - renamed function getAll() to getByClassID()
+*
 * Version 1.0 <06/02/2018> - Arielle Gabriel
 *    - created initial file for students dao
 * */
@@ -29,7 +38,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  StudentDao.java
 * @Creation Date: 06/02/18
-* @Version: 1.0
+* @Version: 1.02
 *
 * */
 
@@ -49,14 +58,25 @@ import java.util.List;
 public interface StudentDao {
 
      /*
-     * getAll() <06/02/2018>
+     * getByClassID() <06/02/2018>
      * - returns all students given a classID
      * @param: int ID - ID of the target class
      * @requires: none
      * @returns: List<Student> - list containing Students object of the matched ID
      * */
-     @Query("SELECT * FROM student WHERE classID= :ID")
-     List<Student> getAll(int ID);
+     @Query("SELECT * FROM student WHERE classID= :ID ORDER BY lastName ASC")
+     List<Student> getByClassID(int ID);
+
+     /*
+     * countMatchStudent() <22/02/2018>
+     * - counts the matching classID, first name, and last name in database
+     * @param: id - class ID, firstName - first name of student, lastName - last nam of student
+     * @requires: none
+     * @returns: int - count of matching student name
+     * */
+
+     @Query("SELECT count(*) FROM student WHERE classID= :ID AND studentNum= :studentNum")
+     int countMatchStudentNum(int ID, String studentNum);
 
      /*
      * insert() <06/02/2018>

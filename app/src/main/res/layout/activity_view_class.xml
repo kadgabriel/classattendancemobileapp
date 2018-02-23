@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+     Class Attendance Mobile App
+
+     This is a course requirement for CS 192 Software Engineering II
+     under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+     of the Department of Computer Science, College of Engineering,
+     University of the Philippines, Diliman for the AY 2017-2018.
+
+     @Author: John Oliver
+-->
+
+<!--
+     Code History
+          Version x.x <DD/MM/YYYY> - Author
+               [description of changes]
+
+     Version 1.0 <08/02/2018> - John Oliver
+          - created initial layout for ViewClassActivity.java
+
+     Version 1.1 <22/02/2018> - John Oliver
+          - renamed file from "view_class_activity.xml" to "activity_view_class.xml"
+
+     Version 1.2 <22/02/2018> - John Oliver
+          - added a new Button widget for viewing the attendance record
+-->
+
+<!--
+     Class Attendance Mobile App
+     Class Attendance Mobile App is a mobile application that allows the teacher to record
+     the attendance​ of the students​ digitally​ using a smart phone
+
+     @Group members: Atienza, Austria, Gabriel
+     @Client: Asst. Prof. Ma. Rowena C. Solamo
+     @File:  activity_view_class.xml
+     @Creation Date: 07/02/18
+     @Version: 1.0
+-->
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context="com.example.classattendancemobileapp.ViewClassActivity">
+
+     <TextView
+          android:id="@+id/noStudentTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/no_students"
+          android:visibility="invisible"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+     <TextView
+          android:id="@+id/classNameTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:text="CS 192"
+          android:textSize="30sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0" />
+
+     <TextView
+          android:id="@+id/sectionTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:text="WFWX"
+          android:textSize="18sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/classNameTv"
+          app:layout_constraintVertical_bias="0.0" />
+
+     <Button
+          android:id="@+id/addStudentsButton"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:background="@drawable/ic_group_add_black_24dp"
+          android:backgroundTint="@color/colorAccent"
+          android:elevation="0dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="@+id/sectionTv"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/sectionTv"
+          app:layout_constraintVertical_bias="0.0" />
+
+     <Button
+          android:id="@+id/viewAttendanceButton"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:background="@drawable/ic_event_available_black_24dp"
+          android:backgroundTint="@color/colorAccent"
+          android:elevation="0dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toEndOf="@+id/addStudentsButton"
+          app:layout_constraintTop_toBottomOf="@+id/sectionTv"
+          app:layout_constraintVertical_bias="0.0" />
+
+     <ListView
+          android:id="@+id/studentListView"
+          android:layout_width="0dp"
+          android:layout_height="0dp"
+          android:layout_marginBottom="8dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/addStudentsButton"
+          app:layout_constraintVertical_bias="1.0" />
+</android.support.constraint.ConstraintLayout>

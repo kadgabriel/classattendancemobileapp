@@ -17,6 +17,12 @@
  *
  *   Version 1.0 <08/02/2018> - John Oliver
  *        - created initial file
+ *
+ *   Version 1.1 <22/02/2018> - John Oliver
+ *        - used an instance of StudentController to finish the functional student ListView. Added code comments
+ *
+ *   Version 1.2 <23/02/2018> - John Oliver
+ *        - fixed a bug
  */
 
 /**
@@ -28,22 +34,37 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ViewClassActivity.java
  * @Creation Date: 08/02/18
- * @Version: 1.0
+ * @Version: 1.1
  */
 
 package com.example.classattendancemobileapp;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.classattendancemobileapp.database.Student;
+
+import java.util.List;
+
 public class ViewClassActivity extends AppCompatActivity {
 
-     ListView studentListView; // variable holder for the ListView widget to display the list of students
-     TextView noStudentTextView; // variable holder for the TextView widget to display the 'no students' notice
+     ListView studentListView; // the ListView widget to display the list of students
+     TextView noStudentTv; // the TextView widget to display the 'no students' notice
+     TextView classNameTv; // the TextView widget to display the class name at the header
+     TextView sectionTv; // the TextView widget to display the section of the class at the header
+     Button addStudentsButton; // the Button widget linked to open a new AddStudentsActivity screen
+     StudentController studentController; // the student controller object which is directly connected to the database
+     List<Student> studentList; // the list of students returned by the controller
+     String className;
 
      /**
       * onCreate() <08/02/2018>
@@ -55,14 +76,64 @@ public class ViewClassActivity extends AppCompatActivity {
      @Override
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
-          setContentView(R.layout.view_class_activity);
+          setContentView(R.layout.activity_view_class);
           Intent intent = getIntent();
-          setTitle(intent.getStringExtra("CLASS_NAME"));
+
+          className = intent.getStringExtra("CLASS_NAME");
+          setTitle(className);
+          studentController = new StudentController(getApplicationContext());
 
           studentListView = findViewById(R.id.studentListView);
-          noStudentTextView = findViewById(R.id.noStudentTextView);
-          String[] studentNames = new String[0];
-          if(studentNames.length == 0)
-               noStudentTextView.setVisibility(View.VISIBLE);
-    }
+          noStudentTv = findViewById(R.id.noStudentTv);
+          classNameTv = findViewById(R.id.classNameTv);
+          sectionTv = findViewById(R.id.sectionTv);
+          addStudentsButton = findViewById(R.id.addStudentsButton);
+
+          classNameTv.setText(className);
+
+          addStudentsButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), AddStudentsActivity.class);
+                    intent.putExtra("CLASS_NAME", className);
+                    startActivity(intent);
+               }
+          });
+
+
+     }
+
+     @Override
+     public void onResume() {
+          super.onResume();
+          studentList = studentController.getAllStudents(className);
+          int size = studentList.size();
+          sectionTv.setText(MainActivity.db.classesDao().getByName(className).getClassDesc());
+          final String[] studentNames = new String[size];
+          final String[] studentNos = new String[size];
+          if(studentNames.length == 0){
+               noStudentTv.setVisibility(View.VISIBLE);
+          }else{
+               noStudentTv.setVisibility(View.INVISIBLE);
+               for(int i = 0; i < size; i++){
+                    studentNames[i] = studentList.get(i).getName();
+                    studentNos[i] = studentList.get(i).getStudentNum();
+               }
+          }
+
+          ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_2, android.R.id.text1, studentNames){
+               @NonNull
+               @Override
+               public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+                    TextView name = view.findViewById(android.R.id.text1);
+                    TextView sno = view.findViewById(android.R.id.text2);
+
+                    name.setText(studentNames[position]);
+                    sno.setText(studentNos[position]);
+                    return view;
+               }
+          };
+          studentListView.setAdapter(adapter);
+     }
 }

@@ -21,6 +21,9 @@
 
      Version 1.01 <08/02/2018> - John Oliver
           - commented out unused Android widgets
+
+     Version 1.1 <22/02/2018> - John Oliver
+          - renamed file from "create_class_activity.xml" to "activity_create_class.xml"
 -->
 
 <!--
@@ -30,9 +33,9 @@
 
      @Group members: Atienza, Austria, Gabriel
      @Client: Asst. Prof. Ma. Rowena C. Solamo
-     @File:  ViewClassActivity.java
+     @File:  activity_create_class.xml
      @Creation Date: 07/02/18
-     @Version: 1.01
+     @Version: 1.1
 -->
 
 <android.support.constraint.ConstraintLayout
