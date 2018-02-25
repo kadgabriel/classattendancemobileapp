@@ -29,7 +29,7 @@
  *        - added a TextView widget to be able to show the user if no classes exist or have been created. Rearranged
  *          some of the code for better readability
  *
- *   Version 1.20 <22/02/2018> - John Oliver
+ *   Version 1.material_bg1 <22/02/2018> - John Oliver
  *        - modified the ListView array adapter to present both the class name and description
  */
 
@@ -42,36 +42,45 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  MainActivity.java
  * @Creation Date: 07/02/18
- * @Version: 1.20
+ * @Version: 1.material_bg1
  */
 
 package com.example.classattendancemobileapp;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.classattendancemobileapp.database.AppDatabase;
 import com.example.classattendancemobileapp.database.Classes;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
      static AppDatabase db; // variable holder for the application's database
-     ListView classListView; // variable holder for the ListView widget to display the list of classes
+     List<ClassListItem> classListItems;
+     ClassListAdapter adapter;
+     GridView classGridView;
      TextView noClassTextView; // variable holder for the TextView widget to display the 'no classes' notice
      FloatingActionButton addClassFAB; // variable holder for the floating action button on the screen
      ClassController classController; // variable holder for the class controller that interacts with the database
+
 
      /**
       * onCreate() <07/02/2018>
@@ -86,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
           setContentView(R.layout.activity_main);
           buildDB();
 
-          classListView = findViewById(R.id.classListView);
+          classGridView = findViewById(R.id.classGridView);
           addClassFAB = findViewById(R.id.addClassFAB);
           noClassTextView = findViewById(R.id.noClassTextView);
 
@@ -106,38 +115,24 @@ public class MainActivity extends AppCompatActivity {
 
           //Get info of classes from the database
           List<Classes> classList = classController.getAllClasses();
-          final String[] classNames = new String[classList.size()];
-          final String[] classDescriptions = new String[classList.size()];
+          classListItems = new ArrayList<>();
           for(int i = 0; i < classList.size(); i++){
-               classNames[i] = classList.get(i).getClassName();
-               classDescriptions[i] = classList.get(i).getClassDesc();
+               classListItems.add(new ClassListItem(classList.get(i).getClassName(), classList.get(i).getClassDesc()));
+
           }
+          adapter = new ClassListAdapter(classListItems, this);
+          classGridView.setAdapter(adapter);
 
-          ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_2, android.R.id.text1, classNames){
-               @NonNull
-               @Override
-               public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-                    TextView name = view.findViewById(android.R.id.text1);
-                    TextView desc = view.findViewById(android.R.id.text2);
-
-                    name.setText(classNames[position]);
-                    desc.setText(classDescriptions[position]);
-                    return view;
-               }
-          };
-          classListView.setAdapter(adapter);
-
-          if(classNames.length == 0)
+          if(classList.size() == 0)
                noClassTextView.setVisibility(View.VISIBLE);
           else
                noClassTextView.setVisibility(View.INVISIBLE);
 
-          classListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+          classGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                Intent intent = new Intent(getApplicationContext(), ViewClassActivity.class);
-               intent.putExtra("CLASS_NAME", classNames[(int) l]);
+               intent.putExtra("CLASS_NAME", adapter.getItem(i).getName());
                startActivity(intent);
             }
           });

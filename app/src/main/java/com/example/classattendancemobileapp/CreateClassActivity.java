@@ -42,6 +42,8 @@ package com.example.classattendancemobileapp;
 
 import android.arch.persistence.room.Room;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -49,11 +51,15 @@ import android.widget.EditText;
 
 import com.example.classattendancemobileapp.database.AppDatabase;
 
+import java.util.Random;
+
 public class CreateClassActivity extends AppCompatActivity {
 
+     final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4};
      static AppDatabase db; // variable holder for the application's main database
      ClassController classController;  // variable holder for the class controller that interacts with the database
-     Button createClassButton; // variable holder for the Button widget for creating a class
+     FloatingActionButton createClassFAB; // variable holder for the Button widget for creating a class
+     CollapsingToolbarLayout collapsingToolbarLayout;
 
      /**
       * onCreate() <07/02/2018>
@@ -67,20 +73,27 @@ public class CreateClassActivity extends AppCompatActivity {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_create_class);
           buildDB();
+          getSupportActionBar().hide();
+
           classController = new ClassController(db, getApplicationContext());
-          createClassButton = findViewById(R.id.createClassButton);
-          createClassButton.setOnClickListener(new View.OnClickListener() {
+          createClassFAB = findViewById(R.id.createClassFAB);
+          collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
+
+          Random random = new Random();
+          int i = random.nextInt(4);
+          collapsingToolbarLayout.setBackgroundResource(customGradients[i]);
+          createClassFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               EditText classNameEditText;
-               EditText classDescEditText;
+               EditText classNameEt;
+               EditText classDescEt;
                String className;
                String classDesc;
                  
-               classNameEditText = findViewById(R.id.classNameEditText);
-               classDescEditText =  findViewById(R.id.classDescEditText);
-               className = classNameEditText.getText().toString();
-               classDesc = classDescEditText.getText().toString();
+               classNameEt = findViewById(R.id.classNameEt);
+               classDescEt =  findViewById(R.id.classDescEt);
+               className = classNameEt.getText().toString();
+               classDesc = classDescEt.getText().toString();
 
                boolean b = classController.insertClass(className, classDesc);
                if(b)

@@ -40,31 +40,46 @@
 package com.example.classattendancemobileapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.classattendancemobileapp.database.Classes;
 import com.example.classattendancemobileapp.database.Student;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class ViewClassActivity extends AppCompatActivity {
 
-     ListView studentListView; // the ListView widget to display the list of students
-     TextView noStudentTv; // the TextView widget to display the 'no students' notice
-     TextView classNameTv; // the TextView widget to display the class name at the header
-     TextView sectionTv; // the TextView widget to display the section of the class at the header
-     Button addStudentsButton; // the Button widget linked to open a new AddStudentsActivity screen
-     StudentController studentController; // the student controller object which is directly connected to the database
-     List<Student> studentList; // the list of students returned by the controller
+     final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4};
+
      String className;
+     StudentController studentController; // the student controller object which is directly connected to the database
+     ClassController classController;
+     List<Student> studentList; // the list of students returned by the controller
+     List<StudentListItem> studentListItems;
+     TextView noStudentTv;
+     TextView classNameTv;
+     TextView classDescTv;
+     Button addStudentsButton;
+     CollapsingToolbarLayout collapsingToolbarLayout;
+     RecyclerView studentsRv;
+     RecyclerView.Adapter adapter;
 
      /**
       * onCreate() <08/02/2018>
@@ -77,19 +92,28 @@ public class ViewClassActivity extends AppCompatActivity {
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_view_class);
+          getSupportActionBar().hide();
           Intent intent = getIntent();
 
           className = intent.getStringExtra("CLASS_NAME");
-          setTitle(className);
-          studentController = new StudentController(getApplicationContext());
-
-          studentListView = findViewById(R.id.studentListView);
+          collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
+          studentsRv = findViewById(R.id.studentsRv);
           noStudentTv = findViewById(R.id.noStudentTv);
-          classNameTv = findViewById(R.id.classNameTv);
-          sectionTv = findViewById(R.id.sectionTv);
           addStudentsButton = findViewById(R.id.addStudentsButton);
+          classNameTv = findViewById(R.id.classNameTv);
+          classDescTv = findViewById(R.id.classDescTv);
 
-          classNameTv.setText(className);
+          collapsingToolbarLayout.setTitle(className);
+          collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
+          Random random = new Random();
+          int i = random.nextInt(4);
+          collapsingToolbarLayout.setBackgroundResource(customGradients[i]);
+          studentsRv.setHasFixedSize(true);
+          studentsRv.setLayoutManager(new LinearLayoutManager(this));
+
+          studentListItems = new ArrayList<>();
+          studentController = new StudentController(getApplicationContext());
+          classController = new ClassController(MainActivity.db, getApplicationContext());
 
           addStudentsButton.setOnClickListener(new View.OnClickListener() {
                @Override
@@ -99,41 +123,30 @@ public class ViewClassActivity extends AppCompatActivity {
                     startActivity(intent);
                }
           });
-
-
      }
 
      @Override
      public void onResume() {
           super.onResume();
           studentList = studentController.getAllStudents(className);
+
+          Classes classObj = classController.getByName(className);
           int size = studentList.size();
-          sectionTv.setText(MainActivity.db.classesDao().getByName(className).getClassDesc());
-          final String[] studentNames = new String[size];
-          final String[] studentNos = new String[size];
-          if(studentNames.length == 0){
-               noStudentTv.setVisibility(View.VISIBLE);
-          }else{
-               noStudentTv.setVisibility(View.INVISIBLE);
-               for(int i = 0; i < size; i++){
-                    studentNames[i] = studentList.get(i).getName();
-                    studentNos[i] = studentList.get(i).getStudentNum();
+
+          classNameTv.setText(className);
+          classDescTv.setText(classObj.getClassDesc());
+
+          studentListItems = new ArrayList<>();
+          if(size > 0) {
+               noStudentTv.setVisibility(View.GONE);
+               for (int i = 0; i < size; i++) {
+                    studentListItems.add(new StudentListItem(studentList.get(i).getName(), studentList.get(i).getStudentNum()));
                }
+          }else{
+               noStudentTv.setVisibility(View.VISIBLE);
           }
 
-          ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_2, android.R.id.text1, studentNames){
-               @NonNull
-               @Override
-               public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-                    TextView name = view.findViewById(android.R.id.text1);
-                    TextView sno = view.findViewById(android.R.id.text2);
-
-                    name.setText(studentNames[position]);
-                    sno.setText(studentNos[position]);
-                    return view;
-               }
-          };
-          studentListView.setAdapter(adapter);
+          adapter = new StudentListAdapter(studentListItems, this);
+          studentsRv.setAdapter(adapter);
      }
 }

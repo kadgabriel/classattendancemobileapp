@@ -15,9 +15,6 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
-* Version 1.03 <23/02/2018> - Ronnel Austria
-*    - removed function countMatchStudent()
-*
 * Version 1.02 <22/02/2018> - Arielle Gabriel
 *    - added functions countMatchStudentNum() and countMatchStudent()
 *
