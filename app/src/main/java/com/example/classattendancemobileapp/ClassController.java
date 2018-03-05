@@ -15,11 +15,14 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.2 <09/02/2018> - John Oliver
+ *        - added getByName() function
+ *
+ *   Version 1.1 <09/02/2018> - John Oliver
+ *        - removed unnecessary imports
+ *
  *   Version 1.0 <07/02/2018> - John Oliver
  *        - created initial file
- *
- *   Version 1.01 <09/02/2018> - John Oliver
- *        - removed unnecessary imports
  */
 
 /**
@@ -93,5 +96,9 @@ public class ClassController {
           List<Classes> listClass = db.classesDao().getAll();
 
           return listClass;
+     }
+
+     public Classes getByName(String name){
+          return db.classesDao().getByName(name);
      }
 }

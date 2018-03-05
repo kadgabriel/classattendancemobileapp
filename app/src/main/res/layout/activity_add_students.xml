@@ -31,7 +31,7 @@
      @Group members: Atienza, Austria, Gabriel
      @Client: Asst. Prof. Ma. Rowena C. Solamo
      @File:  activity_add_students.xml
-     @Creation Date: 20/02/18
+     @Creation Damaterial_bg1: 20/02/18
      @Version: 1
 -->
 
@@ -113,10 +113,11 @@
           app:layout_constraintBaseline_toBaselineOf="@+id/lastNameTv"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="@+id/snoEt" />
+          app:layout_constraintStart_toStartOf="@+id/snoEt"
+          android:layout_marginRight="8dp" />
 
      <TextView
-          android:id="@+id/snoTv"
+          android:id="@+id/descTv"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="16dp"
@@ -131,10 +132,10 @@
           android:layout_marginEnd="8dp"
           android:ems="10"
           android:inputType="number"
-          app:layout_constraintBaseline_toBaselineOf="@+id/snoTv"
+          app:layout_constraintBaseline_toBaselineOf="@+id/descTv"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toEndOf="@+id/snoTv"
+          app:layout_constraintStart_toEndOf="@+id/descTv"
           android:layout_marginRight="8dp" />
 
      <TextView
@@ -181,9 +182,9 @@
           android:id="@+id/confirmAddStudentsButton"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:background="@color/colorPrimary"
+          android:background="@color/colorAccent"
           android:text="Add Student/s"
-          android:textColor="@android:color/background_light"
+          android:textColor="@color/colorPrimary"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent" />
