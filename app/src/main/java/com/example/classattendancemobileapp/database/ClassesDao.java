@@ -15,6 +15,9 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.02 <06/03/2018> - Arielle Gabriel
+*    - updated comments in functions
+*
 * Version 1.01 <17/02/2018> - Arielle Gabriel
 *    - added getByName() function
 *
@@ -33,7 +36,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  ClassesDao.java
 * @Creation Date: 05/02/18
-* @Version: 1.01
+* @Version: 1.02
 *
 * */
 
@@ -54,7 +57,7 @@ public interface ClassesDao {
      * getAll() <05/02/2018>
      * - returns all classes in the DB
      * @param: none
-     * @requires: none
+     * @requires: classes table
      * @returns: List<Classes> - list containing Classes objects
      * */
      @Query("SELECT * FROM classes")
@@ -64,7 +67,7 @@ public interface ClassesDao {
      * getOne() <05/02/2018>
      * - returns one class from the DB
      * @param: none
-     * @requires: none
+     * @requires: classes table
      * @returns: Classes - one Classes object from the DB
      * */
      @Query("SELECT * FROM classes LIMIT 1")
@@ -74,7 +77,7 @@ public interface ClassesDao {
      * getByID() <05/02/2018>
      * - returns class given a classID
      * @param: int - target classID
-     * @requires: none
+     * @requires: classes table
      * @returns: Classes - object containing the matched classID
      * */
      @Query("SELECT * FROM classes WHERE classID = :ID LIMIT 1")
@@ -84,7 +87,7 @@ public interface ClassesDao {
      * getByName() <17/02/2018>
      * - returns class given a class name
      * @param: String - target class's name
-     * @requires: none
+     * @requires: classes table
      * @returns: Classes - object containing the matched classID
      * */
      @Query("SELECT * FROM classes WHERE className = :name LIMIT 1")
@@ -94,7 +97,7 @@ public interface ClassesDao {
      * countAll() <05/02/2018>
      * - returns the number of classes
      * @param: none
-     * @requires: none
+     * @requires: classes table
      * @returns: int - count of classes
      * */
      @Query("SELECT count(*) FROM classes")
@@ -103,8 +106,8 @@ public interface ClassesDao {
      /*
      * countMatchName() <05/02/2018>
      * - returns an int
-     * @param: Classes - object containing the class to be inserted
-     * @requires: none
+     * @param: name - name of target class
+     * @requires: classes table
      * @returns: int - count of matching class name
      * */
      @Query("SELECT count(*) FROM classes WHERE className=:name")
@@ -114,7 +117,7 @@ public interface ClassesDao {
      * insert() <05/02/2018>
      * - inserts a new class to the database
      * @param: singleClasses - object containing the class to be inserted
-     * @requires: none
+     * @requires: classes table
      * @returns: none
      * */
      @Insert
@@ -124,7 +127,7 @@ public interface ClassesDao {
      * delete() <05/02/2018>
      * - deletes a given class from the database
      * @param: singleClasses - object containing the class to be deleted
-     * @requires: none
+     * @requires: classes table
      * @returns: none
      * */
      @Delete
@@ -134,7 +137,7 @@ public interface ClassesDao {
      * update() <05/02/2018>
      * - updates a class already existing the database
      * @param: singleClasses - object containing the class to be updated
-     * @requires: none
+     * @requires: classes table
      * @returns: none
      * */
      @Update
