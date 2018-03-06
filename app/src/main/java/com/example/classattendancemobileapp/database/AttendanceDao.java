@@ -77,6 +77,16 @@ public interface AttendanceDao {
      int countAbsent(int classID, String studentNum);
 
      /*
+     * countMatchAttendance() <06/03/2018>
+     * - counts the number matching tuple of classID, student no, and date in the DB
+     * @param: classID - target class, studentNum - student number, date - date
+     * @requires: attendance table
+     * @returns: int - count of matching entries in DB
+     * */
+     @Query("SELECT count(*) FROM attendance WHERE classID=:classID and studentNum=:studentNum and date=:date")
+     int countPresent(int classID, String studentNum, String date);
+
+     /*
      * insertMultipleAttendance() <06/03/2018>
      * - inserts multiple attendance entry to the database
      * @param: attendance - list of Attendance objects containing the entries to be inserted

@@ -6,7 +6,7 @@
  * of the Department of Computer Science, College of Engineering,
  * University of the Philippines, Diliman for the AY 2017-2018.
  *
- * @File Author(s): John Oliver
+ * @File Author(s): John Oliver, Arielle Gabriel
  *
  */
 
@@ -23,6 +23,9 @@
  *
  *   Version 1.2 <23/02/2018> - John Oliver
  *        - fixed a bug
+ *
+ *   Version 1.3 <06/03/2018> - Arielle Gabriel
+ *        - added attendance count
  */
 
 /**
@@ -34,7 +37,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ViewClassActivity.java
  * @Creation Date: 08/02/18
- * @Version: 1.1
+ * @Version: 1.3
  */
 
 package com.example.classattendancemobileapp;
@@ -140,7 +143,10 @@ public class ViewClassActivity extends AppCompatActivity {
           if(size > 0) {
                noStudentTv.setVisibility(View.GONE);
                for (int i = 0; i < size; i++) {
-                    studentListItems.add(new StudentListItem(studentList.get(i).getName(), studentList.get(i).getStudentNum()));
+                    String name = studentList.get(i).getName();
+                    String sno = studentList.get(i).getStudentNum();
+                    int[] attendance = studentController.getStudentAttendance(classObj.getClassID(),sno);
+                    studentListItems.add(new StudentListItem(name, sno, attendance[0], attendance[1], attendance[2]));
                }
           }else{
                noStudentTv.setVisibility(View.VISIBLE);

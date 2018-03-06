@@ -1,4 +1,4 @@
-/*
+/**
 * Class Attendance Mobile App
 *
 * “This is a course requirement for CS 192 Software Engineering II
@@ -10,15 +10,15 @@
 *
 * */
 
-/*
+/**
 * Code History
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
-* Version 1.02 <06/03/2018> - Arielle Gabriel
+* Version 1.2 <06/03/2018> - Arielle Gabriel
 *    - updated comments in functions
 *
-* Version 1.01 <17/02/2018> - Arielle Gabriel
+* Version 1.1 <17/02/2018> - Arielle Gabriel
 *    - added getByName() function
 *
 * Version 1.0 <05/02/2018> - Arielle Gabriel
@@ -26,7 +26,7 @@
 *
 * */
 
-/*
+/**
 * Class Attendance Mobile App
 *
 * Class Attendance Mobile App is a mobile application that allows the teacher to record
@@ -36,7 +36,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  ClassesDao.java
 * @Creation Date: 05/02/18
-* @Version: 1.02
+* @Version: 1.2
 *
 * */
 
@@ -53,7 +53,7 @@ import java.util.List;
 @Dao
 public interface ClassesDao {
 
-     /*
+     /**
      * getAll() <05/02/2018>
      * - returns all classes in the DB
      * @param: none
@@ -63,7 +63,7 @@ public interface ClassesDao {
      @Query("SELECT * FROM classes")
      List<Classes> getAll();
 
-     /*
+     /**
      * getOne() <05/02/2018>
      * - returns one class from the DB
      * @param: none
@@ -73,7 +73,7 @@ public interface ClassesDao {
      @Query("SELECT * FROM classes LIMIT 1")
      Classes getOne();
 
-     /*
+     /**
      * getByID() <05/02/2018>
      * - returns class given a classID
      * @param: int - target classID
@@ -83,7 +83,7 @@ public interface ClassesDao {
      @Query("SELECT * FROM classes WHERE classID = :ID LIMIT 1")
      Classes getByID(int ID);
 
-     /*
+     /**
      * getByName() <17/02/2018>
      * - returns class given a class name
      * @param: String - target class's name
@@ -93,7 +93,7 @@ public interface ClassesDao {
      @Query("SELECT * FROM classes WHERE className = :name LIMIT 1")
      Classes getByName(String name);
 
-     /*
+     /**
      * countAll() <05/02/2018>
      * - returns the number of classes
      * @param: none
@@ -103,7 +103,7 @@ public interface ClassesDao {
      @Query("SELECT count(*) FROM classes")
      int countAll();
 
-     /*
+     /**
      * countMatchName() <05/02/2018>
      * - returns an int
      * @param: name - name of target class
@@ -113,7 +113,7 @@ public interface ClassesDao {
      @Query("SELECT count(*) FROM classes WHERE className=:name")
      int countMatchName(String name);
 
-     /*
+     /**
      * insert() <05/02/2018>
      * - inserts a new class to the database
      * @param: singleClasses - object containing the class to be inserted
@@ -123,7 +123,7 @@ public interface ClassesDao {
      @Insert
      void insert(Classes singleClasses);
 
-     /*
+     /**
      * delete() <05/02/2018>
      * - deletes a given class from the database
      * @param: singleClasses - object containing the class to be deleted
@@ -133,7 +133,7 @@ public interface ClassesDao {
      @Delete
      void delete(Classes singleClass);
 
-     /*
+     /**
      * update() <05/02/2018>
      * - updates a class already existing the database
      * @param: singleClasses - object containing the class to be updated

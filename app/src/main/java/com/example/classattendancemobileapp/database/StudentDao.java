@@ -1,4 +1,4 @@
-/*
+/**
 * Class Attendance Mobile App
 *
 * “This is a course requirement for CS 192 Software Engineering II
@@ -10,25 +10,26 @@
 *
 * */
 
-/*
+/**
 * Code History
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
-* Version 1.03 <06/03/2018> - Arielle Gabriel
-*    - updated comments in functions
 *
-* Version 1.02 <22/02/2018> - Arielle Gabriel
+* Version 1.3 <06/03/2018> - Arielle Gabriel
+*    - updated comments
+*
+* Version 1.2 <22/02/2018> - Arielle Gabriel
 *    - added functions countMatchStudentNum() and countMatchStudent()
 *
-* Version 1.01 <17/02/2018> - Arielle Gabriel
+* Version 1.1 <17/02/2018> - Arielle Gabriel
 *    - renamed function getAll() to getByClassID()
 *
 * Version 1.0 <06/02/2018> - Arielle Gabriel
 *    - created initial file for students dao
 * */
 
-/*
+/**
 * Class Attendance Mobile App
 *
 * Class Attendance Mobile App is a mobile application that allows the teacher to record
@@ -38,7 +39,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  StudentDao.java
 * @Creation Date: 06/02/18
-* @Version: 1.03
+* @Version: 1.3
 *
 * */
 
@@ -57,7 +58,7 @@ import java.util.List;
 @Dao
 public interface StudentDao {
 
-     /*
+     /**
      * getByClassID() <06/02/2018>
      * - returns all students given a classID
      * @param: int ID - ID of the target class
@@ -67,7 +68,7 @@ public interface StudentDao {
      @Query("SELECT * FROM student WHERE classID= :ID ORDER BY lastName ASC")
      List<Student> getByClassID(int ID);
 
-     /*
+     /**
      * countMatchStudent() <22/02/2018>
      * - counts the matching classID, first name, and last name in database
      * @param: ID - class ID, firstName - first name of student, lastName - last nam of student
@@ -78,7 +79,7 @@ public interface StudentDao {
      @Query("SELECT count(*) FROM student WHERE classID= :ID AND studentNum= :studentNum")
      int countMatchStudentNum(int ID, String studentNum);
 
-     /*
+     /**
      * insert() <06/02/2018>
      * - inserts a new student to the database
      * @param: stud - Student object containing the student to be inserted
@@ -88,7 +89,7 @@ public interface StudentDao {
      @Insert
      void insert(Student stud);
 
-     /*
+     /**
      * delete() <06/02/2018>
      * - deletes a student from database
      * @param: stud - Student object containing the student to be deleted
@@ -98,7 +99,7 @@ public interface StudentDao {
      @Delete
      void delete(Student stud);
 
-     /*
+     /**
      * update() <06/02/2018>
      * - updates a student entity from database
      * @param: stud - Student object containing the student to be updated

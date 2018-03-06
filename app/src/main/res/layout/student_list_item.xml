@@ -8,13 +8,16 @@
      of the Department of Computer Science, College of Engineering,
      University of the Philippines, Diliman for the AY 2017-2018.
 
-     @Author: John Oliver
+     @Author: John Oliver, Arielle Gabriel
 -->
 
 <!--
      Code History
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
+
+     Version 1.0 <06/03/2018> - Arielle Gabriel
+          - modified to add attendance entries on side
 
      Version 1.0 <25/02/2018> - John Oliver
           - created initial file
@@ -49,21 +52,60 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_margin="16dp"
-               android:orientation="vertical">
+               android:orientation="horizontal">
+
+               <LinearLayout
+                    android:layout_width="215dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                         android:id="@+id/nameTv"
+                         android:layout_width="215dp"
+                         android:layout_height="wrap_content"
+                         android:text="student_name"
+                         android:textColor="@color/fontPrimary"
+                         android:textSize="18sp" />
+
+                    <TextView
+                         android:id="@+id/descTv"
+                         android:layout_width="215dp"
+                         android:layout_height="wrap_content"
+                         android:text="student_number" />
+
+
+               </LinearLayout>
 
                <TextView
-                    android:id="@+id/nameTv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="student_name"
-                    android:textColor="@color/fontPrimary"
-                    android:textSize="18sp" />
+                    android:id="@+id/presentTv"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="P"
+                    android:textAlignment="center"
+                    android:textColor="#00FF00"
+                    android:gravity="center_vertical"/>
 
                <TextView
-                    android:id="@+id/descTv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="student_number" />
+                    android:id="@+id/lateTv"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="L"
+                    android:textAlignment="center"
+                    android:textColor="#555555"
+                    android:gravity="center_vertical"/>
+
+               <TextView
+                    android:id="@+id/absentTv"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="A"
+                    android:textAlignment="center"
+                    android:textColor="#FF0000"
+                    android:gravity="center_vertical"/>
+
           </LinearLayout>
 
      </android.support.v7.widget.CardView>
