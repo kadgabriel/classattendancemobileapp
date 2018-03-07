@@ -81,6 +81,14 @@ public class Attendance{
      * @requires: none
      * @returns: int - containing the class' ID
      * */
+
+     public Attendance(int classID, String studentNum, String attendanceDate, String studentAttendance){
+         this.classID = classID;
+         this.studentNum = studentNum;
+         this.date = attendanceDate;
+         this.entry = studentAttendance;
+     }
+
      public int getClassID(){
           return this.classID;
      }
