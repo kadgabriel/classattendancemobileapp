@@ -84,7 +84,7 @@ public interface AttendanceDao {
      * @returns: int - count of matching entries in DB
      * */
      @Query("SELECT count(*) FROM attendance WHERE classID=:classID and studentNum=:studentNum and date=:date")
-     int countPresent(int classID, String studentNum, String date);
+     int countMatchAttendance(int classID, String studentNum, String date);
 
      /*
      * insertMultipleAttendance() <06/03/2018>
