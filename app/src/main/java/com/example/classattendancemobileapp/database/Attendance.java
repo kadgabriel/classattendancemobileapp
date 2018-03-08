@@ -16,6 +16,9 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.2 <08/03/2018> - Ronnel Austria
+*    - added constructor
+*
 * Version 1.1 <06/03/2018> - Arielle Gabriel
 *    - made the file public
 *
@@ -74,20 +77,32 @@ public class Attendance{
      @ColumnInfo(name = "entry")
      private String entry; // variable holder for an Attendance record's entry column value
 
-     /**
-     * getClassID() <04/02/2018>
-     * - getter function for classID attribute
-     * @param: none
-     * @requires: none
-     * @returns: int - containing the class' ID
-     * */
 
+
+     /* empty constructor */
+     public Attendance(){}
+
+     /*
+     * Attendance() <08/03/2018>
+     * - constructor for a Attendance class with a name and description
+     * @param: classID - ID of class, studentNum - student number of student, attendanceDate - date, student attendance - attendance entry for a day
+     * @requires: none
+     * @returns: none
+     * */
      public Attendance(int classID, String studentNum, String attendanceDate, String studentAttendance){
          this.classID = classID;
          this.studentNum = studentNum;
          this.date = attendanceDate;
          this.entry = studentAttendance;
      }
+
+     /**
+      * getClassID() <04/02/2018>
+      * - getter function for classID attribute
+      * @param: none
+      * @requires: none
+      * @returns: int - containing the class' ID
+      * */
 
      public int getClassID(){
           return this.classID;

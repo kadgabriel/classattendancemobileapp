@@ -17,7 +17,7 @@ public class AttendanceController {
         this.context = context;
     }
 
-     public void addAttendance(int classID, String attendanceDate, List<String[]> attendanceList){
+     public Boolean addAttendance(int classID, String attendanceDate, List<String[]> attendanceList){
           for(int i = 0; i<attendanceList.size(); i++){
               int match;
               String studentNum = attendanceList.get(i)[0];
@@ -32,6 +32,7 @@ public class AttendanceController {
                     MainActivity.db.attendanceDao().insert(newAttendance);
                 }
          }
+         return true;
 
      }
 }
