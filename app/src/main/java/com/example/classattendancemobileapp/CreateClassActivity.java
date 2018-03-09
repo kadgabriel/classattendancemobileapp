@@ -41,10 +41,12 @@
 package com.example.classattendancemobileapp;
 
 import android.arch.persistence.room.Room;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,11 +57,12 @@ import java.util.Random;
 
 public class CreateClassActivity extends AppCompatActivity {
 
-     final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4};
+     final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4, R.drawable.custom_gradient_5};
      static AppDatabase db; // variable holder for the application's main database
      ClassController classController;  // variable holder for the class controller that interacts with the database
      FloatingActionButton createClassFAB; // variable holder for the Button widget for creating a class
      CollapsingToolbarLayout collapsingToolbarLayout;
+     Toolbar toolbar;
 
      /**
       * onCreate() <07/02/2018>
@@ -73,15 +76,18 @@ public class CreateClassActivity extends AppCompatActivity {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_create_class);
           buildDB();
-          getSupportActionBar().hide();
+          toolbar = findViewById(R.id.toolbar);
+          toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+          setSupportActionBar(toolbar);
 
           classController = new ClassController(db, getApplicationContext());
           createClassFAB = findViewById(R.id.createClassFAB);
           collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
 
           Random random = new Random();
-          int i = random.nextInt(4);
+          int i = random.nextInt(5);
           collapsingToolbarLayout.setBackgroundResource(customGradients[i]);
+          collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
           createClassFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

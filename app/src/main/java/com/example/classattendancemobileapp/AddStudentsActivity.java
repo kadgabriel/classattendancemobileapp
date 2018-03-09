@@ -15,11 +15,14 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
- *   Version 1.0 <07/02/2018> - John Oliver
- *        - created initial file
+ *   Version 1.2 <26/02/2018> - John Oliver
+ *        - added randomization of the toolbar's gradient background
  *
  *   Version 1.1 <22/02/2018> - John Oliver
  *        - functional add student/s and file picker. Added code comments. Removed blank lines and fixed redundant commands
+ *
+ *   Version 1.0 <07/02/2018> - John Oliver
+ *        - created initial file
  */
 
 /**
@@ -46,21 +49,24 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import java.util.Random;
+
 
 public class AddStudentsActivity extends AppCompatActivity {
-     private static final int PICKFILE_RESULT_CODE = 1;
+     private static final int PICKFILE_RESULT_CODE = 1; // integer code to determine the id of most recent fragment that finished its cycle
 
-     RadioButton singleStudentRb; // the RadioButton widget for when adding a single student
-     RadioButton csvRb; // the RadioButton widget for when adding multiple students through a CSV file
+     final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4, R.drawable.custom_gradient_5}; // array of custom-defined gradients to be set as widgets' background tint
+     Button confirmAddStudentsButton; // the Button widget to confirm adding student/s
+     Button pathButton; // the Button widget to open a file picker activity
      EditText firstNameEt; // the EditText widget for the first name of the single student being added
      EditText lastNameEt; // the EditText widget for the last name of the single student being added
-     EditText snoEt; // the EditText widget for the student number of the single student being added
      EditText pathEt; // the EditText widget for path of the CSV file
-     Button pathButton; // the Button widget to open a file picker activity
-     Button confirmAddStudentsButton; // the Button widget to confirm adding student/s
+     EditText snoEt; // the EditText widget for the student number of the single student being added
+     RadioButton csvRb; // the RadioButton widget for when adding multiple students through a CSV file
+     RadioButton singleStudentRb; // the RadioButton widget for when adding a single student
      StudentController studentController; // the student controller object which is directly connected to the database
      private static String FILEPATH; // the string value of the path of the object returned by the file picker activity
-     private static Uri selectedFile;
+     private static Uri selectedFile; // the selected file from the file picker
 
      /**
       * onCreate() <08/02/2018>
@@ -78,18 +84,18 @@ public class AddStudentsActivity extends AppCompatActivity {
           final String className;
           className = intent.getStringExtra("CLASS_NAME");
 
-          singleStudentRb = findViewById(R.id.singleStudentRb);
+          confirmAddStudentsButton = findViewById(R.id.confirmAddStudentsButton);
           csvRb = findViewById(R.id.csvRb);
-
           firstNameEt = findViewById(R.id.firstNameEt);
           lastNameEt = findViewById(R.id.lastNameEt);
-          snoEt = findViewById(R.id.snoEt);
-          pathEt = findViewById(R.id.pathEt);
-
           pathButton = findViewById(R.id.pathButton);
-          confirmAddStudentsButton = findViewById(R.id.confirmAddStudentsButton);
+          pathEt = findViewById(R.id.pathEt);
+          singleStudentRb = findViewById(R.id.singleStudentRb);
+          snoEt = findViewById(R.id.snoEt);
 
-          pathButton.setEnabled(false);
+          firstNameEt.setEnabled(false);
+          lastNameEt.setEnabled(false);
+          snoEt.setEnabled(false);
 
           singleStudentRb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                @Override
@@ -124,13 +130,14 @@ public class AddStudentsActivity extends AppCompatActivity {
                @Override
                public void onClick(View view) {
                     Intent filePickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-//                    filePickerIntent.addCategory(Intent.CATEGORY_OPENABLE);
                     filePickerIntent.setType("text/comma-separated-values");
                     filePickerIntent = filePickerIntent.createChooser(filePickerIntent, "Choose CSV file");
                     startActivityForResult(filePickerIntent, PICKFILE_RESULT_CODE);
                }
           });
 
+          Random random = new Random();
+          confirmAddStudentsButton.setBackgroundResource(customGradients[random.nextInt(5)]);
           confirmAddStudentsButton.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context="com.example.classattendancemobileapp.AddAttendanceActivity">
+
+     <include
+          android:id="@+id/toolbar"
+          layout="@layout/base_toolbar"></include>
+
+     <TextView
+          android:id="@+id/dateTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="March 7, 2018"
+          android:textColor="@color/colorPrimaryDark"
+          android:textSize="30sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+     <TextView
+          android:id="@+id/dayTv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Wednesday"
+          android:textAllCaps="false"
+          android:textColor="@color/colorPrimaryDark"
+          android:textSize="18sp"
+          android:textStyle="italic"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dateTv" />
+
+     <android.support.v7.widget.RecyclerView
+          android:id="@+id/attendanceRv"
+          android:layout_width="0dp"
+          android:layout_height="0dp"
+          android:layout_marginBottom="4dp"
+          android:layout_marginTop="8dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dayTv" >
+
+     </android.support.v7.widget.RecyclerView>
+
+     <Button
+          android:id="@+id/confirmAddAttendanceButton"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/colorPrimaryDark"
+          android:text="Add Attendance Record"
+          android:textColor="@color/colorPrimary"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

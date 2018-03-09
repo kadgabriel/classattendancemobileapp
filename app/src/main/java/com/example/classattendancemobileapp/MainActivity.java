@@ -15,22 +15,22 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
- *   Version 1.0 <07/02/2018> - John Oliver
- *        - created initial file
- *
- *   Version 1.01 <08/02/2018> - John Oliver
- *        - added lines event listeners on ListView item select
- *
- *   Version 1.10 <08/02/2018> - Ronnel Roi
- *        - transferred lines for getting classes and displaying classes to onResume() to ensure the data displayed
- *          is up to date all the time. Switched the creation of database from inMemory to a persistent one.
+ *   Version 1.2 <22/02/2018> - John Oliver
+ *        - modified the ListView array adapter to present both the class name and description
  *
  *   Version 1.11 <09/02/2018> - John Oliver
  *        - added a TextView widget to be able to show the user if no classes exist or have been created. Rearranged
  *          some of the code for better readability
  *
- *   Version 1.material_bg1 <22/02/2018> - John Oliver
- *        - modified the ListView array adapter to present both the class name and description
+ *   Version 1.10 <08/02/2018> - Ronnel Roi
+ *        - transferred lines for getting classes and displaying classes to onResume() to ensure the data displayed
+ *          is up to date all the time. Switched the creation of database from inMemory to a persistent one.
+ *
+ *   Version 1.01 <08/02/2018> - John Oliver
+ *        - added lines event listeners on ListView item select
+ *
+ *   Version 1.0 <07/02/2018> - John Oliver
+ *        - created initial file
  */
 
 /**
@@ -55,9 +55,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
@@ -73,14 +75,16 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-     static AppDatabase db; // variable holder for the application's database
-     List<ClassListItem> classListItems;
-     ClassListAdapter adapter;
-     GridView classGridView;
-     TextView noClassTextView; // variable holder for the TextView widget to display the 'no classes' notice
-     FloatingActionButton addClassFAB; // variable holder for the floating action button on the screen
-     ClassController classController; // variable holder for the class controller that interacts with the database
+     static AppDatabase db; // the application's database
 
+     ClassController classController; // the class controller that interacts with the database
+     ClassListAdapter adapter; // adapter object to translate data into UI objects in the classes grid view widget
+     FloatingActionButton addClassFAB; // the floating action button on the screen
+     GridView classGridView; // the GridView widget to display the list of classes
+     List<ClassListItem> classListItems; // the data that the adapter object translates into UI objects
+     TextView noClassTextView; // variable holder for the TextView widget to display the 'no classes' notice
+     TextView title; // the TextView widget that display the title of the activity
+     Toolbar toolbar; // the Toolbar widget at the top of the activity
 
      /**
       * onCreate() <07/02/2018>
@@ -94,7 +98,10 @@ public class MainActivity extends AppCompatActivity {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_main);
           buildDB();
-
+          toolbar = findViewById(R.id.toolbar);
+          title = toolbar.findViewById(R.id.title);
+          title.setText(R.string.app_name);
+          setSupportActionBar(toolbar);
           classGridView = findViewById(R.id.classGridView);
           addClassFAB = findViewById(R.id.addClassFAB);
           noClassTextView = findViewById(R.id.noClassTextView);
@@ -137,6 +144,26 @@ public class MainActivity extends AppCompatActivity {
             }
           });
 
+          classGridView.setOnScrollListener(new GridView.OnScrollListener(){
+
+               @Override
+               public void onScrollStateChanged(AbsListView absListView, int i) {
+                    int addClassFABPosY=addClassFAB.getScrollY();
+                    if (i == SCROLL_STATE_FLING) {
+                         addClassFAB.animate().cancel();
+                         addClassFAB.animate().translationYBy(200);
+                    } else {
+                         addClassFAB.animate().cancel();
+                         addClassFAB.animate().translationY(addClassFABPosY);
+                    }
+               }
+
+               @Override
+               public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+
+               }
+          });
+
           addClassFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,9 +181,6 @@ public class MainActivity extends AppCompatActivity {
       * @returns: none
       */
      public void buildDB(){
-          //        db = Room.inMemoryDatabaseBuilder(
-          //                getApplicationContext(),
-          //                AppDatabase.class).allowMainThreadQueries().build();
           db = Room.databaseBuilder(getApplicationContext(),
           AppDatabase.class, "classattendance").allowMainThreadQueries().build();
      }

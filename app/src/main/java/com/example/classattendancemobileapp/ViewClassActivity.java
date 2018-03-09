@@ -51,19 +51,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.classattendancemobileapp.database.Classes;
 import com.example.classattendancemobileapp.database.Student;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -71,7 +68,7 @@ public class ViewClassActivity extends AppCompatActivity {
 
      final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4};
 
-     String className;
+     String className; // the name of the class selected from MainActivity
      StudentController studentController; // the student controller object which is directly connected to the database
      ClassController classController;
      List<Student> studentList; // the list of students returned by the controller
@@ -79,10 +76,12 @@ public class ViewClassActivity extends AppCompatActivity {
      TextView noStudentTv;
      TextView classNameTv;
      TextView classDescTv;
+     Button addAttendanceButton;
      Button addStudentsButton;
      CollapsingToolbarLayout collapsingToolbarLayout;
      RecyclerView studentsRv;
      RecyclerView.Adapter adapter;
+     Toolbar toolbar;
 
      /**
       * onCreate() <08/02/2018>
@@ -95,13 +94,16 @@ public class ViewClassActivity extends AppCompatActivity {
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_view_class);
-          getSupportActionBar().hide();
           Intent intent = getIntent();
+          toolbar = findViewById(R.id.toolbar);
+          toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+          setSupportActionBar(toolbar);
 
           className = intent.getStringExtra("CLASS_NAME");
           collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
           studentsRv = findViewById(R.id.studentsRv);
           noStudentTv = findViewById(R.id.noStudentTv);
+          addAttendanceButton = findViewById(R.id.addAttendanceButton);
           addStudentsButton = findViewById(R.id.addStudentsButton);
           classNameTv = findViewById(R.id.classNameTv);
           classDescTv = findViewById(R.id.classDescTv);
@@ -122,6 +124,15 @@ public class ViewClassActivity extends AppCompatActivity {
                @Override
                public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), AddStudentsActivity.class);
+                    intent.putExtra("CLASS_NAME", className);
+                    startActivity(intent);
+               }
+          });
+
+          addAttendanceButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), AddAttendanceActivity.class);
                     intent.putExtra("CLASS_NAME", className);
                     startActivity(intent);
                }

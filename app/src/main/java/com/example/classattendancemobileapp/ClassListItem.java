@@ -1,9 +1,5 @@
 package com.example.classattendancemobileapp;
 
-/**
- * Created by Oli on 2/25/2018.
- */
-
 public class ClassListItem {
 
      String name;
