@@ -56,9 +56,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by User on 21/02/2018.
- */
 
 public class StudentController {
      private static final int ATTRIBCOUNT = 3; // variable holder for number of student attributes
@@ -124,8 +121,15 @@ public class StudentController {
 
      }
 
+     /**
+      * getStudentAttendance() <06/03/2018>
+      * - counts the number of present, absent, late entries for a student
+      * @param: classID - target class ID, sno - student number of the target student
+      * @requires: attendance table
+      * @returns: int[] - array of integers containing overview of student's attendance
+      */
      public int[] getStudentAttendance(int classID, String sno){
-          int[] studentRecord = new int[3];
+          int[] studentRecord = new int[3]; //
           studentRecord[0] = MainActivity.db.attendanceDao().countPresent(classID,sno);
           studentRecord[1] = MainActivity.db.attendanceDao().countLate(classID,sno);
           studentRecord[2] = MainActivity.db.attendanceDao().countAbsent(classID,sno);

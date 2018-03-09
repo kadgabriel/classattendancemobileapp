@@ -60,8 +60,8 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
       * @returns: a new StudentListAdapter instance
       */
      public StudentListAdapter(List<StudentListItem> studentItems, Context context) {
-          this.studentItems = studentItems;
-          this.context = context;
+          this.studentItems = studentItems; // list of "student items" to be put in the view
+          this.context = context; // application's context
      }
 
      /**
@@ -108,11 +108,11 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
      }
 
      public class ViewHolder extends RecyclerView.ViewHolder{
-          public TextView nameTv;
-          public TextView snoTv;
-          public TextView presentTv;
-          public TextView lateTv;
-          public TextView absentTv;
+          public TextView nameTv; // variable holder for student's name text view
+          public TextView snoTv; // variable holder for student's student number text view
+          public TextView presentTv; // variable holder for student's number of present entries text view
+          public TextView lateTv; // variable holder for student's number of late entries text view
+          public TextView absentTv; // variable holder for student's number of absent entries text view
 
           /**
            * ViewHolder() <25/02/2018>

@@ -81,14 +81,35 @@ public class StudentListItem {
           return sno;
      }
 
+     /**
+      * getSno() <06/03/2018>
+      * - getter for the present field
+      * @param: none
+      * @requires: none
+      * @returns: int - returns the number of present entries
+      */
      public int getPresent() {
           return present;
      }
 
+     /**
+      * getSno() <06/03/2018>
+      * - getter for the late field
+      * @param: none
+      * @requires: none
+      * @returns: int - returns the number of late entries
+      */
      public int getLate() {
           return late;
      }
 
+     /**
+      * getSno() <06/03/2018>
+      * - getter for the absent field
+      * @param: none
+      * @requires: none
+      * @returns: int - returns the number of absent entries
+      */
      public int getAbsent() {
           return absent;
      }
