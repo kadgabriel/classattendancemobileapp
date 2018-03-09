@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+     Class Attendance Mobile App
+
+     This is a course requirement for CS 192 Software Engineering II
+     under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+     of the Department of Computer Science, College of Engineering,
+     University of the Philippines, Diliman for the AY 2017-2018.
+
+     @Author: John Oliver
+-->
+
+<!--
+     Code History
+          Version x.x <DD/MM/YYYY> - Author
+               [description of changes]
+
+     Version 1.0 <07/02/2018> - John Oliver
+          - created initial layout for AddAttendanceActivity.java
+-->
+
+<!--
+     Class Attendance Mobile App
+     Class Attendance Mobile App is a mobile application that allows the teacher to record
+     the attendance​ of the students​ digitally​ using a smart phone
+
+     @Group members: Atienza, Austria, Gabriel
+     @Client: Asst. Prof. Ma. Rowena C. Solamo
+     @File:  activity_add_attendance.xml
+     @Creation Date: 07/03/18
+     @Version: 1.0
+-->
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
      xmlns:app="http://schemas.android.com/apk/res-auto"
      xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +46,7 @@
           android:id="@+id/dateTv"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="March 7, 2018"
+          android:text="attendance_date"
           android:textColor="@color/colorPrimaryDark"
           android:textSize="30sp"
           app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +57,7 @@
           android:id="@+id/dayTv"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Wednesday"
+          android:text="attendance_day"
           android:textAllCaps="false"
           android:textColor="@color/colorPrimaryDark"
           android:textSize="18sp"

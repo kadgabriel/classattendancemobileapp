@@ -16,6 +16,10 @@
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
 
+     Version 1.1 <25/02/2018> - John Oliver
+          - changed the ListView widget to a GridView
+          - now uses a custom layout to display more information about the class
+
      Version 1.0 <07/02/2018> - John Oliver
           - created initial layout for MainActivity.java
 -->
@@ -27,9 +31,9 @@
 
      @Group members: Atienza, Austria, Gabriel
      @Client: Asst. Prof. Ma. Rowena C. Solamo
-     @File:  ViewClassActivity.java
+     @File:  activity_main.java
      @Creation Date: 07/02/18
-     @Version: 1.0
+     @Version: 1.1
 -->
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

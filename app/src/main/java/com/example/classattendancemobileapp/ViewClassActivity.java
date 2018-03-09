@@ -44,15 +44,12 @@ package com.example.classattendancemobileapp;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -68,20 +65,20 @@ public class ViewClassActivity extends AppCompatActivity {
 
      final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4};
 
+     Button addAttendanceButton; // Button widget for the
+     Button addStudentsButton; // Button widget for the
+     ClassController classController; // // the class controller object which is directly connected to the database
+     CollapsingToolbarLayout collapsingToolbarLayout; // the CollapsingToolbarLayout which contains buttons and information about the class
+     List<Student> studentList; // the list of students returned by the controller
+     List<StudentListItem> studentListItems; // the list of students to be processed by the adapter
+     RecyclerView studentsRv; // RecyclerView widget to display the list of students in the class
+     RecyclerView.Adapter adapter; // adapter object to translate student data into UI objects in the attendance recycler view widget
      String className; // the name of the class selected from MainActivity
      StudentController studentController; // the student controller object which is directly connected to the database
-     ClassController classController;
-     List<Student> studentList; // the list of students returned by the controller
-     List<StudentListItem> studentListItems;
-     TextView noStudentTv;
-     TextView classNameTv;
-     TextView classDescTv;
-     Button addAttendanceButton;
-     Button addStudentsButton;
-     CollapsingToolbarLayout collapsingToolbarLayout;
-     RecyclerView studentsRv;
-     RecyclerView.Adapter adapter;
-     Toolbar toolbar;
+     TextView classDescTv; // the TextView widget that displays the short description of the class
+     TextView classNameTv; // the TextView widget that displays the name of the class
+     TextView noStudentTv; // the TextView widget that display a tooltip if the class has no students
+     Toolbar toolbar; // the Toolbar widget at the top of the view
 
      /**
       * onCreate() <08/02/2018>
@@ -139,6 +136,13 @@ public class ViewClassActivity extends AppCompatActivity {
           });
      }
 
+     /**
+      * onCreate() <08/02/2018>
+      * - android function called when the paused activity is brought back to foreground
+      * @param:
+      * @requires: none
+      * @returns: none
+      */
      @Override
      public void onResume() {
           super.onResume();

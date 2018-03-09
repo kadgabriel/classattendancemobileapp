@@ -16,11 +16,15 @@
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
 
-     Version 1.0 <07/02/2018> - John Oliver
-          - created initial layout for AddStudentsActivity.java
+     Version 1.2 <25/02/2018> - John Oliver
+          - clustered existing widgets into a CardView for organization
+          - changed the ordering of widgets
 
      Version 1.1 <23/02/2018> - John Oliver
           - set lastNameEt property allCaps to true
+
+     Version 1.0 <07/02/2018> - John Oliver
+          - created initial layout for AddStudentsActivity.java
 -->
 
 <!--
@@ -31,8 +35,8 @@
      @Group members: Atienza, Austria, Gabriel
      @Client: Asst. Prof. Ma. Rowena C. Solamo
      @File:  activity_add_students.xml
-     @Creation Damaterial_bg1: 20/02/18
-     @Version: 1
+     @Creation Date: 20/02/18
+     @Version: 1.1
 -->
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -16,6 +16,11 @@
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
 
+     Version 1.2 <25/02/2018> - John Oliver
+          - changed default toolbar to CollapsingToolbarLayout
+          - changed main layout to a CoordinatorLayout
+          - put widgets inside a NestedScrollView
+
      Version 1.1 <22/02/2018> - John Oliver
           - renamed file from "create_class_activity.xml" to "activity_create_class.xml"
 

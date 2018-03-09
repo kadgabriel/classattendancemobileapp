@@ -16,7 +16,7 @@
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
 
-     Version 1.0 <06/03/2018> - Arielle Gabriel
+     Version 1.1 <06/03/2018> - Arielle Gabriel
           - modified to add attendance entries on side
 
      Version 1.0 <25/02/2018> - John Oliver
@@ -32,7 +32,7 @@
      @Client: Asst. Prof. Ma. Rowena C. Solamo
      @File: student_list_item.xml
      @Creation Date: 25/02/18
-     @Version: 1.0
+     @Version: 1.1
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
