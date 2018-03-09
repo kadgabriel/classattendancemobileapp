@@ -33,20 +33,25 @@
 
 package com.example.classattendancemobileapp;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.classattendancemobileapp.database.Student;
 
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -114,6 +119,30 @@ public class AddAttendanceActivity extends AppCompatActivity {
                     attendanceController.addAttendance(classController.getByName(className).getClassID(), dateString, attendanceEntries);
                     Toast.makeText(getApplicationContext(), "Attendance record successfully created!", Toast.LENGTH_SHORT).show();
                     finish();
+               }
+          });
+
+          dateTv.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                    Calendar calendar = Calendar.getInstance();
+                    int year = calendar.get(Calendar.YEAR);
+                    int month = calendar.get(Calendar.MONTH);
+                    int date = calendar.get(Calendar.DAY_OF_MONTH);
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(AddAttendanceActivity.this, new DatePickerDialog.OnDateSetListener() {
+                         @Override
+                         public void onDateSet(DatePicker datePicker, int year, int month, int date) {
+                              Date selectedDate = new Date(year,month,date);
+                              SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd");
+                              dateString = dateFormat.format(selectedDate);
+                              SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
+                              dayString = dayFormat.format(selectedDate);
+
+                              dateTv.setText(dateString);
+                              dayTv.setText(dayString);
+                         }
+                    }, year, month, date);
+                    datePickerDialog.show();
                }
           });
      }
