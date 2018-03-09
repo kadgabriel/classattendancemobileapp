@@ -26,48 +26,48 @@
  *
  * @Group members: Atienza, Austria, Gabriel
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
- * @File:  ClassListItem.java
- * @Creation Date: 25/02/18
+ * @File:  AttendanceListItem.java
+ * @Creation Date: 07/03/18
  * @Version: 1.0
  */
 
 package com.example.classattendancemobileapp;
 
-public class ClassListItem {
-     String name; // name of the class
-     String desc; // description of the class
+public class AttendanceListItem {
+     String name; // name of the student in the entry
+     String sno; // student number of the student in the entry
 
      /**
-      * ClassListItem() <25/02/2018>
+      * AttendanceListItem() <07/03/2018>
       * - the class constructor
-      * @param: name - the class name to be displayed, desc - short description of the class
+      * @param: name - the student name to be displayed, sno - the student number of the student
       * @requires: none
       * @returns: a new AttendanceListItem instance
       */
-     public ClassListItem(String name, String desc) {
+     public AttendanceListItem(String name, String sno) {
           this.name = name;
-          this.desc = desc;
+          this.sno = sno;
      }
 
      /**
-      * getName() <25/02/2018>
+      * getName() <07/03/2018>
       * - getter for the name field
       * @param: none
       * @requires: none
-      * @returns: the name field
+      * @returns: String
       */
      public String getName() {
           return name;
      }
 
      /**
-      * getDesc() <25/02/2018>
-      * - getter for the desc field
+      * getSno() <07/03/2018>
+      * - getter for the student number field
       * @param: none
       * @requires: none
-      * @returns: the desc field
+      * @returns: String
       */
-     public String getDesc() {
-          return desc;
+     public String getSno() {
+          return sno;
      }
 }

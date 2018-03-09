@@ -8,16 +8,13 @@
      of the Department of Computer Science, College of Engineering,
      University of the Philippines, Diliman for the AY 2017-2018.
 
-     @Author: John Oliver, Arielle Gabriel
+     @Author: John Oliver
 -->
 
 <!--
      Code History
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
-
-     Version 1.1 <06/03/2018> - Arielle Gabriel
-          - modified to add attendance entries on side
 
      Version 1.0 <25/02/2018> - John Oliver
           - created initial file
@@ -30,9 +27,9 @@
 
      @Group members: Atienza, Austria, Gabriel
      @Client: Asst. Prof. Ma. Rowena C. Solamo
-     @File: student_list_item.xml
-     @Creation Date: 25/02/18
-     @Version: 1.1
+     @File: attendance_list_item.xml
+     @Creation Date: 07/03/18
+     @Version: 1.0
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,6 +38,7 @@
      android:orientation="vertical">
 
      <android.support.v7.widget.CardView
+          android:id="@+id/cardView"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="2dp"
@@ -50,61 +48,44 @@
 
           <LinearLayout
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="16dp"
+               android:layout_height="match_parent"
                android:orientation="horizontal">
 
                <LinearLayout
-                    android:layout_width="215dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                          android:id="@+id/nameTv"
-                         android:layout_width="215dp"
+                         android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="student_name"
-                         android:textColor="@color/fontPrimary"
+                         android:textColor="@color/colorPrimary"
                          android:textSize="18sp" />
 
                     <TextView
                          android:id="@+id/descTv"
-                         android:layout_width="215dp"
+                         android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="student_number" />
-
+                         android:text="student_number"
+                         android:textColor="@color/colorPrimary" />
 
                </LinearLayout>
 
                <TextView
-                    android:id="@+id/presentTv"
-                    android:layout_width="45dp"
+                    android:id="@+id/statusTv"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="P"
+                    android:layout_marginRight="16dp"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:text="PRESENT"
                     android:textAlignment="center"
-                    android:textColor="@color/presentBackground" />
-
-               <TextView
-                    android:id="@+id/lateTv"
-                    android:layout_width="45dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="L"
-                    android:textAlignment="center"
-                    android:textColor="@color/lateBackground" />
-
-               <TextView
-                    android:id="@+id/absentTv"
-                    android:layout_width="45dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:text="A"
-                    android:textAlignment="center"
-                    android:textColor="@color/absentBackground" />
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="italic" />
 
           </LinearLayout>
 

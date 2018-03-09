@@ -16,7 +16,7 @@
  *        [description of changes]
  *
  *   Version 1.2 <09/02/2018> - John Oliver
- *        - added getByName() function
+ *        - added getByName() function and code comments
  *
  *   Version 1.1 <09/02/2018> - John Oliver
  *        - removed unnecessary imports
@@ -34,7 +34,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ClassController.java
  * @Creation Date: 07/02/18
- * @Version: 1.01
+ * @Version: 1.2
  */
 
 package com.example.classattendancemobileapp;
@@ -98,6 +98,13 @@ public class ClassController {
           return listClass;
      }
 
+     /**
+      * getByName() <25/02/2018>
+      * - gets a class from the database
+      * @param: name - name of the class to be retrived
+      * @requires: none
+      * @returns: a Classes object
+      */
      public Classes getByName(String name){
           return db.classesDao().getByName(name);
      }

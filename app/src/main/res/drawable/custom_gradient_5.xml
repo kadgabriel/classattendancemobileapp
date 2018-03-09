@@ -28,7 +28,7 @@
      @Group members: Atienza, Austria, Gabriel
      @Client: Asst. Prof. Ma. Rowena C. Solamo
      @File:  activity_add_students.xml
-     @Creation custom_gradient_1: 25/02/18
+     @Creation custom_gradient_5: 25/02/18
      @Version: 1.0
 -->
 
@@ -36,6 +36,6 @@
      <gradient
           android:type="linear"
           android:angle="135"
-          android:startColor="#ffe23e"
-          android:endColor="#de6311" />
+          android:startColor="#af2d86"
+          android:endColor="#8a70ff" />
 </shape>

@@ -1,4 +1,4 @@
-/*
+/**
 * Class Attendance Mobile App
 *
 * “This is a course requirement for CS 192 Software Engineering II
@@ -11,17 +11,23 @@
 * */
 
 
-/*
+/**
 * Code History
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
+*
+* Version 1.2 <08/03/2018> - Ronnel Austria
+*    - added constructor
+*
+* Version 1.1 <06/03/2018> - Arielle Gabriel
+*    - made the file public
 *
 * Version 1.0 <04/02/2018> - Arielle Gabriel
 *    - created initial file for attendance db entity
 *
 * */
 
-/*
+/**
 * Class Attendance Mobile App
 *
 * Class Attendance Mobile App is a mobile application that allows the teacher to record
@@ -31,7 +37,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  Attendance.java
 * @Creation Date: 04/02/18
-* @Version: 1.0
+* @Version: 1.1
 *
 * */
 package com.example.classattendancemobileapp.database;
@@ -42,7 +48,7 @@ import android.arch.persistence.room.ForeignKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-/*
+/**
 * construct a table named "attendance" with primary keys: classID, studentNum, and date
 * with foreign key classID from table "classes"
 * */
@@ -58,7 +64,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
                     }
 )
 
-class Attendance{
+public class Attendance{
      @ColumnInfo(name = "classID")
      private int classID; // variable holder for an Attendance record's classID column value
 
@@ -71,18 +77,38 @@ class Attendance{
      @ColumnInfo(name = "entry")
      private String entry; // variable holder for an Attendance record's entry column value
 
+
+
+     /* empty constructor */
+     public Attendance(){}
+
      /*
-     * getClassID() <04/02/2018>
-     * - getter function for classID attribute
-     * @param: none
+     * Attendance() <08/03/2018>
+     * - constructor for a Attendance class with a name and description
+     * @param: classID - ID of class, studentNum - student number of student, attendanceDate - date, student attendance - attendance entry for a day
      * @requires: none
-     * @returns: int - containing the class' ID
+     * @returns: none
      * */
+     public Attendance(int classID, String studentNum, String attendanceDate, String studentAttendance){
+         this.classID = classID;
+         this.studentNum = studentNum;
+         this.date = attendanceDate;
+         this.entry = studentAttendance;
+     }
+
+     /**
+      * getClassID() <04/02/2018>
+      * - getter function for classID attribute
+      * @param: none
+      * @requires: none
+      * @returns: int - containing the class' ID
+      * */
+
      public int getClassID(){
           return this.classID;
      }
 
-     /*
+     /**
      * getStudentNum() <04/02/2018>
      * - getter function for studentNumber attribute
      * @param: none
@@ -93,7 +119,7 @@ class Attendance{
           return this.studentNum;
      }
 
-     /*
+     /**
      * getDate() <04/02/2018>
      * - getter function for date attribute
      * @param: none
@@ -104,7 +130,7 @@ class Attendance{
           return this.date;
      }
 
-     /*
+     /**
      * getEntry() <04/02/2018>
      * - getter function for entry attribute
      * @param: none
@@ -115,7 +141,7 @@ class Attendance{
           return this.entry;
      }
 
-     /*
+     /**
      * setClassID() <04/02/2018>
      * - setter function for classID attribute
      * @param: classID - class ID to be set
@@ -126,7 +152,7 @@ class Attendance{
           this.classID = classID;
      }
 
-     /*
+     /**
      * setStudentNum() <04/02/2018>
      * - setter function for studentNum attribute
      * @param: studentNum - student number to be set
@@ -137,7 +163,7 @@ class Attendance{
           this.studentNum = studentNum;
      }
 
-     /*
+     /**
      * setDate() <04/02/2018>
      * - setter function for date attribute
      * @param: date - date to be set
@@ -148,7 +174,7 @@ class Attendance{
           this.date = date;
      }
 
-     /*
+     /**
      * setEntry() <04/02/2018>
      * - setter function for entry attribute
      * @param: entry - entry to be set (values: A/L/P)

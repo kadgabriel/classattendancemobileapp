@@ -1,4 +1,4 @@
-/*
+/**
 * Class Attendance Mobile App
 *
 * “This is a course requirement for CS 192 Software Engineering II
@@ -10,16 +10,19 @@
 *
 * */
 
-/*
+/**
 * Code History
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
+*
+* Version 1.1 <06/03/2018> - Arielle Gabriel
+*    - added attendanceDao()
 *
 * Version 1.0 <04/02/2018> - Arielle Gabriel
 *    - created initial file containing functions for classesDao() and studentDao()
 * */
 
-/*
+/**
 * Class Attendance Mobile App
 *
 * Class Attendance Mobile App is a mobile application that allows the teacher to record
@@ -29,7 +32,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  AppDatabase.java
 * @Creation Date: 04/02/18
-* @Version: 1.0
+* @Version: 1.1
 *
 * */
 
@@ -45,4 +48,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
      /* include studentDao */
      public abstract StudentDao studentDao();
+
+     /* include attendanceDao */
+     public abstract AttendanceDao attendanceDao();
 }

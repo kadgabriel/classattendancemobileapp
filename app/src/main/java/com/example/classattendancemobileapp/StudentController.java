@@ -1,4 +1,4 @@
-/*
+/**
 * Class Attendance Mobile App
 *
 * “This is a course requirement for CS 192 Software Engineering II
@@ -10,20 +10,22 @@
 *
 * */
 
-/*
+/**
 * Code History
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.2 <06/03/2018> - Arielle Gabriel
+*    - added getStudentAttendance()
 *
-* Version 1.01 <22/02/2018> - Arielle Gabriel
+* Version 1.1 <22/02/2018> - Arielle Gabriel
 *    - added insertMultipleStudents(), checkStudentsInDB(), readFile()
 *
 * Version 1.0 <21/02/2018> - Ronnel Austria
 *    - created initial file for student controller
 * */
 
-/*
+/**
 * Class Attendance Mobile App
 *
 * Class Attendance Mobile App is a mobile application that allows the teacher to record
@@ -33,7 +35,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  StudentController.java
 * @Creation Date: 21/02/18
-* @Version: 1.01
+* @Version: 1.2
 *
 * */
 
@@ -48,14 +50,12 @@ import android.widget.Toast;
 import com.example.classattendancemobileapp.database.AppDatabase;
 import com.example.classattendancemobileapp.database.Classes;
 import com.example.classattendancemobileapp.database.Student;
+import com.example.classattendancemobileapp.database.Attendance;
 import java.io.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by User on 21/02/2018.
- */
 
 public class StudentController {
      private static final int ATTRIBCOUNT = 3; // variable holder for number of student attributes
@@ -119,6 +119,21 @@ public class StudentController {
           studentList = MainActivity.db.studentDao().getByClassID(classID);
           return studentList;
 
+     }
+
+     /**
+      * getStudentAttendance() <06/03/2018>
+      * - counts the number of present, absent, late entries for a student
+      * @param: classID - target class ID, sno - student number of the target student
+      * @requires: attendance table
+      * @returns: int[] - array of integers containing overview of student's attendance
+      */
+     public int[] getStudentAttendance(int classID, String sno){
+          int[] studentRecord = new int[3]; //
+          studentRecord[0] = MainActivity.db.attendanceDao().countPresent(classID,sno);
+          studentRecord[1] = MainActivity.db.attendanceDao().countLate(classID,sno);
+          studentRecord[2] = MainActivity.db.attendanceDao().countAbsent(classID,sno);
+          return  studentRecord;
      }
 
      /**

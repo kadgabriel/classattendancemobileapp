@@ -10,4 +10,8 @@
 
      <color name="buttonBackground">#ffffff</color>
      <color name="buttonText">#000000</color>
+
+     <color name="presentBackground">#1b5e20</color>
+     <color name="absentBackground">#b71c1c</color>
+     <color name="lateBackground">#827717</color>
 </resources>
