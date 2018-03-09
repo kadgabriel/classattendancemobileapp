@@ -34,8 +34,8 @@
 package com.example.classattendancemobileapp;
 
 public class AttendanceListItem {
-     String name;
-     String sno;
+     String name; // name of the student in the entry
+     String sno; // student number of the student in the entry
 
      /**
       * AttendanceListItem() <07/03/2018>
@@ -54,7 +54,7 @@ public class AttendanceListItem {
       * - getter for the name field
       * @param: none
       * @requires: none
-      * @returns: the name field
+      * @returns: String
       */
      public String getName() {
           return name;
@@ -65,7 +65,7 @@ public class AttendanceListItem {
       * - getter for the student number field
       * @param: none
       * @requires: none
-      * @returns: the sno field
+      * @returns: String
       */
      public String getSno() {
           return sno;

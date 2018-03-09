@@ -91,7 +91,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
       * - gets the count of the items that the adapter processes
       * @param: none
       * @requires: none
-      * @returns: none
+      * @returns: int
       */
      @Override
      public int getItemCount() {

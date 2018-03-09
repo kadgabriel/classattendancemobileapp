@@ -15,17 +15,17 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
- *   Version 1.0 <08/02/2018> - John Oliver
- *        - created initial file
- *
- *   Version 1.1 <22/02/2018> - John Oliver
- *        - used an instance of StudentController to finish the functional student ListView. Added code comments
+ *   Version 1.3 <06/03/2018> - Arielle Gabriel
+ *        - added attendance count
  *
  *   Version 1.2 <23/02/2018> - John Oliver
  *        - fixed a bug
  *
- *   Version 1.3 <06/03/2018> - Arielle Gabriel
- *        - added attendance count
+ *   Version 1.1 <22/02/2018> - John Oliver
+ *        - used an instance of StudentController to finish the functional student ListView. Added code comments
+ *
+ *   Version 1.0 <08/02/2018> - John Oliver
+ *        - created initial file
  */
 
 /**

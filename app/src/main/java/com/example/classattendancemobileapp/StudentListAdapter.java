@@ -15,12 +15,13 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
-* Version 1.1 <22/02/2018> - Arielle Gabriel
-*    - added lines to display present, late, absent columns
+*    Version 1.1 <22/02/2018> - Arielle Gabriel
+*         - added lines to display present, late, absent columns
 *
-* Version 1.0 <21/02/2018> - John Oliver
-*    - created initial file for student list adapter
-* */
+*    Version 1.0 <21/02/2018> - John Oliver
+*         - created initial file for student list adapter
+*
+ */
 
 /**
 * Class Attendance Mobile App
@@ -48,14 +49,28 @@ import android.widget.TextView;
 import java.util.List;
 
 public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.ViewHolder> {
-     List<StudentListItem> studentItems;
-     Context context;
+     List<StudentListItem> studentItems; // the student data that the adapter object translates into UI objects
+     Context context; // the application's current running environment
 
+     /**
+      * StudentListAdapter() <25/02/2018>
+      * - the class constructor
+      * @param: studentItems - data to put inside the views, context - the application's current running environment
+      * @requires: none
+      * @returns: a new StudentListAdapter instance
+      */
      public StudentListAdapter(List<StudentListItem> studentItems, Context context) {
           this.studentItems = studentItems;
           this.context = context;
      }
 
+     /**
+      * onCreateViewHolder() <25/02/2018>
+      * - android function called when the View widget is generated
+      * @param: parent - the view group to which the widget belongs to, viewType - int to identify the type of the view
+      * @requires: none
+      * @returns: a new StudentListAdapter.ViewHolder instance
+      */
      @Override
      public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
           View view = LayoutInflater.from(parent.getContext())
@@ -63,6 +78,13 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
           return new ViewHolder(view);
      }
 
+     /**
+      * onBindViewHolder() <25/02/2018>
+      * - android function called when the View widget is generated; main function is to actually assign values to the widgets
+      * @param: holder - a ViewHolder class which references the View widget being created, position - the int value of the widget's position
+      * @requires: none
+      * @returns: none
+      */
      @Override
      public void onBindViewHolder(ViewHolder holder, int position) {
           StudentListItem studentListItem = studentItems.get(position);
@@ -73,6 +95,13 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
           holder.absentTv.setText(Integer.toString(studentListItem.getAbsent()));
      }
 
+     /**
+      * getItemCount() <25/02/2018>
+      * - gets the count of the items that the adapter processes
+      * @param: none
+      * @requires: none
+      * @returns: int
+      */
      @Override
      public int getItemCount() {
           return studentItems.size();
@@ -85,6 +114,13 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
           public TextView lateTv;
           public TextView absentTv;
 
+          /**
+           * ViewHolder() <25/02/2018>
+           * - the class constructor
+           * @param: itemView - reference to the View widget being created
+           * @requires: none
+           * @returns: a new StudentListAdapter.ViewHolder instance
+           */
           public ViewHolder(View itemView) {
                super(itemView);
 

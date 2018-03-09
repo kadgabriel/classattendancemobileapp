@@ -60,21 +60,49 @@ public class ClassListAdapter extends BaseAdapter {
           this.context = context;
      }
 
+     /**
+      * getCount() <25/02/2018>
+      * - gets the count of the items that the adapter processes
+      * @param: none
+      * @requires: none
+      * @returns: int
+      */
      @Override
      public int getCount() {
           return classItems.size();
      }
 
+     /**
+      * getItem() <25/02/2018>
+      * - gets a ClassListItem from the list data
+      * @param: none
+      * @requires: none
+      * @returns: int
+      */
      @Override
      public ClassListItem getItem(int i) {
           return classItems.get(i);
      }
 
+     /**
+      * getItemId() <25/02/2018>
+      * - gets the id of a list item through its position in the list
+      * @param: i - the position of the item to be retrieved in the list
+      * @requires: none
+      * @returns: long
+      */
      @Override
      public long getItemId(int i) {
           return 0;
      }
 
+     /**
+      * getView() <25/02/2018>
+      * - android function called when a View widget is created or display in the screen
+      * @param: i - the position of the item, view - reference to the view that was just created, viewGroup - the view group to which the widget belongs to
+      * @requires: none
+      * @returns: a View instance
+      */
      @Override
      public View getView(int i, View view, ViewGroup viewGroup) {
           ClassListItem classListItem = classItems.get(i);

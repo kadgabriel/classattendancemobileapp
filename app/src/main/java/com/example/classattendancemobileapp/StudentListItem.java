@@ -15,12 +15,11 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
- *   Version 1.0 <25/02/2018> - John Oliver
- *        - created initial file
- *
  *   Version 1.1 <06/03/2018> - Arielle Gabriel
  *        - added getters for present, absent, and late
  *
+ *   Version 1.0 <25/02/2018> - John Oliver
+ *        - created initial file
  */
 
 /**
@@ -39,12 +38,19 @@ package com.example.classattendancemobileapp;
 
 public class StudentListItem {
 
-     String name;
-     String sno;
-     int present;
-     int late;
-     int absent;
+     String name; // name of the student
+     String sno; // student number of the student
+     int present; // int value number of times the student has been present
+     int late; // int value number of times the student has been late
+     int absent; // int value number of times the student has been absent
 
+     /**
+      * StudentListItem() <25/02/2018>
+      * - the class constructor
+      * @param: name - the student name to be displayed, sno - the student number of the student, present - number of times the student has been present, late - number of times the student has been late, absent - number of times the student has been absent
+      * @requires: none
+      * @returns: a new AttendanceListItem instance
+      */
      public StudentListItem(String name, String sno, int present, int late, int absent) {
           this.name = name;
           this.sno = sno;
@@ -53,10 +59,24 @@ public class StudentListItem {
           this.absent = absent;
      }
 
+     /**
+      * getName() <25/02/2018>
+      * - getter for the name field
+      * @param: none
+      * @requires: none
+      * @returns: String
+      */
      public String getName() {
           return name;
      }
 
+     /**
+      * getSno() <25/02/2018>
+      * - getter for the sno field
+      * @param: none
+      * @requires: none
+      * @returns: String
+      */
      public String getSno() {
           return sno;
      }

@@ -15,15 +15,18 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
- *   Version 1.0 <07/02/2018> - John Oliver
- *        - created initial file
- *
- *   Version 1.1 <08/02/2018> - Ronnel Roi
- *        - added the lines for actual creation of classes. Switched the creation of database from inMemory to a persistent one.
+ *   Version 1.2 <26/02/2018> - John Oliver
+ *        - added code for toolbar to include back button
  *
  *   Version 1.11 <09/02/2018> - John Oliver
  *        - added class creation feedback (return to MainActivity after successful class creation.) Rearranged code
  *          for better readability
+ *
+ *   Version 1.1 <08/02/2018> - Ronnel Roi
+ *        - added the lines for actual creation of classes. Switched the creation of database from inMemory to a persistent one.
+ *
+ *   Version 1.0 <07/02/2018> - John Oliver
+ *        - created initial file
  */
 
 /**
@@ -57,12 +60,12 @@ import java.util.Random;
 
 public class CreateClassActivity extends AppCompatActivity {
 
-     final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4, R.drawable.custom_gradient_5};
-     static AppDatabase db; // variable holder for the application's main database
-     ClassController classController;  // variable holder for the class controller that interacts with the database
-     FloatingActionButton createClassFAB; // variable holder for the Button widget for creating a class
-     CollapsingToolbarLayout collapsingToolbarLayout;
-     Toolbar toolbar;
+     final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4, R.drawable.custom_gradient_5}; // array of custom-defined gradients to be set as widgets' background tint
+     static AppDatabase db; // the application's main database
+     ClassController classController;  // the class controller that interacts with the database
+     CollapsingToolbarLayout collapsingToolbarLayout; // the CollapsingToolbarLayout which contains buttons and information about the class
+     FloatingActionButton createClassFAB; // the FloatingActionButton widget for creating a class
+     Toolbar toolbar; // the Toolbar widget which appears when the collapsingToolbarLayout is collapsed
 
      /**
       * onCreate() <07/02/2018>

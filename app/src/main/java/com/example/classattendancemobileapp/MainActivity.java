@@ -15,16 +15,21 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.3 <25/02/2018> - John Oliver
+ *        - changed the ListView to a Gridview to be able to adapt to the UI changes
+ *        - changed the toolbar logic to be able to add buttons to it in the future
+ *
  *   Version 1.2 <22/02/2018> - John Oliver
  *        - modified the ListView array adapter to present both the class name and description
  *
  *   Version 1.11 <09/02/2018> - John Oliver
- *        - added a TextView widget to be able to show the user if no classes exist or have been created. Rearranged
- *          some of the code for better readability
+ *        - added a TextView widget to be able to show the user if no classes exist or have been created
+ *        - rearranged some of the code for better readability
  *
  *   Version 1.10 <08/02/2018> - Ronnel Roi
  *        - transferred lines for getting classes and displaying classes to onResume() to ensure the data displayed
- *          is up to date all the time. Switched the creation of database from inMemory to a persistent one.
+ *          is up to date all the time
+ *        - switched the creation of database from inMemory to a persistent one.
  *
  *   Version 1.01 <08/02/2018> - John Oliver
  *        - added lines event listeners on ListView item select
