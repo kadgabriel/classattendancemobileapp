@@ -116,7 +116,7 @@ public class ViewClassActivity extends AppCompatActivity {
           studentsRv.setHasFixedSize(true);
           studentsRv.setLayoutManager(new LinearLayoutManager(this));
 
-          studentListItems = new ArrayList<>();
+          studentListItems = new ArrayList<>(); // empty list of studentsListItems
           studentController = new StudentController(getApplicationContext());
           classController = new ClassController(MainActivity.db, getApplicationContext());
 
@@ -145,18 +145,18 @@ public class ViewClassActivity extends AppCompatActivity {
           studentList = studentController.getAllStudents(className);
 
           Classes classObj = classController.getByName(className);
-          int size = studentList.size();
+          int size = studentList.size();  // number of student's in the class
 
           classNameTv.setText(className);
           classDescTv.setText(classObj.getClassDesc());
 
-          studentListItems = new ArrayList<>();
+          studentListItems = new ArrayList<>(); // empty list of studentsListItems
           if(size > 0) {
                noStudentTv.setVisibility(View.GONE);
                for (int i = 0; i < size; i++) {
-                    String name = studentList.get(i).getName();
-                    String sno = studentList.get(i).getStudentNum();
-                    int[] attendance = studentController.getStudentAttendance(classObj.getClassID(),sno);
+                    String name = studentList.get(i).getName();  // variable holder for the student's name
+                    String sno = studentList.get(i).getStudentNum(); // variable holder for the student's student number
+                    int[] attendance = studentController.getStudentAttendance(classObj.getClassID(),sno); // variable holder for attendance stats of the student
                     studentListItems.add(new StudentListItem(name, sno, attendance[0], attendance[1], attendance[2]));
                }
           }else{
