@@ -22,9 +22,9 @@ public class AttendanceController {
               int match;
               String studentNum = attendanceList.get(i)[0];
               String studentAttendance = attendanceList.get(i)[1];
-              match = MainActivity.db.attendanceDao().countMatchAttendance(classID, studentNum, studentAttendance);
+              match = MainActivity.db.attendanceDao().countMatchAttendance(classID, studentNum, attendanceDate);
                 if(match>0){
-                    Toast.makeText(context, "Attendance Record already exists! ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Attendance Record for the date "+attendanceDate+" already exists! ", Toast.LENGTH_LONG).show();
                     return false;
                 }
                 else {
@@ -33,6 +33,5 @@ public class AttendanceController {
                 }
          }
          return true;
-
      }
 }

@@ -116,9 +116,11 @@ public class AddAttendanceActivity extends AppCompatActivity {
                          String[] entry = {viewHolder.snoTv.getText().toString(), viewHolder.statusTv.getText().toString().substring(0,1)};
                          attendanceEntries.add(entry);
                     }
-                    attendanceController.addAttendance(classController.getByName(className).getClassID(), dateString, attendanceEntries);
-                    Toast.makeText(getApplicationContext(), "Attendance record successfully created!", Toast.LENGTH_SHORT).show();
-                    finish();
+                    if(attendanceController.addAttendance(classController.getByName(className).getClassID(), dateString, attendanceEntries) == true){
+                         Toast.makeText(getApplicationContext(), "Attendance record successfully created!", Toast.LENGTH_LONG).show();
+                         finish();
+                    }
+
                }
           });
 
