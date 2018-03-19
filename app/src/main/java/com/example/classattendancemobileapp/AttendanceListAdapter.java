@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.1 <15/03/2018> - Arielle Gabriel
+ *        - added
+ *
  *   Version 1.0 <07/03/2018> - John Oliver
  *        - created initial file
  */
@@ -46,7 +49,7 @@ import java.util.List;
 public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAdapter.ViewHolder> {
      List<AttendanceListItem> attendanceItems; // the attendance data that the adapter object translates into UI objects
      Context context; // the application's current running environment
-
+     Boolean editable;
      /**
       * AttendanceListAdapter() <07/03/2018>
       * - the class constructor
@@ -57,7 +60,22 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
      public AttendanceListAdapter(List<AttendanceListItem> attendanceItems, Context context) {
           this.attendanceItems = attendanceItems;
           this.context = context;
+          editable = true;
      }
+
+     /**
+      * AttendanceListAdapter() <07/03/2018>
+      * - the class constructor
+      * @param: attendanceItems - data to put inside the views, context - the application's current running environment, editable -
+      * @requires: none
+      * @returns: a new AttendanceListAdapter instance
+      */
+     public AttendanceListAdapter(List<AttendanceListItem> attendanceItems, Context context, Boolean editable) {
+          this.attendanceItems = attendanceItems;
+          this.context = context;
+          this.editable = editable;
+     }
+
 
      /**
       * onCreateViewHolder() <07/03/2018>
@@ -82,8 +100,32 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
      @Override
      public void onBindViewHolder(ViewHolder holder, int position) {
           AttendanceListItem attendanceListItem = attendanceItems.get(position);
+          holder.statusTv.setText(attendanceListItem.getEntry());
           holder.nameTv.setText(attendanceListItem.getName());
           holder.snoTv.setText(attendanceListItem.getSno());
+
+          if(!editable){
+               switch(holder.statusTv.getText().toString()) {
+                    case "L":
+                         holder.statusTv.setText("LATE");
+                         holder.cardView.setBackgroundResource(R.color.lateBackground);
+                         break;
+
+                    case "A":
+                         holder.statusTv.setText("ABSENT");
+                         holder.cardView.setBackgroundResource(R.color.absentBackground);
+                         break;
+
+                    case "P":
+                         holder.statusTv.setText("PRESENT");
+                         holder.cardView.setBackgroundResource(R.color.presentBackground);
+                         break;
+               }
+          }
+          else{
+               holder.statusTv.setText("PRESENT");
+               holder.cardView.setBackgroundResource(R.color.presentBackground);
+          }
      }
 
      /**
@@ -113,7 +155,6 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
            */
           public ViewHolder(View itemView){
                super(itemView);
-
                nameTv = itemView.findViewById(R.id.nameTv);
                snoTv = itemView.findViewById(R.id.descTv);
                statusTv = itemView.findViewById(R.id.statusTv);
@@ -121,6 +162,8 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
                cardView.setBackgroundResource(R.color.presentBackground);
 
                itemView.setOnClickListener(this);
+
+
           }
 
           /**
@@ -132,22 +175,25 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
            */
           @Override
           public void onClick(View view) {
-               switch(statusTv.getText().toString().substring(0,1)){
-                    case "P":
-                         statusTv.setText("LATE");
-                         cardView.setBackgroundResource(R.color.lateBackground);
-                         break;
+               if(editable){
+                    switch (statusTv.getText().toString().substring(0, 1)) {
+                         case "P":
+                              statusTv.setText("LATE");
+                              cardView.setBackgroundResource(R.color.lateBackground);
+                              break;
 
-                    case "L":
-                         statusTv.setText("ABSENT");
-                         cardView.setBackgroundResource(R.color.absentBackground);
-                         break;
+                         case "L":
+                              statusTv.setText("ABSENT");
+                              cardView.setBackgroundResource(R.color.absentBackground);
+                              break;
 
-                    case "A":
-                         statusTv.setText("PRESENT");
-                         cardView.setBackgroundResource(R.color.presentBackground);
-                         break;
+                         case "A":
+                              statusTv.setText("PRESENT");
+                              cardView.setBackgroundResource(R.color.presentBackground);
+                              break;
+                    }
                }
+
           }
      }
 }

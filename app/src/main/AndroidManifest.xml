@@ -35,6 +35,9 @@
           <activity android:name=".AddAttendanceActivity"
                android:label="Add Attendance"
                android:theme="@style/AppTheme"/>
+          <activity android:name=".ViewAttendanceActivity"
+               android:label="View Attendance"
+               android:theme="@style/AppTheme"/>
      </application>
 
 </manifest>

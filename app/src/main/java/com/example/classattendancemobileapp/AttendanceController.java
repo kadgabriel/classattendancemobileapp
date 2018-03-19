@@ -39,6 +39,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.classattendancemobileapp.database.Attendance;
+import com.example.classattendancemobileapp.database.Student;
 
 import java.util.List;
 
@@ -78,5 +79,13 @@ public class AttendanceController {
                 }
          }
          return true;
+     }
+
+     public List<Attendance> getAttendance(int classID, String date){
+          return MainActivity.db.attendanceDao().getbyDate(classID,date);
+     }
+
+     public List<String> getDates(int classID){
+          return MainActivity.db.attendanceDao().listDates(classID);
      }
 }

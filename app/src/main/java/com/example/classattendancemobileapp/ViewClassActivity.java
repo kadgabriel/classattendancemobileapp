@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.4 <15/03/2018> - Arielle Gabriel
+ *        - added listener for view attendance button
+ *
  *   Version 1.3 <06/03/2018> - Arielle Gabriel
  *        - added attendance count
  *
@@ -37,7 +40,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ViewClassActivity.java
  * @Creation Date: 08/02/18
- * @Version: 1.3
+ * @Version: 1.4
  */
 
 package com.example.classattendancemobileapp;
@@ -65,8 +68,9 @@ public class ViewClassActivity extends AppCompatActivity {
 
      final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4};
 
-     Button addAttendanceButton; // Button widget for the
-     Button addStudentsButton; // Button widget for the
+     Button addAttendanceButton; // Button widget for the add attendance record
+     Button addStudentsButton; // Button widget for the add students
+     Button viewAttendanceButton; // Button widget for the view attendace
      ClassController classController; // // the class controller object which is directly connected to the database
      CollapsingToolbarLayout collapsingToolbarLayout; // the CollapsingToolbarLayout which contains buttons and information about the class
      List<Student> studentList; // the list of students returned by the controller
@@ -102,6 +106,7 @@ public class ViewClassActivity extends AppCompatActivity {
           noStudentTv = findViewById(R.id.noStudentTv);
           addAttendanceButton = findViewById(R.id.addAttendanceButton);
           addStudentsButton = findViewById(R.id.addStudentsButton);
+          viewAttendanceButton = findViewById(R.id.viewAttendanceButton);
           classNameTv = findViewById(R.id.classNameTv);
           classDescTv = findViewById(R.id.classDescTv);
 
@@ -134,6 +139,16 @@ public class ViewClassActivity extends AppCompatActivity {
                     startActivity(intent);
                }
           });
+
+          viewAttendanceButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), ViewAttendanceActivity.class);
+                    intent.putExtra("CLASS_NAME", className);
+                    startActivity(intent);
+               }
+          });
+
      }
 
      /**

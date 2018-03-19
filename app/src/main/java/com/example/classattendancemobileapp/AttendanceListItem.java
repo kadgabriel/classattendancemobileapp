@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.1 <15/03/2018> - Arielle Gabriel
+ *        - added entry field and another constructor
+ *
  *   Version 1.0 <07/03/2018> - John Oliver
  *        - created initial file
  */
@@ -28,14 +31,18 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  AttendanceListItem.java
  * @Creation Date: 07/03/18
- * @Version: 1.0
+ * @Version: 1.1
  */
 
 package com.example.classattendancemobileapp;
 
+import android.support.v7.widget.CardView;
+import android.widget.TextView;
+
 public class AttendanceListItem {
      String name; // name of the student in the entry
      String sno; // student number of the student in the entry
+     String entry; // attendance of student in db entry
 
      /**
       * AttendanceListItem() <07/03/2018>
@@ -47,6 +54,22 @@ public class AttendanceListItem {
      public AttendanceListItem(String name, String sno) {
           this.name = name;
           this.sno = sno;
+          this.entry = "P";
+     }
+
+     /**
+      * AttendanceListItem() <15/03/2018>
+      * - the class constructor
+      * @param: name - the student name to be displayed, sno - the student number of the student
+      * @requires: none
+      * @returns: a new AttendanceListItem instance
+      */
+
+     public AttendanceListItem(String name, String sno, String entry) {
+          this.name = name;
+          this.sno = sno;
+          this.entry = entry;
+
      }
 
      /**
@@ -69,5 +92,16 @@ public class AttendanceListItem {
       */
      public String getSno() {
           return sno;
+     }
+
+     /**
+      * getEntry() <07/03/2018>
+      * - getter for the entry field
+      * @param: none
+      * @requires: none
+      * @returns: String
+      */
+     public String getEntry() {
+          return entry;
      }
 }
