@@ -75,6 +75,7 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
      Button addAttendanceButton; // Button widget for the add attendance record
      Button addStudentsButton; // Button widget for the add students
      Button viewAttendanceButton; // Button widget for the view attendace
+     Button editClassButton; // Button widget for edit class info
      ClassController classController; // // the class controller object which is directly connected to the database
      CollapsingToolbarLayout collapsingToolbarLayout; // the CollapsingToolbarLayout which contains buttons and information about the class
      List<Student> studentList; // the list of students returned by the controller
@@ -88,7 +89,7 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
      TextView classNameTv; // the TextView widget that displays the name of the class
      TextView noStudentTv; // the TextView widget that display a tooltip if the class has no students
      Toolbar toolbar; // the Toolbar widget at the top of the view
-
+     int classID; // variable holder for classID
      /**
       * onCreate() <08/02/2018>
       * - android function called when the activity is created
@@ -106,12 +107,14 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
           setSupportActionBar(toolbar);
 
           className = intent.getStringExtra("CLASS_NAME");
+
           collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
           studentsRv = findViewById(R.id.studentsRv);
           noStudentTv = findViewById(R.id.noStudentTv);
           addAttendanceButton = findViewById(R.id.addAttendanceButton);
           addStudentsButton = findViewById(R.id.addStudentsButton);
           viewAttendanceButton = findViewById(R.id.viewAttendanceButton);
+          editClassButton = findViewById(R.id.editClassButton);
           classNameTv = findViewById(R.id.classNameTv);
           classDescTv = findViewById(R.id.classDescTv);
 
@@ -126,7 +129,9 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
           studentListItems = new ArrayList<>(); // empty list of studentsListItems
           studentController = new StudentController(getApplicationContext());
           classController = new ClassController(MainActivity.db, getApplicationContext());
-
+          Classes classObj;
+          classObj = classController.getByName(className);
+          classID = classObj.getClassID();
           addStudentsButton.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
@@ -154,6 +159,17 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
                }
           });
 
+
+         editClassButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), EditClassActivity.class);
+                    intent.putExtra("CLASS_NAME", className);
+                    startActivity(intent);
+               }
+          });
+
+
           studentsRv.addOnItemTouchListener(new RecyclerViewOnTouchListener(this, studentsRv, new ClickListener() {
                @Override
                public void onClick(View view, int position) {
@@ -169,21 +185,18 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
                     dialogFragment.show(getSupportFragmentManager(), "edit_student");
                }
           }));
+
      }
 
-     /**
-      * onCreate() <08/02/2018>
-      * - android function called when the paused activity is brought back to foreground
-      * @param:
-      * @requires: none
-      * @returns: none
-      */
+
      @Override
      public void onResume() {
           super.onResume();
+          Classes classObj = MainActivity.db.classesDao().getByID(classID);
+          className = classObj.getClassName();
           studentList = studentController.getAllStudents(className);
 
-          Classes classObj = classController.getByName(className);
+
           int size = studentList.size();  // number of student's in the class
 
           classNameTv.setText(className);
