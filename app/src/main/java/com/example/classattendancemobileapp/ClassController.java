@@ -85,6 +85,30 @@ public class ClassController {
           return true;
      }
 
+
+     public boolean editClass(String oldClassName, String newClassName, String oldClassDesc, String newClassDesc){
+          if(newClassName.length() == 0){
+               Toast.makeText(context, "Name must not be empty.", Toast.LENGTH_SHORT).show();
+               return false;  //name is empty
+          }
+          if(oldClassName.equals(newClassName) && oldClassDesc.equals(newClassDesc)){
+               Toast.makeText(context, "No changes are made. Class info is unchanged.", Toast.LENGTH_SHORT).show();
+               return true; //no changes are made
+          }
+          if(db.classesDao().countMatchName(newClassName) > 0 && !oldClassName.equals(newClassName)) {
+               Toast.makeText(context, "Class already exists.", Toast.LENGTH_SHORT).show();
+               return false;  //name has a match in db
+          }
+
+          Classes classObj;
+          classObj = getByName(oldClassName);
+          classObj.setClassName(newClassName);
+          classObj.setClassDesc(newClassDesc);
+          MainActivity.db.classesDao().update(classObj);
+
+          Toast.makeText(context, "Successfully updated class info.", Toast.LENGTH_SHORT).show();
+          return true;
+     }
      /**
       * getAllClasses() <07/02/2018>
       * - gets all the classes in the database
