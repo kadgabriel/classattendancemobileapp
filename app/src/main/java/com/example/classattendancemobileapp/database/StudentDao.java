@@ -69,6 +69,16 @@ public interface StudentDao {
      List<Student> getByClassID(int ID);
 
      /**
+      * getStudent() <19/03/2018>
+      * - returns a specified student given classID and student number
+      * @param: int ID - ID of the target class, studentNum - student number of the desired student
+      * @requires: student table
+      * @returns: a Student object
+      * */
+     @Query("SELECT * FROM student WHERE classID= :ID AND studentNum= :studentNum LIMIT 1")
+     Student getStudent(int ID, String studentNum);
+
+     /**
      * countMatchStudent() <22/02/2018>
      * - counts the matching classID, first name, and last name in database
      * @param: ID - class ID, firstName - first name of student, lastName - last nam of student

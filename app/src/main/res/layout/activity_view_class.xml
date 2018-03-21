@@ -155,7 +155,7 @@
                                   android:layout_height="wrap_content"
                                   android:layout_weight="1"
                                   android:backgroundTint="@color/buttonBackground"
-                                  android:drawableLeft="@android:drawable/ic_menu_edit"
+                                  android:drawableLeft="@drawable/ic_edit_black_24dp"
                                   android:drawablePadding="8dp"
                                   android:drawableTint="@color/buttonText"
                                   android:text="Edit Class Info"

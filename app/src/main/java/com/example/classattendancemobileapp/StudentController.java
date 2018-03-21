@@ -93,6 +93,16 @@ public class StudentController {
           return true;
      }
 
+     public boolean updateStudent(int classID, String studentNumber, String[] updateInfo){
+          Student student = MainActivity.db.studentDao().getStudent(classID, studentNumber);
+          student.setFirstName(updateInfo[0]);
+          student.setLastName(updateInfo[1]);
+          student.setStudentNum(updateInfo[2]);
+
+          MainActivity.db.studentDao().update(student);
+          return true;
+     }
+
      /**
      * insertMultipleStudents() <21/02/2018>
      * - get classID of a class name controller
@@ -119,6 +129,10 @@ public class StudentController {
           studentList = MainActivity.db.studentDao().getByClassID(classID);
           return studentList;
 
+     }
+
+     public Student getStudent(int classID, String sno){
+          return MainActivity.db.studentDao().getStudent(classID, sno);
      }
 
      /**
