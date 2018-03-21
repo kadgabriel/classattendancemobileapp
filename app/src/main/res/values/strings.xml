@@ -5,4 +5,7 @@
      <string name="no_classes">You have not created any classes.</string>
      <string name="add_a_single_student">Add a single student</string>
      <string name="add_students_from_csv_file">Add students from CSV file</string>
+
+     <!-- TODO: Remove or change this placeholder text -->
+     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

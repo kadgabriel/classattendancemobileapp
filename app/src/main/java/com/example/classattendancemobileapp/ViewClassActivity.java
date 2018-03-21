@@ -48,14 +48,17 @@ package com.example.classattendancemobileapp;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.classattendancemobileapp.database.Classes;
 import com.example.classattendancemobileapp.database.Student;
@@ -64,9 +67,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ViewClassActivity extends AppCompatActivity {
+public class ViewClassActivity extends AppCompatActivity implements EditStudentDialogFragment.EditStudentDialogListener{
 
      final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4};
+     int position = 0;
 
      Button addAttendanceButton; // Button widget for the add attendance record
      Button addStudentsButton; // Button widget for the add students
@@ -78,6 +82,7 @@ public class ViewClassActivity extends AppCompatActivity {
      RecyclerView studentsRv; // RecyclerView widget to display the list of students in the class
      RecyclerView.Adapter adapter; // adapter object to translate student data into UI objects in the attendance recycler view widget
      String className; // the name of the class selected from MainActivity
+     Student selectedStudent; // holder for the student that's currently being edited
      StudentController studentController; // the student controller object which is directly connected to the database
      TextView classDescTv; // the TextView widget that displays the short description of the class
      TextView classNameTv; // the TextView widget that displays the name of the class
@@ -149,6 +154,21 @@ public class ViewClassActivity extends AppCompatActivity {
                }
           });
 
+          studentsRv.addOnItemTouchListener(new RecyclerViewOnTouchListener(this, studentsRv, new ClickListener() {
+               @Override
+               public void onClick(View view, int position) {
+                    Log.d("STUDENTS_RECYCLERVIEW", String.valueOf(position));
+               }
+
+               @Override
+               public void onLongClick(View view, int position) {
+                    selectedStudent = studentList.get(position);
+                    ViewClassActivity.this.position = position;
+                    String[] studentInfo = {selectedStudent.getFirstName(), selectedStudent.getLastName(), selectedStudent.getStudentNum()};
+                    DialogFragment dialogFragment = EditStudentDialogFragment.newInstance(studentInfo);
+                    dialogFragment.show(getSupportFragmentManager(), "edit_student");
+               }
+          }));
      }
 
      /**
@@ -184,5 +204,19 @@ public class ViewClassActivity extends AppCompatActivity {
 
           adapter = new StudentListAdapter(studentListItems, this);
           studentsRv.setAdapter(adapter);
+     }
+
+     @Override
+     public void onDialogPositiveClick(String[] studentInfo) {
+          boolean b = studentController.updateStudent(classController.getByName(className).getClassID(), selectedStudent.getStudentNum(), studentInfo);
+          Classes classObj = classController.getByName(className);
+          Student student = studentController.getStudent(classObj.getClassID(), studentInfo[2]);
+          if(b) {
+               studentList.set(position, student);
+               int[] attendance = studentController.getStudentAttendance(classObj.getClassID(), student.getStudentNum());
+               studentListItems.set(position, new StudentListItem(student.getName(), student.getStudentNum(), attendance[0], attendance[1], attendance[2]));
+               adapter.notifyItemChanged(position);
+               Toast.makeText(getApplicationContext(), "Student information successfully edited!", Toast.LENGTH_SHORT).show();
+          }
      }
 }
