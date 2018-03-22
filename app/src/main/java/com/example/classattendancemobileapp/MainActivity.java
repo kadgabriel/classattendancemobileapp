@@ -47,7 +47,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  MainActivity.java
  * @Creation Date: 07/02/18
- * @Version: 1.material_bg1
+ * @Version: 1.3
  */
 
 package com.example.classattendancemobileapp;

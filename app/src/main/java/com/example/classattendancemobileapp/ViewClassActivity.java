@@ -15,16 +15,19 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.5 <20/03/2018> - Oliver Atienza
+ *        - now implements EditStudentDialogFragment.EditStudentDialogListener to be able to edit students' information
+ *
  *   Version 1.4 <15/03/2018> - Arielle Gabriel
  *        - added listener for view attendance button
  *
  *   Version 1.3 <06/03/2018> - Arielle Gabriel
  *        - added attendance count
  *
- *   Version 1.2 <23/02/2018> - John Oliver
+ *   Version 1.2 <23/02/2018> - Oliver Atienza
  *        - fixed a bug
  *
- *   Version 1.1 <22/02/2018> - John Oliver
+ *   Version 1.1 <22/02/2018> - Oliver Atienza
  *        - used an instance of StudentController to finish the functional student ListView. Added code comments
  *
  *   Version 1.0 <08/02/2018> - John Oliver
@@ -70,7 +73,8 @@ import java.util.Random;
 public class ViewClassActivity extends AppCompatActivity implements EditStudentDialogFragment.EditStudentDialogListener{
 
      final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4};
-     int position = 0;
+     int classID; // variable holder for classID
+     int position = 0; // the position of the adapter item currently being edited
 
      Button addAttendanceButton; // Button widget for the add attendance record
      Button addStudentsButton; // Button widget for the add students
@@ -83,13 +87,13 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
      RecyclerView studentsRv; // RecyclerView widget to display the list of students in the class
      RecyclerView.Adapter adapter; // adapter object to translate student data into UI objects in the attendance recycler view widget
      String className; // the name of the class selected from MainActivity
-     Student selectedStudent; // holder for the student that's currently being edited
+     Student selectedStudent; // holder for the student object that is currently being edited
      StudentController studentController; // the student controller object which is directly connected to the database
      TextView classDescTv; // the TextView widget that displays the short description of the class
      TextView classNameTv; // the TextView widget that displays the name of the class
      TextView noStudentTv; // the TextView widget that display a tooltip if the class has no students
      Toolbar toolbar; // the Toolbar widget at the top of the view
-     int classID; // variable holder for classID
+
      /**
       * onCreate() <08/02/2018>
       * - android function called when the activity is created
@@ -171,11 +175,25 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
 
 
           studentsRv.addOnItemTouchListener(new RecyclerViewOnTouchListener(this, studentsRv, new ClickListener() {
+               /**
+                * onClick() <20/03/2018>
+                * - callback function when the object implementing this interface detects a click event
+                * @param: view - the view that was clicked, position - position of the view in the list
+                * @requires: none
+                * @returns: none
+                */
                @Override
                public void onClick(View view, int position) {
                     Log.d("STUDENTS_RECYCLERVIEW", String.valueOf(position));
                }
 
+               /**
+                * onLongClick() <20/03/2018>
+                * - callback function when the object implementing this interface detects a click event
+                * @param: view - the view that was clicked, position - position of the view in the list
+                * @requires: none
+                * @returns: none
+                */
                @Override
                public void onLongClick(View view, int position) {
                     selectedStudent = studentList.get(position);
@@ -188,7 +206,13 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
 
      }
 
-
+     /**
+      * onResume() <07/02/2018>
+      * - android function called when the paused activity is brought back to foreground
+      * @param: none
+      * @requires: none
+      * @returns: none
+      */
      @Override
      public void onResume() {
           super.onResume();
@@ -219,6 +243,13 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
           studentsRv.setAdapter(adapter);
      }
 
+     /**
+      * onDialogPositiveClick() <20/03/2018>
+      * - a callback function when the dialog receives a positive confirmation
+      * @param: studentInfo - string array containing the information about the student being edited
+      * @requires: none
+      * @returns: none
+      */
      @Override
      public void onDialogPositiveClick(String[] studentInfo) {
           boolean b = studentController.updateStudent(classController.getByName(className).getClassID(), selectedStudent.getStudentNum(), studentInfo);

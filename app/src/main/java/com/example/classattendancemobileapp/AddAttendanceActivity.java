@@ -138,12 +138,13 @@ public class AddAttendanceActivity extends AppCompatActivity {
                               SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd");
                               dateString = dateFormat.format(selectedDate);
                               SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
-                              dayString = dayFormat.format(selectedDate);
+                              dayString = dayFormat.format(selectedDate.getTime()+selectedDate.getTimezoneOffset());
 
                               dateTv.setText(dateString);
                               dayTv.setText(dayString);
                          }
                     }, year, month, date);
+                    datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
                     datePickerDialog.show();
                }
           });
