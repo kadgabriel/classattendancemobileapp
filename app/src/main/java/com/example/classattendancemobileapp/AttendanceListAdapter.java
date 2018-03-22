@@ -16,7 +16,7 @@
  *        [description of changes]
  *
  *   Version 1.1 <15/03/2018> - Arielle Gabriel
- *        - added
+ *        - added editable condition in onClick() and another constructor with editable parameter
  *
  *   Version 1.0 <07/03/2018> - John Oliver
  *        - created initial file
@@ -49,9 +49,9 @@ import java.util.List;
 public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAdapter.ViewHolder> {
      List<AttendanceListItem> attendanceItems; // the attendance data that the adapter object translates into UI objects
      Context context; // the application's current running environment
-     Boolean editable;
+     Boolean editable; // boolean value if the attendance list is editable
      /**
-      * AttendanceListAdapter() <07/03/2018>
+      * AttendanceListAdapter() <15/03/2018>
       * - the class constructor
       * @param: attendanceItems - data to put inside the views, context - the application's current running environment
       * @requires: none

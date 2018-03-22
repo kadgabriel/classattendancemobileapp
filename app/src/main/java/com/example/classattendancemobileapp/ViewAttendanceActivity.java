@@ -6,7 +6,7 @@
  * of the Department of Computer Science, College of Engineering,
  * University of the Philippines, Diliman for the AY 2017-2018.
  *
- * @File Author(s): John Oliver
+ * @File Author(s): Arielle Gabriel
  *
  */
 

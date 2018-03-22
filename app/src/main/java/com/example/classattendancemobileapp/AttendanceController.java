@@ -14,10 +14,15 @@
  * Code History
  *    Version x.x <DD/MM/YYYY> - Author
  *         [description of changes]
+ *
+ * Version 1.2 <14/03/2018> - Arielle Gabriel
+ *    - added getAttendance() and getDates()
+ *
+ * Version 1.1 <07/03/2018> - Arielle Gabriel
+ *    - minor changes in checking existing attendance records
+ *
  * Version 1.0 <07/03/2018> - Ronnel Austria
  *    - created initial file for attendance controller
- * Version 1.01 <07/03/2018> - Arielle Gabriel
- *    - minor changes in checking existing attendance records
  * */
 
 /**
@@ -30,7 +35,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  AttendanceController.java
  * @Creation Date: 07/03/18
- * @Version: 1.01
+ * @Version: 1.2
  *
  * */
 package com.example.classattendancemobileapp;
@@ -81,10 +86,24 @@ public class AttendanceController {
          return true;
      }
 
+     /**
+      * getAttendance() <14/03/2018>
+      * - queries the DB to get all attendance entries of a class given date
+      * @param: classID - classID of the class, date - date of the attendance record
+      * @requires: none
+      * @returns: list of Attendance instances
+      */
      public List<Attendance> getAttendance(int classID, String date){
           return MainActivity.db.attendanceDao().getbyDate(classID,date);
      }
 
+     /**
+      * getDates() <14/03/2018>
+      * - queries the DB to get all dates when an attendance entry exists
+      * @param: classID - classID of the class
+      * @requires: none
+      * @returns: list of String - dates when there are attendance entries
+      */
      public List<String> getDates(int classID){
           return MainActivity.db.attendanceDao().listDates(classID);
      }

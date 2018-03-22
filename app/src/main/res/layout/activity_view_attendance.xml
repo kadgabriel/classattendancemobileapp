@@ -7,7 +7,7 @@
      of the Department of Computer Science, College of Engineering,
      University of the Philippines, Diliman for the AY 2017-2018.
 
-     @Author: John Oliver
+     @Author: Arielle Gabriel
 -->
 
 <!--
@@ -16,7 +16,7 @@
                [description of changes]
 
      Version 1.0 <15/03/2018> - Arielle
-          - created initial layout for ViewAttendanceActivity.java
+          - created initial layout for ViewAttendanceActivity.java based on activity_add_attendance.xml
 -->
 
 <!--
