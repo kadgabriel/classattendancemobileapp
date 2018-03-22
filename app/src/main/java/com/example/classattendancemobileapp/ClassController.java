@@ -6,7 +6,7 @@
  * of the Department of Computer Science, College of Engineering,
  * University of the Philippines, Diliman for the AY 2017-2018.
  *
- * @File Author(s): John Oliver
+ * @File Author(s): John Oliver, Ronnel Austria
  *
  */
 
@@ -14,6 +14,9 @@
  * Code History
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
+ *
+ *   Version 1.3 <20/03/2018> - Ronnel Austria
+ *        - added editClass() function
  *
  *   Version 1.2 <09/02/2018> - John Oliver
  *        - added getByName() function and code comments
@@ -34,7 +37,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ClassController.java
  * @Creation Date: 07/02/18
- * @Version: 1.2
+ * @Version: 1.3
  */
 
 package com.example.classattendancemobileapp;
@@ -85,7 +88,16 @@ public class ClassController {
           return true;
      }
 
-
+      /**
+      * editClass() <20/03/2018>
+      * - edits a class already existing in the database
+      * @param: oldClassName - the name of the class to be updated
+      *         newClassName - the new name of the class
+      *         oldClassDesc - a short description of the class to be updated
+      *         newClassDesc - a new short description of the class
+      * @requires: none
+      * @returns: boolean
+      */
      public boolean editClass(String oldClassName, String newClassName, String oldClassDesc, String newClassDesc){
           if(newClassName.length() == 0){
                Toast.makeText(context, "Name must not be empty.", Toast.LENGTH_SHORT).show();
@@ -100,14 +112,14 @@ public class ClassController {
                return false;  //name has a match in db
           }
 
-          Classes classObj;
+          Classes classObj; // variable holder for Classes object of the class to be updated
           classObj = getByName(oldClassName);
           classObj.setClassName(newClassName);
           classObj.setClassDesc(newClassDesc);
           MainActivity.db.classesDao().update(classObj);
 
           Toast.makeText(context, "Successfully updated class info.", Toast.LENGTH_SHORT).show();
-          return true;
+          return true; // successful operation
      }
      /**
       * getAllClasses() <07/02/2018>
