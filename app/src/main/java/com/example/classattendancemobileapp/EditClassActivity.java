@@ -75,8 +75,8 @@ public class EditClassActivity extends AppCompatActivity {
           editClassFAB.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-               String newClassName;
-               String newClassDesc;
+               String newClassName; // variable holder for new class name
+               String newClassDesc; // variable holder for new class description
 
                newClassName = classNameEt.getText().toString();
                newClassDesc = classDescEt.getText().toString();

@@ -6,7 +6,7 @@
  * of the Department of Computer Science, College of Engineering,
  * University of the Philippines, Diliman for the AY 2017-2018.
  *
- * @File Author(s): John Oliver, Arielle Gabriel
+ * @File Author(s): John Oliver, Arielle Gabriel, Ronnel Austria
  *
  */
 
@@ -14,6 +14,9 @@
  * Code History
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
+ *
+ *   Version 1.6 <21/03/2018> - Ronnel Austria 
+ *        - added listener for edit class info button and used classID instead of className in getting the class object
  *
  *   Version 1.5 <20/03/2018> - Oliver Atienza
  *        - now implements EditStudentDialogFragment.EditStudentDialogListener to be able to edit students' information
@@ -43,7 +46,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ViewClassActivity.java
  * @Creation Date: 08/02/18
- * @Version: 1.4
+ * @Version: 1.6
  */
 
 package com.example.classattendancemobileapp;
