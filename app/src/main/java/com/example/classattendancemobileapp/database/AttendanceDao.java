@@ -15,6 +15,9 @@
 *    Version x.x <DD/MM/YYYY> - Author
 *         [description of changes]
 *
+* Version 1.1 <15/03/2018> - Arielle Gabriel
+*    - added listDates, getbyDate, and getbyDateandStud
+*
 * Version 1.0 <06/03/2018> - Arielle Gabriel
 *    - created initial file for attendance dao
 * */
@@ -47,6 +50,36 @@ import java.util.List;
 public interface AttendanceDao {
 
      /*
+     * listDates() <15/03/2018>
+     * - list of dates with attendance entries
+     * @param: classID - target class
+     * @requires: attendance table
+     * @returns: string - list of distinct dates
+     * */
+     @Query("SELECT DISTINCT date FROM attendance WHERE classID=:classID")
+     List<String> listDates(int classID);
+
+     /*
+     * getbyDate() <15/03/2018>
+     * - gets the entries for a classID and date
+     * @param: classID - target class, date - target date
+     * @requires: attendance table
+     * @returns: string - entries for all students given date and classID
+     * */
+     @Query("SELECT * FROM attendance WHERE classID=:classID and date=:date")
+     List<Attendance> getbyDate(int classID, String date);
+
+     /*
+     * getbyDateandStud() <15/03/2018>
+     * - gets the entry for a given student, classID and date
+     * @param: classID - target class, studentNum - student number, date - target date
+     * @requires: attendance table
+     * @returns: string - entry for that date given student and classID
+     * */
+     @Query("SELECT entry FROM attendance WHERE classID=:classID and date=:date and studentNum=:sno LIMIT 1")
+     String getbyDateandStud(int classID, String date, String sno);
+
+     /*
      * countPresent() <06/03/2018>
      * - counts the number of "present" entries that the student have
      * @param: classID - target class, studentNum - student number
@@ -67,7 +100,7 @@ public interface AttendanceDao {
      int countLate(int classID, String studentNum);
 
      /*
-     * countAbset() <06/03/2018>
+     * countAbsent() <06/03/2018>
      * - counts the number of "absent" entries that the student have
      * @param: classID - target class, studentNum - student number
      * @requires: attendance table

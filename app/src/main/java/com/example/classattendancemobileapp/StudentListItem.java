@@ -82,7 +82,7 @@ public class StudentListItem {
      }
 
      /**
-      * getSno() <06/03/2018>
+      * getPresent() <06/03/2018>
       * - getter for the present field
       * @param: none
       * @requires: none
@@ -93,7 +93,7 @@ public class StudentListItem {
      }
 
      /**
-      * getSno() <06/03/2018>
+      * getLate() <06/03/2018>
       * - getter for the late field
       * @param: none
       * @requires: none
@@ -104,7 +104,7 @@ public class StudentListItem {
      }
 
      /**
-      * getSno() <06/03/2018>
+      * getAbsent() <06/03/2018>
       * - getter for the absent field
       * @param: none
       * @requires: none

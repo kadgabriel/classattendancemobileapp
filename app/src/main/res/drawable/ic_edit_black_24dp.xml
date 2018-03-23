@@ -14,7 +14,7 @@
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
 
-     Version 1.0 <25/02/2018> - John Oliver
+     Version 1.0 <20/03/2018> - John Oliver
           - created initial file
 -->
 
@@ -25,8 +25,8 @@
 
      @Group members: Atienza, Austria, Gabriel
      @Client: Asst. Prof. Ma. Rowena C. Solamo
-     @File:  ic_check_black_24.xml
-     @Creation: 25/02/18
+     @File: ic_edit_black_24dp.xml
+     @Creation 20/03/18
      @Version: 1.0
 -->
 
@@ -37,5 +37,5 @@
         android:viewportHeight="24.0">
     <path
         android:fillColor="#FF000000"
-        android:pathData="M9,16.17L4.83,12l-1.42,1.41L9,19 21,7l-1.41,-1.41z"/>
+        android:pathData="M3,17.25V21h3.75L17.81,9.94l-3.75,-3.75L3,17.25zM20.71,7.04c0.39,-0.39 0.39,-1.02 0,-1.41l-2.34,-2.34c-0.39,-0.39 -1.02,-0.39 -1.41,0l-1.83,1.83 3.75,3.75 1.83,-1.83z"/>
 </vector>

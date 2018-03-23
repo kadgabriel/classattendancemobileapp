@@ -6,24 +6,30 @@
 * of the Department of Computer Science, College of Engineering,
 * University of the Philippines, Diliman for the AY 2017-2018”.
 *
-* @File Author(s): Ronnel Austria, Arielle Gabriel
+* @File Author(s): Ronnel Austria, Arielle Gabriel, Oliver Atienza
 *
 * */
 
 /**
-* Code History
-*    Version x.x <DD/MM/YYYY> - Author
-*         [description of changes]
-*
-* Version 1.2 <06/03/2018> - Arielle Gabriel
-*    - added getStudentAttendance()
-*
-* Version 1.1 <22/02/2018> - Arielle Gabriel
-*    - added insertMultipleStudents(), checkStudentsInDB(), readFile()
-*
-* Version 1.0 <21/02/2018> - Ronnel Austria
-*    - created initial file for student controller
-* */
+ * Code History
+ *   Version x.x <DD/MM/YYYY> - Author
+ *        [description of changes]
+ *
+ *   Version 1.7 <23/03/2018> - Oliver Atienza
+ *        - added edit error detection (when either of the edit fields are empty)
+ *
+ *   Version 1.3 <21/03/2018> - John Oliver
+ *        - added getStudent() and updateStudent()
+ *
+ *   Version 1.2 <06/03/2018> - Arielle Gabriel
+ *        - added getStudentAttendance()
+ *
+ *   Version 1.1 <22/02/2018> - Arielle Gabriel
+ *        - added insertMultipleStudents(), checkStudentsInDB(), readFile()
+ *
+ *   Version 1.0 <21/02/2018> - Ronnel Austria
+ *        - created initial file for student controller
+ *   */
 
 /**
 * Class Attendance Mobile App
@@ -35,7 +41,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  StudentController.java
 * @Creation Date: 21/02/18
-* @Version: 1.2
+* @Version: 1.3
 *
 * */
 
@@ -61,6 +67,13 @@ public class StudentController {
      private static final int ATTRIBCOUNT = 3; // variable holder for number of student attributes
      Context context; // variable holder for the running environment used
 
+     /**
+      * StudentController() <14/02/2018>
+      * - the class constructor
+      * @param: context - to identify the current running environment
+      * @requires: none
+      * @returns: none
+      */
      public StudentController(Context context){
         this.context = context;
      }
@@ -73,7 +86,6 @@ public class StudentController {
      * @requires: none
      * @returns: none
      */
-
      public boolean insertStudent(String className, String firstName, String lastName, String studentNumber){
           int id;  //integer variable holder for classID
 
@@ -94,13 +106,32 @@ public class StudentController {
      }
 
      /**
-     * insertMultipleStudents() <21/02/2018>
+      * updateStudent() <20/03/2018>
+      * - update a student's information in the database
+      * @param: classID - ID of class, studentNumber - the student number of the student, updateInfo - contains the update information
+      *         of student
+      * @requires: none
+      * @returns: boolean
+      */
+     public boolean updateStudent(int classID, String studentNumber, String[] updateInfo){
+          if(updateInfo[0].length() == 0 || updateInfo[1].length() == 0)
+               return false;
+          Student student = MainActivity.db.studentDao().getStudent(classID, studentNumber);
+          student.setFirstName(updateInfo[0]);
+          student.setLastName(updateInfo[1]);
+          student.setStudentNum(updateInfo[2]);
+
+          MainActivity.db.studentDao().update(student);
+          return true;
+     }
+
+     /**
+     * getID() <21/02/2018>
      * - get classID of a class name controller
      * @param: className - name of class, filename - Uri object containing the file
      * @requires: none
      * @returns: integer value of classID of the className
      */
-
      public int getID(String className){
           Classes listClass = MainActivity.db.classesDao().getByName(className);
           return  listClass.getClassID();
@@ -119,6 +150,17 @@ public class StudentController {
           studentList = MainActivity.db.studentDao().getByClassID(classID);
           return studentList;
 
+     }
+
+     /**
+      * getStudent() <20/03/2018>
+      * - retrieves a single student from the database
+      * @param: classID - the class ID to which the student belongs to, sno - the student number of the student
+      * @requires: none
+      * @returns: a Student object
+      */
+     public Student getStudent(int classID, String sno){
+          return MainActivity.db.studentDao().getStudent(classID, sno);
      }
 
      /**

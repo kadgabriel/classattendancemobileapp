@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Class Attendance Mobile App
+
+     This is a course requirement for CS 192 Software Engineering II
+     under the supervision of Asst. Prof. Ma. Rowena C. Solamo
+     of the Department of Computer Science, College of Engineering,
+     University of the Philippines, Diliman for the AY 2017-2018.
+
+     @Author: John Oliver
+-->
+
+<!--
+     Code History
+          Version x.x <DD/MM/YYYY> - Author
+               [description of changes]
+
+     Version 1.0 <20/03/2018> - John Oliver
+          - created initial layout for EditStudentDialogFragment.java
+-->
+
+<!--
+     Class Attendance Mobile App
+     Class Attendance Mobile App is a mobile application that allows the teacher to record
+     the attendance​ of the students​ digitally​ using a smart phone
+
+     @Group members: Atienza, Austria, Gabriel
+     @Client: Asst. Prof. Ma. Rowena C. Solamo
+     @File: dialog_edit_student.xml
+     @Creation Date: 20/03/18
+     @Version: 1.0
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical"
+     android:padding="16dp">
+
+     <TextView
+          android:id="@+id/firstNameTv"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:text="First Name:" />
+
+     <EditText
+          android:id="@+id/firstNameEt"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:ems="10"
+          android:inputType="textPersonName"
+          android:textSize="14sp" />
+
+     <TextView
+          android:id="@+id/lastNameTv"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:text="Last Name:" />
+
+     <EditText
+          android:id="@+id/lastNameEt"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:ems="10"
+          android:inputType="textPersonName"
+          android:textAllCaps="true"
+          android:textSize="14sp" />
+
+     <TextView
+          android:id="@+id/snoTv"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:text="Student No.:" />
+
+     <EditText
+          android:id="@+id/snoEt"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:ems="10"
+          android:inputType="number"
+          android:maxLength="9" />
+
+</LinearLayout>

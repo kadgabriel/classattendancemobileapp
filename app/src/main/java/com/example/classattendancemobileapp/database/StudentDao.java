@@ -6,28 +6,30 @@
 * of the Department of Computer Science, College of Engineering,
 * University of the Philippines, Diliman for the AY 2017-2018”.
 *
-* @File Author(s): Arielle Gabriel
+* @File Author(s): Arielle Gabriel, Oliver Atienza
 *
 * */
 
 /**
-* Code History
-*    Version x.x <DD/MM/YYYY> - Author
-*         [description of changes]
-*
-*
-* Version 1.3 <06/03/2018> - Arielle Gabriel
-*    - updated comments
-*
-* Version 1.2 <22/02/2018> - Arielle Gabriel
-*    - added functions countMatchStudentNum() and countMatchStudent()
-*
-* Version 1.1 <17/02/2018> - Arielle Gabriel
-*    - renamed function getAll() to getByClassID()
-*
-* Version 1.0 <06/02/2018> - Arielle Gabriel
-*    - created initial file for students dao
-* */
+ * Code History
+ *   Version x.x <DD/MM/YYYY> - Author
+ *        [description of changes]
+ *
+ *   Version 1.4 <20/03/2018> - Oliver Atienza
+ *        - added getStudent()
+ *
+ *   Version 1.3 <06/03/2018> - Arielle Gabriel
+ *        - updated comments
+ *
+ *   Version 1.2 <22/02/2018> - Arielle Gabriel
+ *        - added functions countMatchStudentNum() and countMatchStudent()
+ *
+ *   Version 1.1 <17/02/2018> - Arielle Gabriel
+ *        - renamed function getAll() to getByClassID()
+ *
+ *   Version 1.0 <06/02/2018> - Arielle Gabriel
+ *   - created initial file for students dao
+ *   */
 
 /**
 * Class Attendance Mobile App
@@ -39,7 +41,7 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  StudentDao.java
 * @Creation Date: 06/02/18
-* @Version: 1.3
+* @Version: 1.4
 *
 * */
 
@@ -67,6 +69,16 @@ public interface StudentDao {
      * */
      @Query("SELECT * FROM student WHERE classID= :ID ORDER BY lastName ASC")
      List<Student> getByClassID(int ID);
+
+     /**
+      * getStudent() <19/03/2018>
+      * - returns a specified student given classID and student number
+      * @param: int ID - ID of the target class, studentNum - student number of the desired student
+      * @requires: student table
+      * @returns: a Student object
+      * */
+     @Query("SELECT * FROM student WHERE classID= :ID AND studentNum= :studentNum LIMIT 1")
+     Student getStudent(int ID, String studentNum);
 
      /**
      * countMatchStudent() <22/02/2018>
