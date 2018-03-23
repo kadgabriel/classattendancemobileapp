@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.7 <23/03/2018> - Oliver Atienza
+ *        - added edit error detection (when either of the edit fields are empty)
+ *
  *   Version 1.3 <21/03/2018> - John Oliver
  *        - added getStudent() and updateStudent()
  *
@@ -111,6 +114,8 @@ public class StudentController {
       * @returns: boolean
       */
      public boolean updateStudent(int classID, String studentNumber, String[] updateInfo){
+          if(updateInfo[0].length() == 0 || updateInfo[1].length() == 0)
+               return false;
           Student student = MainActivity.db.studentDao().getStudent(classID, studentNumber);
           student.setFirstName(updateInfo[0]);
           student.setLastName(updateInfo[1]);

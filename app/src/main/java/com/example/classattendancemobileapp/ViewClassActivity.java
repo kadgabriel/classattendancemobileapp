@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.7 <23/03/2018> - Oliver Atienza
+ *        - added edit error detection (when either of the edit fields are empty)
+ *
  *   Version 1.6 <21/03/2018> - Ronnel Austria 
  *        - added listener for edit class info button and used classID instead of className in getting the class object
  *
@@ -46,7 +49,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ViewClassActivity.java
  * @Creation Date: 08/02/18
- * @Version: 1.6
+ * @Version: 1.7
  */
 
 package com.example.classattendancemobileapp;
@@ -264,6 +267,8 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
                studentListItems.set(position, new StudentListItem(student.getName(), student.getStudentNum(), attendance[0], attendance[1], attendance[2]));
                adapter.notifyItemChanged(position);
                Toast.makeText(getApplicationContext(), "Student information successfully edited!", Toast.LENGTH_SHORT).show();
+          }else{
+               Toast.makeText(getApplicationContext(), "Fields can not be empty!", Toast.LENGTH_SHORT).show();
           }
      }
 }
