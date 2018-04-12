@@ -275,7 +275,11 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
 //               Toast.makeText(getApplicationContext(), "Fields can not be empty!", Toast.LENGTH_SHORT).show();
 //          }
 
-          if(b)
+          if(b) {
+               Toast.makeText(getApplicationContext(), "Student information successfully edited!", Toast.LENGTH_SHORT).show();
                onResume();
+          }else{
+               Toast.makeText(getApplicationContext(), "Fields can not be empty!", Toast.LENGTH_SHORT).show();
+          }
      }
 }
