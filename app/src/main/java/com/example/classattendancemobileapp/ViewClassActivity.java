@@ -78,7 +78,7 @@ import java.util.Random;
 
 public class ViewClassActivity extends AppCompatActivity implements EditStudentDialogFragment.EditStudentDialogListener{
 
-     final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4};
+     final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4, R.drawable.custom_gradient_5};
      int classID; // variable holder for classID
      int position = 0; // the position of the adapter item currently being edited
 
@@ -113,8 +113,12 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
           setContentView(R.layout.activity_view_class);
           Intent intent = getIntent();
           toolbar = findViewById(R.id.toolbar);
-          toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
           setSupportActionBar(toolbar);
+
+          if (getSupportActionBar() != null){
+               getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+               getSupportActionBar().setDisplayShowHomeEnabled(true);
+          }
 
           className = intent.getStringExtra("CLASS_NAME");
 
@@ -259,16 +263,19 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
      @Override
      public void onDialogPositiveClick(String[] studentInfo) {
           boolean b = studentController.updateStudent(classController.getByName(className).getClassID(), selectedStudent.getStudentNum(), studentInfo);
-          Classes classObj = classController.getByName(className);
-          Student student = studentController.getStudent(classObj.getClassID(), studentInfo[2]);
-          if(b) {
-               studentList.set(position, student);
-               int[] attendance = studentController.getStudentAttendance(classObj.getClassID(), student.getStudentNum());
-               studentListItems.set(position, new StudentListItem(student.getName(), student.getStudentNum(), attendance[0], attendance[1], attendance[2]));
-               adapter.notifyItemChanged(position);
-               Toast.makeText(getApplicationContext(), "Student information successfully edited!", Toast.LENGTH_SHORT).show();
-          }else{
-               Toast.makeText(getApplicationContext(), "Fields can not be empty!", Toast.LENGTH_SHORT).show();
-          }
+//          Classes classObj = classController.getByName(className);
+//          Student student = studentController.getStudent(classObj.getClassID(), studentInfo[2]);
+//          if(b) {
+//               studentList.set(position, student);
+//               int[] attendance = studentController.getStudentAttendance(classObj.getClassID(), student.getStudentNum());
+//               studentListItems.set(position, new StudentListItem(student.getName(), student.getStudentNum(), attendance[0], attendance[1], attendance[2]));
+//               adapter.notifyItemChanged(position);
+//               Toast.makeText(getApplicationContext(), "Student information successfully edited!", Toast.LENGTH_SHORT).show();
+//          }else{
+//               Toast.makeText(getApplicationContext(), "Fields can not be empty!", Toast.LENGTH_SHORT).show();
+//          }
+
+          if(b)
+               onResume();
      }
 }
