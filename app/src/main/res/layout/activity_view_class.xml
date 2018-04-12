@@ -163,6 +163,17 @@
                                   android:drawableTint="@color/buttonText"
                                   android:text="Edit Class Info"
                                   android:textColor="@color/buttonText" />
+                              <Button
+                                  android:id="@+id/deleteClassButton"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:backgroundTint="@color/buttonBackground"
+                                  android:drawableLeft="@drawable/ic_edit_black_24dp"
+                                  android:drawablePadding="8dp"
+                                  android:drawableTint="@color/buttonText"
+                                  android:text="Delete Class"
+                                  android:textColor="@color/buttonText" />
 
                          </LinearLayout>
                     </HorizontalScrollView>

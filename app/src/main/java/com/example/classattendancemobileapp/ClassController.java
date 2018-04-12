@@ -121,6 +121,12 @@ public class ClassController {
           Toast.makeText(context, "Successfully updated class info.", Toast.LENGTH_SHORT).show();
           return true; // successful operation
      }
+
+     public boolean deleteClass(String className){
+          Classes classObj = getByName(className);
+          MainActivity.db.classesDao().delete(classObj);
+          return true;
+     }
      /**
       * getAllClasses() <07/02/2018>
       * - gets all the classes in the database
