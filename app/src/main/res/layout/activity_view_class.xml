@@ -15,6 +15,9 @@
      Code History
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
+     
+     Version 1.5 <12/04/2018> - Ronnel Austria
+          - added a new Button widget for deleting class
 
      Version 1.4 <21/03/2018> - Ronnel Austria
           - added a new Button widget for editing class info
@@ -43,7 +46,7 @@
      @Client: Asst. Prof. Ma. Rowena C. Solamo
      @File:  activity_view_class.xml
      @Creation Date: 07/02/18
-     @Version: 1.4
+     @Version: 1.5
 -->
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
