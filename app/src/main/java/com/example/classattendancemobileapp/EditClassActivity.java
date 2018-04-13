@@ -34,9 +34,12 @@
 package com.example.classattendancemobileapp;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
@@ -44,9 +47,11 @@ import com.example.classattendancemobileapp.database.Classes;
 
 public class EditClassActivity extends AppCompatActivity {
 
+     CollapsingToolbarLayout collapsingToolbarLayout;
      FloatingActionButton editClassFAB; // the FloatingActionButton widget for editing a class
      EditText classNameEt; // the EditText widget for class name
      EditText classDescEt; // the EditText widget for class description
+     Toolbar toolbar;
      /**
       * onCreate() <20/03/2018>
       * - android function called when the activity is created
@@ -60,6 +65,18 @@ public class EditClassActivity extends AppCompatActivity {
           setContentView(R.layout.activity_edit_class);
           Intent intent = getIntent();
           String className = intent.getStringExtra("CLASS_NAME");
+
+          toolbar = findViewById(R.id.toolbar);
+          setSupportActionBar(toolbar);
+
+          if (getSupportActionBar() != null){
+               getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+               getSupportActionBar().setDisplayShowHomeEnabled(true);
+          }
+
+          collapsingToolbarLayout = findViewById(R.id.collapsingToolbarLayout);
+          collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
+
           final ClassController classController;
           classController = new ClassController(MainActivity.db, getApplicationContext());
           editClassFAB = findViewById(R.id.editClassFAB);

@@ -195,6 +195,65 @@
                     android:textSize="18sp"
                     android:textStyle="italic" />
 
+               <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="18dp"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:focusableInTouchMode="true">
+
+                    <TextView
+                         android:id="@+id/textView5"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="1"
+                         android:text="name &amp; student no."
+                         android:textAlignment="textStart"
+                         android:textAllCaps="true"
+                         android:textColor="@color/fontPrimary"
+                         android:textSize="10sp"
+                         android:textStyle="bold" />
+
+                    <TextView
+                         android:id="@+id/textView4"
+                         android:layout_width="46dp"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="0"
+                         android:text="present"
+                         android:textAlignment="center"
+                         android:textAllCaps="true"
+                         android:textColor="@color/presentBackground"
+                         android:textSize="10sp"
+                         android:textStyle="bold" />
+
+                    <TextView
+                         android:id="@+id/textView2"
+                         android:layout_width="46dp"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="0"
+                         android:text="late"
+                         android:textAlignment="center"
+                         android:textAllCaps="true"
+                         android:textColor="@color/lateBackground"
+                         android:textSize="10sp"
+                         android:textStyle="bold" />
+
+                    <TextView
+                         android:id="@+id/textView3"
+                         android:layout_width="46dp"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="0"
+                         android:text="absent"
+                         android:textAlignment="center"
+                         android:textAllCaps="true"
+                         android:textColor="@color/absentBackground"
+                         android:textSize="10sp"
+                         android:textStyle="bold" />
+
+               </LinearLayout>
+
                <android.support.v7.widget.RecyclerView
                     android:id="@+id/studentsRv"
                     android:layout_width="match_parent"

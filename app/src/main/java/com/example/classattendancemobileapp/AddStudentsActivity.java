@@ -43,11 +43,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -65,6 +68,8 @@ public class AddStudentsActivity extends AppCompatActivity {
      RadioButton csvRb; // the RadioButton widget for when adding multiple students through a CSV file
      RadioButton singleStudentRb; // the RadioButton widget for when adding a single student
      StudentController studentController; // the student controller object which is directly connected to the database
+     TextView title;
+     Toolbar toolbar;
      private static String FILEPATH; // the string value of the path of the object returned by the file picker activity
      private static Uri selectedFile; // the selected file from the file picker
 
@@ -83,6 +88,16 @@ public class AddStudentsActivity extends AppCompatActivity {
           Intent intent = getIntent();
           final String className;
           className = intent.getStringExtra("CLASS_NAME");
+
+          toolbar = findViewById(R.id.toolbar);
+          title = toolbar.findViewById(R.id.title);
+          title.setText("Add Students");
+          setSupportActionBar(toolbar);
+
+          if (getSupportActionBar() != null){
+               getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+               getSupportActionBar().setDisplayShowHomeEnabled(true);
+          }
 
           confirmAddStudentsButton = findViewById(R.id.confirmAddStudentsButton);
           csvRb = findViewById(R.id.csvRb);

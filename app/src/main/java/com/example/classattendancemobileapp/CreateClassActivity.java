@@ -80,8 +80,12 @@ public class CreateClassActivity extends AppCompatActivity {
           setContentView(R.layout.activity_create_class);
           buildDB();
           toolbar = findViewById(R.id.toolbar);
-          toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
           setSupportActionBar(toolbar);
+
+          if (getSupportActionBar() != null){
+               getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+               getSupportActionBar().setDisplayShowHomeEnabled(true);
+          }
 
           classController = new ClassController(db, getApplicationContext());
           createClassFAB = findViewById(R.id.createClassFAB);

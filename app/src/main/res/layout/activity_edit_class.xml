@@ -45,60 +45,60 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:statusBarScrim="@color/colorPrimaryDark"
-            app:title=""
-            app:toolbarId="@+id/toolbar">
+             android:id="@+id/collapsingToolbarLayout"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/colorPrimaryDark"
+             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+             app:statusBarScrim="@color/colorPrimaryDark"
+             app:title="Edit Class Information"
+             app:toolbarId="@+id/toolbar">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:orientation="vertical"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="1.2">
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:layout_margin="8dp"
+                 android:orientation="vertical"
+                 app:layout_collapseMode="parallax"
+                 app:layout_collapseParallaxMultiplier="1.2">
 
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColorHint="@color/fontWhite"
-                    app:hintTextAppearance="@style/AppTheme.TextInputLayout.White">
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:textColorHint="@color/fontWhite"
+                     app:hintTextAppearance="@style/AppTheme.TextInputLayout.White">
 
                     <EditText
-                        android:id="@+id/classNameEt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Class Name"
-                        android:textColor="@color/fontWhite" />
+                         android:id="@+id/classNameEt"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:hint="Class Name"
+                         android:textColor="@color/fontWhite" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColorHint="@color/fontWhite"
-                    app:hintTextAppearance="@style/AppTheme.TextInputLayout.White">
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:textColorHint="@color/fontWhite"
+                     app:hintTextAppearance="@style/AppTheme.TextInputLayout.White">
 
                     <EditText
-                        android:id="@+id/classDescEt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Class Description"
-                        android:textColor="@color/fontWhite" />
+                         android:id="@+id/classDescEt"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:hint="Class Description"
+                         android:textColor="@color/fontWhite" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
+                 android:id="@+id/toolbar"
+                 android:layout_width="match_parent"
+                 android:layout_height="?attr/actionBarSize"
+                 app:layout_collapseMode="pin"
+                 app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 

@@ -47,6 +47,14 @@
      android:paddingTop="4dp"
      tools:context="com.example.classattendancemobileapp.AddStudentsActivity">
 
+     <include
+          android:id="@+id/toolbar"
+          layout="@layout/base_toolbar"
+          app:layout_constraintBottom_toTopOf="@+id/classGridView"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"></include>
+
      <android.support.v7.widget.CardView
           android:id="@+id/csvCv"
           android:layout_width="match_parent"
@@ -57,7 +65,7 @@
           app:cardElevation="4dp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent">
+          app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
           <LinearLayout
                android:layout_width="match_parent"

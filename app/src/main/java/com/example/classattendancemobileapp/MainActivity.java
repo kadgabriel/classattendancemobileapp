@@ -54,23 +54,15 @@ package com.example.classattendancemobileapp;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.classattendancemobileapp.database.AppDatabase;
 import com.example.classattendancemobileapp.database.Classes;

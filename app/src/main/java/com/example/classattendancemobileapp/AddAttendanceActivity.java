@@ -35,10 +35,12 @@ package com.example.classattendancemobileapp;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -71,6 +73,8 @@ public class AddAttendanceActivity extends AppCompatActivity {
      StudentController studentController; // the student controller object which is directly connected to the database
      TextView dateTv; // TextView widget to display the date of the attendance record
      TextView dayTv; // TextView widget to display the name of the day of the attendance record
+     TextView title;
+     Toolbar toolbar;
 
      /**
       * onCreate() <07/03/2018>
@@ -83,6 +87,17 @@ public class AddAttendanceActivity extends AppCompatActivity {
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_add_attendance);
+          toolbar = findViewById(R.id.toolbar);
+          title = toolbar.findViewById(R.id.title);
+          title.setText("");
+          toolbar.setBackgroundColor(Color.TRANSPARENT);
+          toolbar.setTitle("");
+          setSupportActionBar(toolbar);
+
+          if (getSupportActionBar() != null){
+               getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+               getSupportActionBar().setDisplayShowHomeEnabled(true);
+          }
 
           Intent intent = getIntent();
           className = intent.getStringExtra("CLASS_NAME");

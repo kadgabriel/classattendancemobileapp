@@ -27,20 +27,26 @@
         <activity
             android:name=".ViewClassActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+             android:launchMode="singleTop"/>
         <activity
             android:name=".AddStudentsActivity"
             android:label="Add Student/s"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+             android:parentActivityName=".ViewClassActivity"/>
         <activity
             android:name=".AddAttendanceActivity"
             android:label="Add Attendance"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+             android:parentActivityName=".ViewClassActivity"/>
         <activity
             android:name=".ViewAttendanceActivity"
             android:label="View Attendance"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".EditClassActivity"></activity>
+            android:theme="@style/AppTheme"
+             android:parentActivityName=".ViewClassActivity"/>
+
+        <activity android:name=".EditClassActivity"
+             android:parentActivityName=".ViewClassActivity" />
     </application>
 
 </manifest>
