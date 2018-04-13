@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.1 <13/04/2018> - John Oliver
+ *        - modified the toolbar to include back button
+ *
  *   Version 1.0 <07/02/2018> - John Oliver
  *        - created initial file
  */
@@ -28,7 +31,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  AddAttendanceActivity.java
  * @Creation Date: 07/03/18
- * @Version: 1.0
+ * @Version: 1.1
  */
 
 package com.example.classattendancemobileapp;
@@ -73,8 +76,8 @@ public class AddAttendanceActivity extends AppCompatActivity {
      StudentController studentController; // the student controller object which is directly connected to the database
      TextView dateTv; // TextView widget to display the date of the attendance record
      TextView dayTv; // TextView widget to display the name of the day of the attendance record
-     TextView title;
-     Toolbar toolbar;
+     TextView title; // the TextView widget inside the custom toolbar
+     Toolbar toolbar; // the Toolbar widget at the top of the view which houses the back button
 
      /**
       * onCreate() <07/03/2018>

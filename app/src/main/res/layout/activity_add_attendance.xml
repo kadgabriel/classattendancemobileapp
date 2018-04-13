@@ -15,6 +15,9 @@
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
 
+     Version 1.1 <14/03/2018> - John Oliver
+          - added the custom toolbar to include back button
+
      Version 1.0 <07/02/2018> - John Oliver
           - created initial layout for AddAttendanceActivity.java
 -->
@@ -28,7 +31,7 @@
      @Client: Asst. Prof. Ma. Rowena C. Solamo
      @File:  activity_add_attendance.xml
      @Creation Date: 07/03/18
-     @Version: 1.0
+     @Version: 1.1
 -->
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
