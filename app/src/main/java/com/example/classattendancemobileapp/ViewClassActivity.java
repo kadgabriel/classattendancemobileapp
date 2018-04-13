@@ -15,6 +15,8 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *	 Version 1.8 <12/04/2018> - Ronnel Austria
+ *		  - added delete class function 
  *   Version 1.7 <23/03/2018> - Oliver Atienza
  *        - added edit error detection (when either of the edit fields are empty)
  *
@@ -49,11 +51,13 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ViewClassActivity.java
  * @Creation Date: 08/02/18
- * @Version: 1.7
+ * @Version: 1.8
  */
 
 package com.example.classattendancemobileapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -86,6 +90,7 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
      Button addStudentsButton; // Button widget for the add students
      Button viewAttendanceButton; // Button widget for the view attendace
      Button editClassButton; // Button widget for edit class info
+     Button deleteClassButton; // Button widget for delete class
      ClassController classController; // // the class controller object which is directly connected to the database
      CollapsingToolbarLayout collapsingToolbarLayout; // the CollapsingToolbarLayout which contains buttons and information about the class
      List<Student> studentList; // the list of students returned by the controller
@@ -129,6 +134,7 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
           addStudentsButton = findViewById(R.id.addStudentsButton);
           viewAttendanceButton = findViewById(R.id.viewAttendanceButton);
           editClassButton = findViewById(R.id.editClassButton);
+          deleteClassButton = findViewById(R.id.deleteClassButton);
           classNameTv = findViewById(R.id.classNameTv);
           classDescTv = findViewById(R.id.classDescTv);
 
@@ -182,6 +188,32 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
                     startActivity(intent);
                }
           });
+
+         deleteClassButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                    new AlertDialog.Builder(ViewClassActivity.this)
+                    .setTitle("Delete Class")
+                    .setMessage("You are about to delete a class. Are you sure?")
+                    .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                         public void onClick(DialogInterface dialog, int which) {
+                              boolean b;
+                              b = classController.deleteClass(className);
+                              if(b){
+                                   finish();
+                              }
+                         }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                         public void onClick(DialogInterface dialog, int which) {
+                          // do nothing
+                         }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
+              }
+         });
 
 
           studentsRv.addOnItemTouchListener(new RecyclerViewOnTouchListener(this, studentsRv, new ClickListener() {
