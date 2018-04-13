@@ -38,6 +38,16 @@
      android:layout_height="match_parent"
      tools:context="com.example.classattendancemobileapp.AddAttendanceActivity">
 
+     <include
+          android:id="@+id/toolbar"
+          layout="@layout/base_toolbar"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"></include>
+
      <TextView
           android:id="@+id/dateTv"
           android:layout_width="wrap_content"

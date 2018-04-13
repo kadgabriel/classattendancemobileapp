@@ -55,13 +55,14 @@
                android:orientation="horizontal">
 
                <LinearLayout
-                    android:layout_width="215dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                          android:id="@+id/nameTv"
-                         android:layout_width="215dp"
+                         android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="student_name"
                          android:textColor="@color/fontPrimary"
@@ -69,7 +70,7 @@
 
                     <TextView
                          android:id="@+id/descTv"
-                         android:layout_width="215dp"
+                         android:layout_width="match_parent"
                          android:layout_height="wrap_content"
                          android:text="student_number" />
 
@@ -80,7 +81,7 @@
                     android:id="@+id/presentTv"
                     android:layout_width="45dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:gravity="center_vertical"
                     android:text="P"
                     android:textAlignment="center"
@@ -90,7 +91,7 @@
                     android:id="@+id/lateTv"
                     android:layout_width="45dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:gravity="center_vertical"
                     android:text="L"
                     android:textAlignment="center"
@@ -100,7 +101,7 @@
                     android:id="@+id/absentTv"
                     android:layout_width="45dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:gravity="center_vertical"
                     android:text="A"
                     android:textAlignment="center"

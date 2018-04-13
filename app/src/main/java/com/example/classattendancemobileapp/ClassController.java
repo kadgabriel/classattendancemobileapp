@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *	 Version 1.4 <12/04/2018> - Ronnel Austria
+ *		  - added deleteClass() function
+ *
  *   Version 1.3 <20/03/2018> - Ronnel Austria
  *        - added editClass() function
  *
@@ -37,7 +40,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  ClassController.java
  * @Creation Date: 07/02/18
- * @Version: 1.3
+ * @Version: 1.4
  */
 
 package com.example.classattendancemobileapp;
@@ -120,6 +123,21 @@ public class ClassController {
 
           Toast.makeText(context, "Successfully updated class info.", Toast.LENGTH_SHORT).show();
           return true; // successful operation
+     }
+
+     /**
+      * deleteClass() <12/04/2018>
+      * - deletes a class already existing in the database
+      * @param: className - the name of the class to be deleted
+	  *
+      * @requires: none
+      * @returns: boolean
+      */
+     public boolean deleteClass(String className){
+          Classes classObj = getByName(className);
+          MainActivity.db.classesDao().delete(classObj);
+          Toast.makeText(context, "Successfully deleted class.", Toast.LENGTH_SHORT).show();
+          return true;
      }
      /**
       * getAllClasses() <07/02/2018>

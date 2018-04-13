@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.3 <09/04/2018> - Arielle Gabriel
+ *        - added errorDialog() function
+ *
  *   Version 1.2 <26/02/2018> - John Oliver
  *        - added randomization of the toolbar's gradient background
  *
@@ -34,7 +37,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  AddStudentsActivity.java
  * @Creation Date: 19/02/18
- * @Version: 1.0
+ * @Version: 1.3
  */
 
 package com.example.classattendancemobileapp;
@@ -42,19 +45,25 @@ package com.example.classattendancemobileapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.util.Random;
 
 
 public class AddStudentsActivity extends AppCompatActivity {
      private static final int PICKFILE_RESULT_CODE = 1; // integer code to determine the id of most recent fragment that finished its cycle
-
+     private static FragmentManager fragment;
      final int[] customGradients = {R.drawable.custom_gradient_1, R.drawable.custom_gradient_2, R.drawable.custom_gradient_3, R.drawable.custom_gradient_4, R.drawable.custom_gradient_5}; // array of custom-defined gradients to be set as widgets' background tint
      Button confirmAddStudentsButton; // the Button widget to confirm adding student/s
      Button pathButton; // the Button widget to open a file picker activity
@@ -65,6 +74,8 @@ public class AddStudentsActivity extends AppCompatActivity {
      RadioButton csvRb; // the RadioButton widget for when adding multiple students through a CSV file
      RadioButton singleStudentRb; // the RadioButton widget for when adding a single student
      StudentController studentController; // the student controller object which is directly connected to the database
+     TextView title;
+     Toolbar toolbar;
      private static String FILEPATH; // the string value of the path of the object returned by the file picker activity
      private static Uri selectedFile; // the selected file from the file picker
 
@@ -83,6 +94,19 @@ public class AddStudentsActivity extends AppCompatActivity {
           Intent intent = getIntent();
           final String className;
           className = intent.getStringExtra("CLASS_NAME");
+          fragment = getSupportFragmentManager();
+          FILEPATH = null;
+          selectedFile = null;
+
+          toolbar = findViewById(R.id.toolbar);
+          title = toolbar.findViewById(R.id.title);
+          title.setText("Add Students");
+          setSupportActionBar(toolbar);
+
+          if (getSupportActionBar() != null){
+               getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+               getSupportActionBar().setDisplayShowHomeEnabled(true);
+          }
 
           confirmAddStudentsButton = findViewById(R.id.confirmAddStudentsButton);
           csvRb = findViewById(R.id.csvRb);
@@ -143,7 +167,6 @@ public class AddStudentsActivity extends AppCompatActivity {
                public void onClick(View v) {
                     if(singleStudentRb.isChecked()){
                          String firstName, lastName, studentNumber;
-
                          firstName = firstNameEt.getText().toString();
                          lastName = lastNameEt.getText().toString();
                          studentNumber = snoEt.getText().toString();
@@ -175,5 +198,17 @@ public class AddStudentsActivity extends AppCompatActivity {
                          pathEt.setText(FILEPATH);
                     }
           }
+     }
+
+     /**
+     * errorDialog() <09/04/2018>
+     * - function to show the error dialog popup
+     * @param: errors - String of errors to be displayed
+     * @requires: none
+     * @returns: none
+     */
+     public static void errorDialog(String errors){
+          DialogFragment dialogFragment = AddStudentErrorDialog.newInstance(errors);
+          dialogFragment.show(fragment, "CSV_ERROR");
      }
 }

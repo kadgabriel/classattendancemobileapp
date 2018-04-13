@@ -15,7 +15,10 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
- *   Version 1.7 <23/03/2018> - Oliver Atienza
+ *   Version 1.5 <09/04/2018> - Arielle Gabriel
+ *        - modified add multiple students related functions to remove checking of quote marks and to building a string of errors
+ *
+ *   Version 1.4 <23/03/2018> - Oliver Atienza
  *        - added edit error detection (when either of the edit fields are empty)
  *
  *   Version 1.3 <21/03/2018> - John Oliver
@@ -41,14 +44,18 @@
 * @Client: Asst. Prof. Ma. Rowena C. Solamo
 * @File:  StudentController.java
 * @Creation Date: 21/02/18
-* @Version: 1.3
+* @Version: 1.4
 *
 * */
 
 package com.example.classattendancemobileapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
@@ -59,23 +66,28 @@ import com.example.classattendancemobileapp.database.Student;
 import com.example.classattendancemobileapp.database.Attendance;
 import java.io.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 
 public class StudentController {
      private static final int ATTRIBCOUNT = 3; // variable holder for number of student attributes
      Context context; // variable holder for the running environment used
+     private StringBuilder parsingErrors; // variable holder for string containing the parsing errors
 
      /**
       * StudentController() <14/02/2018>
       * - the class constructor
-      * @param: context - to identify the current running environment
+      * @params: context - to identify the current running environment
       * @requires: none
       * @returns: none
       */
      public StudentController(Context context){
-        this.context = context;
+          this.context = context;
      }
 
      /**
@@ -136,6 +148,7 @@ public class StudentController {
           Classes listClass = MainActivity.db.classesDao().getByName(className);
           return  listClass.getClassID();
      }
+
      /**
       * getAllClasses() <07/02/2018>
       * - gets all the students from the given class in the database
@@ -186,23 +199,32 @@ public class StudentController {
       * @returns: none
       */
      public void insertMultipleStudents(String className, Uri filename){
-          Log.d("mime", context.getContentResolver().getType(filename));
+          Boolean validCSV; // variable holder if CSV file is parsed correctly with no errors
+          validCSV =  TRUE;
+
           if(filename != null){
+               Log.d("mime", context.getContentResolver().getType(filename));
                MimeTypeMap mime = MimeTypeMap.getSingleton();
                if(mime.getExtensionFromMimeType(context.getContentResolver().getType(filename)) != "csv"){
-                    Toast.makeText(context,"File must be a .csv file",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"File must be a .csv file",Toast.LENGTH_LONG).show();
                     return;
                }
 
                List<String[]> studentList = readFile(filename);
                if(studentList != null){
-                    boolean checkDuplicates;
+                    boolean checkDuplicates; // true if there are duplicate student number in DB, false otherwise
                     for(int i=0;i<studentList.size(); i++){
                          checkDuplicates=checkStudentsInDB(getID(className),studentList.get(i)[0]);
                          if(checkDuplicates){
-                              Toast.makeText(context,"Student with student number "+studentList.get(i)[0]+" already in exists in class",Toast.LENGTH_LONG).show();
-                              return;
+//                              Toast.makeText(context,"Student with student number "+studentList.get(i)[0]+" already in exists in class",Toast.LENGTH_LONG).show();
+                              parsingErrors.append("- Student number ").append(studentList.get(i)[0]).append(" already exists in class\n");
+                              validCSV = FALSE;
                          }
+                    }
+                    if(!validCSV){
+                         Log.d("addStudents", parsingErrors.toString());
+                         AddStudentsActivity.errorDialog(parsingErrors.toString());
+                         return;
                     }
 
                     for(int i=0; i<studentList.size(); i++){
@@ -212,12 +234,11 @@ public class StudentController {
                          Student newStudent = new Student(getID(className), studentNum, firstName, lastName);
                          MainActivity.db.studentDao().insert(newStudent);
                     }
-                    Toast.makeText(context, "Students are successfully added! ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Students are successfully added! ", Toast.LENGTH_LONG).show();
                }
           }
           else{
-               Toast.makeText(context, "No file selected", Toast.LENGTH_SHORT).show();
-               return;
+               Toast.makeText(context, "No file selected", Toast.LENGTH_LONG).show();
           }
      }
 
@@ -244,14 +265,22 @@ public class StudentController {
       * @returns: List<String[]> of students if parsing is successful, null - if complications are found
       */
      public List<String[]> readFile(Uri filename){
+          Boolean parsingValid;  // variable holder for validity of parsing, true if no parsing error, false otherwise
+          String line; // variable holder for string line in the file
+          int lineNo=0; // variable holder for current line no. being read
+
+          this.parsingErrors =  new StringBuilder();
           try{
+               parsingValid = TRUE;
+               InputStream is = context.getContentResolver().openInputStream(filename); // variable holder for input stream
+               if(is == null){
+                    Toast.makeText(context, "Unexpected error while opening the file. Please select the file again.", Toast.LENGTH_LONG).show();
+                    return null;
+               }
 
-               InputStream is = context.getContentResolver().openInputStream(filename);
-               BufferedReader dataInput = new BufferedReader(new InputStreamReader(is));
-
-               String line =""; // variable holder for string line in the file
-               int lineNo=0; // variable holder for current line no. being read
+               BufferedReader dataInput = new BufferedReader(new InputStreamReader(is)); // variable holder for buffered reader
                List<String[]> parsedStudents = new ArrayList<String[]>(); //variable holder for successfully parsed students
+
                while((line=dataInput.readLine()) != null ){
                     lineNo++;
                     /* remove trailing whitespaces */
@@ -261,8 +290,9 @@ public class StudentController {
                          /* Check if the line's num of attributes matches the attribute count (3) */
                          if(studentAttrib.length != ATTRIBCOUNT){
                               /* Line do not have 3 attribs or not comma separated */
-                              Toast.makeText(context, "Error in file line no "+ Integer.toString(lineNo)+"\nMust be comma separated or does not have 3 attributes", Toast.LENGTH_SHORT).show();
-                              return null;
+                              parsingErrors.append("- Line ").append(Integer.toString(lineNo)).append(": Missing an attribute\n");
+                              parsingValid = FALSE;
+                              continue;
                          }
 
                          String[] parsedAttrib = new String[ATTRIBCOUNT];
@@ -270,24 +300,26 @@ public class StudentController {
                          for (int i=0; i<ATTRIBCOUNT; i++) {
                               studentAttrib[i] = studentAttrib[i].trim();     //remove trailing whitespaces
 
-                              /* Check if the attribute's is not empty */
-                              if (studentAttrib[i].length() < 3) {
-                                   Toast.makeText(context, "Error in file line no "+ Integer.toString(lineNo)+"\nContains empty attribute", Toast.LENGTH_SHORT).show();
-                                   return null;
+                              /* Check if the attribute is not empty */
+                              if (studentAttrib[i].length() < 1) {
+                                   parsingErrors.append("- Line ").append(Integer.toString(lineNo)).append(": Missing an attribute\n");
+                                   parsingValid = FALSE;
+                                   continue;
                               }
 
+                              /* Removed/Commented checking quote marks */
                               /* Check if it is enclosed in quotation marks */
-                              if (studentAttrib[i].charAt(0) != '\"' || studentAttrib[i].charAt(studentAttrib[i].length() - 1) != '\"') {
+                              /*if (studentAttrib[i].charAt(0) != '\"' || studentAttrib[i].charAt(studentAttrib[i].length() - 1) != '\"') {
                                    Toast.makeText(context, "Error in file line no "+ Integer.toString(lineNo)+"\nContains attribute that is not enclosed in quote marks", Toast.LENGTH_SHORT).show();
-                                   return null;
-                              }
+                                   parsingValid = FALSE;
+                              }*/
                               /* Check if there are only the two quotation marks, no other quote marks allowed even if escaped
                               * method lifted from https://stackoverflow.com/questions/275944/java-how-do-i-count-the-number-of-occurrences-of-a-char-in-a-string
                               */
-                              if (studentAttrib[i].length() - studentAttrib[i].replace("\"", "").length() != 2) {
+                              /*if (studentAttrib[i].length() - studentAttrib[i].replace("\"", "").length() != 2) {
                                    Toast.makeText(context, "Error in file line no "+ Integer.toString(lineNo)+"\nOnly enclosing quote marks are allowed", Toast.LENGTH_SHORT).show();
-                                   return null;
-                              }
+                                   parsingValid = FALSE;
+                              }*/
 
                               parsedAttrib[i] = studentAttrib[i].replace("\"", "");
 
@@ -296,18 +328,27 @@ public class StudentController {
                     }
                     catch(Exception e){
                          Log.d("addMultiStudent",e.getMessage());
-                         Toast.makeText(context, "Error in file line no "+ Integer.toString(lineNo)+". Improper format.", Toast.LENGTH_SHORT).show();
-                         return null;
+                         parsingErrors.append("- Line no ").append(Integer.toString(lineNo)).append(": Improper format\n");
+                         parsingValid = FALSE;
                     }
                }
-               return parsedStudents;
+               Log.d("addMultiStudent",parsingErrors.toString());
+               if(parsingValid){
+                    return parsedStudents;
+               }
+               else{
+                    AddStudentsActivity.errorDialog(parsingErrors.toString());
+                    return null;
+               }
 
           }
           catch(Exception ex) {
                Log.d("addMultiStudent",ex.getMessage());
-               Toast.makeText(context, "Error opening the file", Toast.LENGTH_SHORT).show();
+               Toast.makeText(context, "Unexpected error while opening the file.\n"+ex.getMessage(), Toast.LENGTH_LONG).show();
                return null;
           }
+
+
 
      }
 
