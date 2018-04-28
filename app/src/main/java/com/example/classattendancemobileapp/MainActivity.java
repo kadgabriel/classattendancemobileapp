@@ -116,12 +116,13 @@ public class MainActivity extends AppCompatActivity {
      @Override
      public void onResume(){
           super.onResume();
-
           //Get info of classes from the database
           List<Classes> classList = classController.getAllClasses();
           classListItems = new ArrayList<>();
           for(int i = 0; i < classList.size(); i++){
-               classListItems.add(new ClassListItem(classList.get(i).getClassName(), classList.get(i).getClassDesc()));
+               int classID = classController.getByName(classList.get(i).getClassName()).getClassID();
+               int numofStudents = db.studentDao().getNumStudents(classID);
+               classListItems.add(new ClassListItem(classList.get(i).getClassName(), classList.get(i).getClassDesc(), numofStudents));
 
           }
           adapter = new ClassListAdapter(classListItems, this);

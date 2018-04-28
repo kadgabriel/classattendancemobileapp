@@ -36,7 +36,7 @@ package com.example.classattendancemobileapp;
 public class ClassListItem {
      String name; // name of the class
      String desc; // description of the class
-
+     int numStud;
      /**
       * ClassListItem() <25/02/2018>
       * - the class constructor
@@ -44,9 +44,10 @@ public class ClassListItem {
       * @requires: none
       * @returns: a new AttendanceListItem instance
       */
-     public ClassListItem(String name, String desc) {
+     public ClassListItem(String name, String desc, int numStud) {
           this.name = name;
           this.desc = desc;
+          this.numStud = numStud;
      }
 
      /**
@@ -69,5 +70,9 @@ public class ClassListItem {
       */
      public String getDesc() {
           return desc;
+     }
+
+     public int getNumStud() {
+          return numStud;
      }
 }

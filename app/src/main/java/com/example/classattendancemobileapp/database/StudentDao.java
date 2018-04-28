@@ -60,6 +60,9 @@ import java.util.List;
 @Dao
 public interface StudentDao {
 
+     @Query("SELECT COUNT (*) FROM student WHERE classID = :ID")
+     int getNumStudents(int ID);
+
      /**
      * getByClassID() <06/02/2018>
      * - returns all students given a classID

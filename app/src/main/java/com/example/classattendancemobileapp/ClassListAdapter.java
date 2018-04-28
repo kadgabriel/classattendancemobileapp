@@ -114,9 +114,11 @@ public class ClassListAdapter extends BaseAdapter {
 
           TextView nameTv = view.findViewById(R.id.nameTv);
           TextView descTv = view.findViewById(R.id.descTv);
+          TextView addinfoTv = view.findViewById(R.id.addinfoTv);
 
           nameTv.setText(classListItem.getName());
           descTv.setText(classListItem.getDesc());
+          addinfoTv.setText((Integer.toString(classListItem.getNumStud())+" students"));
 
           return view;
      }
