@@ -240,7 +240,7 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
                public void onLongClick(View view, int position) {
                     selectedStudent = studentList.get(position);
                     ViewClassActivity.this.position = position;
-                    String[] studentInfo = {selectedStudent.getFirstName(), selectedStudent.getLastName(), selectedStudent.getStudentNum()};
+                    String[] studentInfo = {selectedStudent.getFirstName(), selectedStudent.getLastName().toUpperCase(), selectedStudent.getStudentNum()};
                     DialogFragment dialogFragment = EditStudentDialogFragment.newInstance(studentInfo);
                     dialogFragment.show(getSupportFragmentManager(), "edit_student");
                }

@@ -41,6 +41,7 @@
 package com.example.classattendancemobileapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.classattendancemobileapp.database.Attendance;
@@ -80,6 +81,7 @@ public class AttendanceController {
                 }
                 else {
                     Attendance newAttendance = new Attendance(classID, studentNum, attendanceDate, studentAttendance);
+                    Log.d("newAttendance",studentNum);
                     MainActivity.db.attendanceDao().insert(newAttendance);
                 }
          }

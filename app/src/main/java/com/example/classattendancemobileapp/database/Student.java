@@ -93,7 +93,7 @@ public class Student {
           this.classID = classID;
           this.studentNum = studentNum;
           this.firstName = firstName;
-          this.lastName = lastName;
+          this.lastName = lastName.toUpperCase();
      }
 
      /*
@@ -138,7 +138,7 @@ public class Student {
      *                    "last name, first name"
      * */
      public String getName(){
-          return this.lastName+", "+this.firstName;
+          return this.lastName.toUpperCase()+", "+this.firstName;
      }
 
      /*
