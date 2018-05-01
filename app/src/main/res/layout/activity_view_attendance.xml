@@ -92,23 +92,12 @@
           android:id="@+id/attendanceRv"
           android:layout_width="0dp"
           android:layout_height="0dp"
-          app:layout_constraintBottom_toTopOf="@+id/confirmAddAttendanceButton"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/dayTv" >
-
-     </android.support.v7.widget.RecyclerView>
-
-     <Button
-          android:id="@+id/confirmAddAttendanceButton"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="@color/colorPrimaryDark"
-          android:text="Add Attendance Record"
-          android:textColor="@color/colorPrimary"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent" />
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dayTv">
+
+     </android.support.v7.widget.RecyclerView>
 
 
 </android.support.constraint.ConstraintLayout>
