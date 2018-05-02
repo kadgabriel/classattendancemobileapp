@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.1 <13/04/2018> - John Oliver
+ *        - modified the toolbar to include back button
+ *
  *   Version 1.0 <07/02/2018> - John Oliver
  *        - created initial file
  */
@@ -28,7 +31,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  AddAttendanceActivity.java
  * @Creation Date: 07/03/18
- * @Version: 1.0
+ * @Version: 1.1
  */
 
 package com.example.classattendancemobileapp;
@@ -38,6 +41,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -50,6 +54,8 @@ import android.widget.Toast;
 
 import com.example.classattendancemobileapp.database.Student;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,11 +63,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class AddAttendanceActivity extends AppCompatActivity {
+public class AddAttendanceActivity extends AppCompatActivity{
 
      AttendanceController attendanceController; // the attendance controller object which is directly connected to the database
      Button confirmAddAttendanceButton; // the Button widget to confirm the creation of an attendance record
      ClassController classController; // the class controller object which is directly connected to the database
+     int size = 0; // keeps track of the number of students in the class
      List<Student> studentList; // list of students in the class of the attendance being made
      List<AttendanceListItem> attendanceListItems; // the student data that the adapter object translates into UI objects
      List<String[]> attendanceEntries; // data obtained which contains records about the attendance record being made
@@ -70,11 +77,12 @@ public class AddAttendanceActivity extends AppCompatActivity {
      String className; // the name of the class selected
      String dateString; // holds the string value of the date of the attendance record
      String dayString; // the name of the day of the week of the attendance record
+     String[] attendanceRecords;
      StudentController studentController; // the student controller object which is directly connected to the database
      TextView dateTv; // TextView widget to display the date of the attendance record
      TextView dayTv; // TextView widget to display the name of the day of the attendance record
-     TextView title;
-     Toolbar toolbar;
+     TextView title; // the TextView widget inside the custom toolbar
+     Toolbar toolbar; // the Toolbar widget at the top of the view which houses the back button
 
      /**
       * onCreate() <07/03/2018>
@@ -122,13 +130,51 @@ public class AddAttendanceActivity extends AppCompatActivity {
           classController = new ClassController(MainActivity.db, getApplicationContext());
           studentController = new StudentController(getApplicationContext());
 
+          studentList = studentController.getAllStudents(className);
+          size = studentList.size();
+          attendanceRecords = new String[size];
+          for(int i = 0; i < size; i++){
+               attendanceRecords[i] = "P";
+          }
+
+          attendanceRv.addOnItemTouchListener(new RecyclerViewOnTouchListener(this, attendanceRv, new ClickListener() {
+               @Override
+               public void onClick(View view, int position) {
+                    TextView statusTv = view.findViewById(R.id.statusTv);
+                    CardView cardView = view.findViewById(R.id.cardView);
+                    switch (statusTv.getText().toString().substring(0, 1)) {
+                         case "P":
+                              statusTv.setText("LATE");
+                              attendanceRecords[position] = "L";
+                              cardView.setBackgroundResource(R.color.lateBackground);
+                              break;
+
+                         case "L":
+                              statusTv.setText("ABSENT");
+                              attendanceRecords[position] = "A";
+                              cardView.setBackgroundResource(R.color.absentBackground);
+                              break;
+
+                         case "A":
+                              statusTv.setText("PRESENT");
+                              attendanceRecords[position] = "P";
+                              cardView.setBackgroundResource(R.color.presentBackground);
+                              break;
+                    }
+               }
+
+               @Override
+               public void onLongClick(View view, int position) {
+                    Log.d("ATTENDANCE_RECYCLERVIEW", String.valueOf(position));
+               }
+          }));
+
           confirmAddAttendanceButton.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
                     attendanceEntries = new ArrayList<>();
-                    for(int i = 0; i < attendanceRv.getChildCount(); i++){
-                         AttendanceListAdapter.ViewHolder viewHolder = (AttendanceListAdapter.ViewHolder) attendanceRv.findViewHolderForAdapterPosition(i);
-                         String[] entry = {viewHolder.snoTv.getText().toString(), viewHolder.statusTv.getText().toString().substring(0,1)};
+                    for(int i = 0; i < size; i++){
+                         String[] entry = {studentList.get(i).getStudentNum(), attendanceRecords[i]};
                          attendanceEntries.add(entry);
                     }
                     if(attendanceController.addAttendance(classController.getByName(className).getClassID(), dateString, attendanceEntries) == true){

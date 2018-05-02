@@ -8,13 +8,16 @@
      of the Department of Computer Science, College of Engineering,
      University of the Philippines, Diliman for the AY 2017-2018.
 
-     @Author: Ronnel Austria
+     @Author: Ronnel Austria, Oliver Atienza
 -->
 
 <!--
      Code History
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
+
+     Version 1.1 <14/03/2018> - Oliver Atienza
+          - modified the toolbar to include back button
 
      Version 1.0 <20/03/2018> - Ronnel Austria
           - created initial layout for EditClassActivity.java
@@ -29,7 +32,7 @@
      @Client: Asst. Prof. Ma. Rowena C. Solamo
      @File:  activity_edit_class.xml
      @Creation Date: 20/03/18
-     @Version: 1.0
+     @Version: 1.1
 -->
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"

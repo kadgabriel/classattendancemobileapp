@@ -103,7 +103,7 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
      TextView classDescTv; // the TextView widget that displays the short description of the class
      TextView classNameTv; // the TextView widget that displays the name of the class
      TextView noStudentTv; // the TextView widget that display a tooltip if the class has no students
-     Toolbar toolbar; // the Toolbar widget at the top of the view
+     Toolbar toolbar; // the Toolbar widget at the top of the view which houses the back button
 
      /**
       * onCreate() <08/02/2018>

@@ -140,7 +140,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
           return attendanceItems.size();
      }
 
-     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+     public class ViewHolder extends RecyclerView.ViewHolder{
           public TextView nameTv;
           public TextView snoTv;
           public TextView statusTv;
@@ -160,10 +160,6 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
                statusTv = itemView.findViewById(R.id.statusTv);
                cardView = itemView.findViewById(R.id.cardView);
                cardView.setBackgroundResource(R.color.presentBackground);
-
-               itemView.setOnClickListener(this);
-
-
           }
 
           /**
@@ -173,27 +169,27 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
            * @requires: none
            * @returns: none
            */
-          @Override
-          public void onClick(View view) {
-               if(editable){
-                    switch (statusTv.getText().toString().substring(0, 1)) {
-                         case "P":
-                              statusTv.setText("LATE");
-                              cardView.setBackgroundResource(R.color.lateBackground);
-                              break;
-
-                         case "L":
-                              statusTv.setText("ABSENT");
-                              cardView.setBackgroundResource(R.color.absentBackground);
-                              break;
-
-                         case "A":
-                              statusTv.setText("PRESENT");
-                              cardView.setBackgroundResource(R.color.presentBackground);
-                              break;
-                    }
-               }
-
-          }
+//          @Override
+//          public void onClick(View view) {
+//               if(editable){
+//                    switch (statusTv.getText().toString().substring(0, 1)) {
+//                         case "P":
+//                              statusTv.setText("LATE");
+//                              cardView.setBackgroundResource(R.color.lateBackground);
+//                              break;
+//
+//                         case "L":
+//                              statusTv.setText("ABSENT");
+//                              cardView.setBackgroundResource(R.color.absentBackground);
+//                              break;
+//
+//                         case "A":
+//                              statusTv.setText("PRESENT");
+//                              cardView.setBackgroundResource(R.color.presentBackground);
+//                              break;
+//                    }
+//               }
+//
+//          }
      }
 }

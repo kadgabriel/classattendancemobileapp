@@ -15,6 +15,9 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.4 <13/04/2018> - John Oliver
+ *        - modified the toolbar to include back button
+ *
  *   Version 1.3 <09/04/2018> - Arielle Gabriel
  *        - added errorDialog() function
  *
@@ -37,7 +40,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  AddStudentsActivity.java
  * @Creation Date: 19/02/18
- * @Version: 1.3
+ * @Version: 1.4
  */
 
 package com.example.classattendancemobileapp;
@@ -74,8 +77,8 @@ public class AddStudentsActivity extends AppCompatActivity {
      RadioButton csvRb; // the RadioButton widget for when adding multiple students through a CSV file
      RadioButton singleStudentRb; // the RadioButton widget for when adding a single student
      StudentController studentController; // the student controller object which is directly connected to the database
-     TextView title;
-     Toolbar toolbar;
+     TextView title; // the TextView widget inside the custom toolbar
+     Toolbar toolbar; // the Toolbar widget at the top of the view which houses the back button
      private static String FILEPATH; // the string value of the path of the object returned by the file picker activity
      private static Uri selectedFile; // the selected file from the file picker
 

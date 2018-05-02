@@ -7,13 +7,16 @@
      of the Department of Computer Science, College of Engineering,
      University of the Philippines, Diliman for the AY 2017-2018.
 
-     @Author: Arielle Gabriel
+     @Author: Arielle Gabriel, Oliver Atienza
 -->
 
 <!--
      Code History
           Version x.x <DD/MM/YYYY> - Author
                [description of changes]
+
+     Version 1.1 <14/03/2018> - Oliver Atienza
+          - added the custom toolbar to include back button
 
      Version 1.0 <15/03/2018> - Arielle
           - created initial layout for ViewAttendanceActivity.java based on activity_add_attendance.xml
@@ -28,7 +31,7 @@
      @Client: Asst. Prof. Ma. Rowena C. Solamo
      @File:  activity_add_attendance.xml
      @Creation Date: 15/03/18
-     @Version: 1.0
+     @Version: 1.1
 -->
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -89,23 +92,12 @@
           android:id="@+id/attendanceRv"
           android:layout_width="0dp"
           android:layout_height="0dp"
-          app:layout_constraintBottom_toTopOf="@+id/confirmAddAttendanceButton"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/dayTv" >
-
-     </android.support.v7.widget.RecyclerView>
-
-     <Button
-          android:id="@+id/confirmAddAttendanceButton"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="@color/colorPrimaryDark"
-          android:text="Add Attendance Record"
-          android:textColor="@color/colorPrimary"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent" />
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/dayTv">
+
+     </android.support.v7.widget.RecyclerView>
 
 
 </android.support.constraint.ConstraintLayout>

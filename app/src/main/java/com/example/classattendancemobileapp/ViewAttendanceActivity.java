@@ -6,7 +6,7 @@
  * of the Department of Computer Science, College of Engineering,
  * University of the Philippines, Diliman for the AY 2017-2018.
  *
- * @File Author(s): Arielle Gabriel
+ * @File Author(s): Arielle Gabriel, Oliver Atienza
  *
  */
 
@@ -14,6 +14,9 @@
  * Code History
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
+ *
+ *   Version 1.1 <13/04/2018> - Oliver Atienza
+ *        - modified the toolbar to include back button
  *
  *   Version 1.0 <15/02/2018> - Arielle Gabriel
  *        - created initial file based on AddAttendanceActivity.java
@@ -28,7 +31,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  AddAttendanceActivity.java
  * @Creation Date: 15/03/18
- * @Version: 1.0
+ * @Version: 1.1
  */
 
 package com.example.classattendancemobileapp;
@@ -75,8 +78,8 @@ public class ViewAttendanceActivity extends AppCompatActivity {
      TextView dateTv; // TextView widget to display the date of the attendance record
      TextView dayTv; // TextView widget to display the name of the day of the attendance record
      TextView emptyEntryTv; // TextView to display "No attendance entry for this day"
-     TextView title;
-     Toolbar toolbar;
+     TextView title; // the TextView widget inside the custom toolbar
+     Toolbar toolbar; // the Toolbar widget at the top of the view which houses the back button
      /**
       * onCreate() <07/03/2018>
       * - android function called when the activity is created

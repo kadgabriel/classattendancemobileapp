@@ -6,7 +6,7 @@
  * of the Department of Computer Science, College of Engineering,
  * University of the Philippines, Diliman for the AY 2017-2018.
  *
- * @File Author(s): Ronnel Austria
+ * @File Author(s): Ronnel Austria, Oliver Atienza
  *
  */
 
@@ -15,6 +15,8 @@
  *   Version x.x <DD/MM/YYYY> - Author
  *        [description of changes]
  *
+ *   Version 1.1 <13/04/2018> - Oliver Atienza
+ *        - modified the toolbar to include back button
  *
  *   Version 1.0 <20/03/2018> - Ronnel Austria
  *        - created initial file
@@ -29,7 +31,7 @@
  * @Client: Asst. Prof. Ma. Rowena C. Solamo
  * @File:  EditClassActivity.java
  * @Creation Date: 20/03/18
- * @Version: 1.0
+ * @Version: 1.1
  */
 package com.example.classattendancemobileapp;
 
@@ -51,7 +53,7 @@ public class EditClassActivity extends AppCompatActivity {
      FloatingActionButton editClassFAB; // the FloatingActionButton widget for editing a class
      EditText classNameEt; // the EditText widget for class name
      EditText classDescEt; // the EditText widget for class description
-     Toolbar toolbar;
+     Toolbar toolbar; // the Toolbar widget at the top of the view which houses the back button
      /**
       * onCreate() <20/03/2018>
       * - android function called when the activity is created
