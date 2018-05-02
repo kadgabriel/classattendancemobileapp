@@ -64,7 +64,6 @@ import java.util.List;
 public class ViewAttendanceActivity extends AppCompatActivity {
 
      AttendanceController attendanceController; // the attendance controller object which is directly connected to the database
-     Button confirmAddAttendanceButton; // the Button widget to confirm the creation of an attendance record
      ClassController classController; // the class controller object which is directly connected to the database
      List<Student> studentList; // list of students in the class of the attendance being made
      List<AttendanceListItem> attendanceListItems; // the student data that the adapter object translates into UI objects
@@ -113,7 +112,6 @@ public class ViewAttendanceActivity extends AppCompatActivity {
           dayString = dayFormat.format(date.getTime());
 
           attendanceRv = findViewById(R.id.attendanceRv);
-          confirmAddAttendanceButton = findViewById(R.id.confirmAddAttendanceButton);
           dateTv = findViewById(R.id.dateTv);
           dayTv = findViewById(R.id.dayTv);
           emptyEntryTv = findViewById(R.id.emptyEntryTv);
@@ -127,7 +125,7 @@ public class ViewAttendanceActivity extends AppCompatActivity {
           classController = new ClassController(MainActivity.db, getApplicationContext());
           studentController = new StudentController(getApplicationContext());
 
-          confirmAddAttendanceButton.setText("EDIT ATTENDANCE RECORD");
+//          confirmAddAttendanceButton.setText("EDIT ATTENDANCE RECORD");
 //          confirmAddAttendanceButton.setOnClickListener(new View.OnClickListener() {
 //               @Override
 //               public void onClick(View view) {
