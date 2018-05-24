@@ -1,6 +1,7 @@
 <resources>
 
-     <string name="app_name">Class Attendance Mobile App</string>
+     <string name="app_name">Class Attendance</string>
+     <string name="app_name_toolbar">Class Attendance Mobile App</string>
      <string name="title_activity_create_class">Create Class</string>
      <string name="no_students">This class has no students.</string>
      <string name="no_classes">You have not created any classes.</string>

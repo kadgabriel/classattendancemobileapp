@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
           buildDB();
           toolbar = findViewById(R.id.toolbar);
           title = toolbar.findViewById(R.id.title);
-          title.setText(R.string.app_name);
+          title.setText(R.string.app_name_toolbar);
           setSupportActionBar(toolbar);
           classGridView = findViewById(R.id.classGridView);
           addClassFAB = findViewById(R.id.addClassFAB);
