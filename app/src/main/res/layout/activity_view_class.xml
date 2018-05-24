@@ -75,7 +75,7 @@
                <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="?android:attr/actionBarSize"
                     android:theme="@style/AppTheme"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
@@ -106,80 +106,39 @@
                          android:minLines="3"
                          android:text="class_desc" />
 
-                    <HorizontalScrollView
+                    <LinearLayout
+                         android:id="@+id/headerLinearLayout"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
                          android:layout_weight="0"
-                         android:fillViewport="false"
-                         android:scrollbars="none|horizontal">
+                         android:gravity="bottom|center_horizontal"
+                         android:orientation="horizontal">
 
-                         <LinearLayout
-                              android:layout_width="match_parent"
-                              android:layout_height="match_parent"
-                              android:gravity="bottom|center_horizontal"
-                              android:orientation="horizontal">
+                         <Button
+                              android:id="@+id/addAttendanceButton"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:backgroundTint="@color/buttonBackground"
+                              android:drawableLeft="@drawable/ic_note_add_black_24dp"
+                              android:drawablePadding="8dp"
+                              android:drawableTint="@color/buttonText"
+                              android:text="Add Attendance"
+                              android:textColor="@color/buttonText" />
 
-                              <Button
-                                   android:id="@+id/addAttendanceButton"
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:layout_weight="1"
-                                   android:backgroundTint="@color/buttonBackground"
-                                   android:drawableLeft="@drawable/ic_note_add_black_24dp"
-                                   android:drawablePadding="8dp"
-                                   android:drawableTint="@color/buttonText"
-                                   android:text="Add Attendance"
-                                   android:textColor="@color/buttonText" />
+                         <Button
+                              android:id="@+id/viewAttendanceButton"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:backgroundTint="@color/buttonBackground"
+                              android:drawableLeft="@drawable/ic_event_available_black_24dp"
+                              android:drawablePadding="8dp"
+                              android:drawableTint="@color/buttonText"
+                              android:text="View Attendance"
+                              android:textColor="@color/buttonText" />
 
-                              <Button
-                                   android:id="@+id/viewAttendanceButton"
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:layout_weight="1"
-                                   android:backgroundTint="@color/buttonBackground"
-                                   android:drawableLeft="@drawable/ic_event_available_black_24dp"
-                                   android:drawablePadding="8dp"
-                                   android:drawableTint="@color/buttonText"
-                                   android:text="View Attendance"
-                                   android:textColor="@color/buttonText" />
-
-                              <Button
-                                   android:id="@+id/addStudentsButton"
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:layout_weight="1"
-                                   android:backgroundTint="@color/buttonBackground"
-                                   android:drawableLeft="@drawable/ic_group_add_black_24dp"
-                                   android:drawablePadding="8dp"
-                                   android:drawableTint="@color/buttonText"
-                                   android:text="Add Students"
-                                   android:textColor="@color/buttonText" />
-
-                              <Button
-                                  android:id="@+id/editClassButton"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:layout_weight="1"
-                                  android:backgroundTint="@color/buttonBackground"
-                                  android:drawableLeft="@drawable/ic_edit_black_24dp"
-                                  android:drawablePadding="8dp"
-                                  android:drawableTint="@color/buttonText"
-                                  android:text="Edit Class Info"
-                                  android:textColor="@color/buttonText" />
-                              <Button
-                                  android:id="@+id/deleteClassButton"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:layout_weight="1"
-                                  android:backgroundTint="@color/buttonBackground"
-                                  android:drawableLeft="@drawable/ic_edit_black_24dp"
-                                  android:drawablePadding="8dp"
-                                  android:drawableTint="@color/buttonText"
-                                  android:text="Delete Class"
-                                  android:textColor="@color/buttonText" />
-
-                         </LinearLayout>
-                    </HorizontalScrollView>
+                    </LinearLayout>
 
                </LinearLayout>
 
@@ -228,7 +187,8 @@
                          android:textAllCaps="true"
                          android:textColor="@color/fontPrimary"
                          android:textSize="10sp"
-                         android:textStyle="bold" />
+                         android:textStyle="bold"
+                         android:layout_gravity="start" />
 
                     <TextView
                          android:id="@+id/textView4"

@@ -56,6 +56,7 @@
 
 package com.example.classattendancemobileapp;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -64,12 +65,17 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,12 +93,10 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
      int position = 0; // the position of the adapter item currently being edited
 
      Button addAttendanceButton; // Button widget for the add attendance record
-     Button addStudentsButton; // Button widget for the add students
-     Button viewAttendanceButton; // Button widget for the view attendace
-     Button editClassButton; // Button widget for edit class info
-     Button deleteClassButton; // Button widget for delete class
+     Button viewAttendanceButton; // Button widget for the view attendance
      ClassController classController; // // the class controller object which is directly connected to the database
      CollapsingToolbarLayout collapsingToolbarLayout; // the CollapsingToolbarLayout which contains buttons and information about the class
+     LinearLayout headerLinearLayout;
      List<Student> studentList; // the list of students returned by the controller
      List<StudentListItem> studentListItems; // the list of students to be processed by the adapter
      RecyclerView studentsRv; // RecyclerView widget to display the list of students in the class
@@ -131,12 +135,10 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
           studentsRv = findViewById(R.id.studentsRv);
           noStudentTv = findViewById(R.id.noStudentTv);
           addAttendanceButton = findViewById(R.id.addAttendanceButton);
-          addStudentsButton = findViewById(R.id.addStudentsButton);
           viewAttendanceButton = findViewById(R.id.viewAttendanceButton);
-          editClassButton = findViewById(R.id.editClassButton);
-          deleteClassButton = findViewById(R.id.deleteClassButton);
           classNameTv = findViewById(R.id.classNameTv);
           classDescTv = findViewById(R.id.classDescTv);
+          headerLinearLayout = findViewById(R.id.headerLinearLayout);
 
           collapsingToolbarLayout.setTitle(className);
           collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
@@ -152,14 +154,6 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
           Classes classObj;
           classObj = classController.getByName(className);
           classID = classObj.getClassID();
-          addStudentsButton.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), AddStudentsActivity.class);
-                    intent.putExtra("CLASS_NAME", className);
-                    startActivity(intent);
-               }
-          });
 
           addAttendanceButton.setOnClickListener(new View.OnClickListener() {
                @Override
@@ -178,43 +172,6 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
                     startActivity(intent);
                }
           });
-
-
-         editClassButton.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), EditClassActivity.class);
-                    intent.putExtra("CLASS_NAME", className);
-                    startActivity(intent);
-               }
-          });
-
-         deleteClassButton.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                    new AlertDialog.Builder(ViewClassActivity.this)
-                    .setTitle("Delete Class")
-                    .setMessage("You are about to delete a class. Are you sure?")
-                    .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                         public void onClick(DialogInterface dialog, int which) {
-                              boolean b;
-                              b = classController.deleteClass(className);
-                              if(b){
-                                   finish();
-                              }
-                         }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                         public void onClick(DialogInterface dialog, int which) {
-                          // do nothing
-                         }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-
-              }
-         });
-
 
           studentsRv.addOnItemTouchListener(new RecyclerViewOnTouchListener(this, studentsRv, new ClickListener() {
                /**
@@ -245,7 +202,6 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
                     dialogFragment.show(getSupportFragmentManager(), "edit_student");
                }
           }));
-
      }
 
      /**
@@ -271,6 +227,7 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
           studentListItems = new ArrayList<>(); // empty list of studentsListItems
           if(size > 0) {
                noStudentTv.setVisibility(View.GONE);
+               headerLinearLayout.setVisibility(View.VISIBLE);
                for (int i = 0; i < size; i++) {
                     String name = studentList.get(i).getName();  // variable holder for the student's name
                     String sno = studentList.get(i).getStudentNum(); // variable holder for the student's student number
@@ -279,6 +236,7 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
                }
           }else{
                noStudentTv.setVisibility(View.VISIBLE);
+               headerLinearLayout.setVisibility(View.GONE);
           }
 
           adapter = new StudentListAdapter(studentListItems, this);
@@ -295,23 +253,69 @@ public class ViewClassActivity extends AppCompatActivity implements EditStudentD
      @Override
      public void onDialogPositiveClick(String[] studentInfo) {
           boolean b = studentController.updateStudent(classController.getByName(className).getClassID(), selectedStudent.getStudentNum(), studentInfo);
-//          Classes classObj = classController.getByName(className);
-//          Student student = studentController.getStudent(classObj.getClassID(), studentInfo[2]);
-//          if(b) {
-//               studentList.set(position, student);
-//               int[] attendance = studentController.getStudentAttendance(classObj.getClassID(), student.getStudentNum());
-//               studentListItems.set(position, new StudentListItem(student.getName(), student.getStudentNum(), attendance[0], attendance[1], attendance[2]));
-//               adapter.notifyItemChanged(position);
-//               Toast.makeText(getApplicationContext(), "Student information successfully edited!", Toast.LENGTH_SHORT).show();
-//          }else{
-//               Toast.makeText(getApplicationContext(), "Fields can not be empty!", Toast.LENGTH_SHORT).show();
-//          }
 
           if(b) {
                Toast.makeText(getApplicationContext(), "Student information successfully edited!", Toast.LENGTH_SHORT).show();
                onResume();
           }else{
                Toast.makeText(getApplicationContext(), "Fields can not be empty!", Toast.LENGTH_SHORT).show();
+          }
+     }
+
+     @SuppressLint("RestrictedApi")
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
+          MenuInflater inflater = getMenuInflater();
+          inflater.inflate(R.menu.view_class, menu);
+
+          if(menu instanceof MenuBuilder){
+               MenuBuilder m = (MenuBuilder) menu;
+               //noinspection RestrictedApi
+               m.setOptionalIconsVisible(true);
+          }
+          return true;
+     }
+
+     @Override
+     public boolean onOptionsItemSelected(MenuItem item) {
+          Intent intent;
+          switch(item.getItemId()){
+               case R.id.addStudents:
+                    intent = new Intent(getApplicationContext(), AddStudentsActivity.class);
+                    intent.putExtra("CLASS_NAME", className);
+                    startActivity(intent);
+                    return true;
+
+               case R.id.editClassInfo:
+                    intent = new Intent(getApplicationContext(), EditClassActivity.class);
+                    intent.putExtra("CLASS_NAME", className);
+                    startActivity(intent);
+                    return true;
+
+               case R.id.deleteClass:
+                    new AlertDialog.Builder(ViewClassActivity.this)
+                              .setTitle("Delete Class")
+                              .setMessage("You are about to delete a class. Are you sure?")
+                              .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                   public void onClick(DialogInterface dialog, int which) {
+                                        boolean b;
+                                        b = classController.deleteClass(className);
+                                        if(b){
+                                             finish();
+                                        }
+                                   }
+                              })
+                              .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                   public void onClick(DialogInterface dialog, int which) {
+                                        // do nothing
+                                   }
+                              })
+                              .setIcon(android.R.drawable.ic_dialog_alert)
+                              .show();
+                    return true;
+
+               default:
+                    return super.onOptionsItemSelected(item);
           }
      }
 }
